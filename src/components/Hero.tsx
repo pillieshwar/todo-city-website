@@ -22,7 +22,7 @@ export function Hero() {
   const [blip, setBlip] = useState(0);
   const copy = useRef<HTMLDivElement>(null);
 
-  // The words drift up and fade as you scroll into the story.
+  // The words fade as you scroll into the story (they never slide under the top bar).
   useEffect(() => {
     let raf = 0;
     const on = () => {
@@ -31,8 +31,7 @@ export function Hero() {
         const y = Math.min(window.scrollY, window.innerHeight);
         const el = copy.current;
         if (el) {
-          el.style.transform = `translate3d(0, ${y * -0.18}px, 0)`;
-          el.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.75)));
+          el.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.45)));
         }
       });
     };
