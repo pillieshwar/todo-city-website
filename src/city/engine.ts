@@ -467,7 +467,8 @@ export class CityEngine {
           body.position.set(x, 0.24, z);
           body.castShadow = true;
           body.receiveShadow = true;
-          body.userData = { name: "Houses", floor: "A house · no project" };
+          // Each house is one task: hovering it shows that task.
+          body.userData = { name: "Houses", floor: "A house · no project", slot: slots.length };
           this.city.add(body);
           this.bodies.push(body);
           const roof = new THREE.Mesh(houseRoofGeo, houseRoofMat);
@@ -768,7 +769,10 @@ export class CityEngine {
       const body = this.bodies.find((b) => b.userData.lot === slot.lot) ?? (hb?.object as THREE.Mesh | undefined) ?? null;
       return { body, slot };
     }
-    if (hb) return { body: hb.object as THREE.Mesh, slot: null };
+    if (hb) {
+      const i = hb.object.userData.slot as number | undefined;
+      return { body: hb.object as THREE.Mesh, slot: i !== undefined ? (this.slots[i] ?? null) : null };
+    }
     return null;
   }
 
