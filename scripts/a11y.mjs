@@ -11,8 +11,8 @@ for (const [name, viewport, motion] of [
   ["desktop", { width: 1366, height: 900 }, "no-preference"],
   ["phone", { width: 390, height: 844 }, "reduce"],
 ]) {
-  const page = await browser.newPage({ viewport });
-  await page.emulateMedia({ reducedMotion: motion });
+  const context = await browser.newContext({ viewport, reducedMotion: motion });
+  const page = await context.newPage();
   await page.goto(url, { waitUntil: "networkidle" });
   // Scroll through so every section has appeared.
   for (let y = 0; y < 30000; y += 700) await page.evaluate((v) => window.scrollTo(0, v), y);
@@ -25,7 +25,7 @@ for (const [name, viewport, motion] of [
     console.log(`::${level} title=${name}: ${v.id} (${v.impact})::${v.help} — ${where}`);
   }
   console.log(`::notice title=${name}::${r.passes.length} rules pass, ${r.violations.length} with findings`);
-  await page.close();
+  await context.close();
 }
 await browser.close();
 process.exit(bad ? 1 : 0);
