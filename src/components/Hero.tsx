@@ -44,6 +44,7 @@ export function Hero() {
       <CityCanvas
         layout={layout}
         className="hero-city"
+        label="A 3D city at night. Each building is a project and each lit window a finished task; new residents keep moving in."
         options={{
           interactive: true,
           autoRotate: true,
@@ -77,9 +78,9 @@ export function Hero() {
             Hear the story <Arrow />
           </a>
         </div>
-        <p className="hero-fine">Free and open source · {SITE.requirements}</p>
+        <p className="hero-fine">Free for personal use · {SITE.requirements}</p>
       </div>
-      <div className="hero-pop">
+      <div className="hero-pop" aria-hidden>
         <span key={blip} className="pop-light" aria-hidden />
         <span className="pop-num">{population.toLocaleString()}</span>
         <span className="pop-text">

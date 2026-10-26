@@ -1,0 +1,55 @@
+name: Build
+
+# Type-checks, builds and prerenders the site on every push, so a broken
+# build shows up here (with its errors) before Vercel tries to deploy it.
+
+on:
+  push:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --no-audit --no-fund
+      - name: Build
+        run: |
+          npm run build > build.log 2>&1 || {
+            grep -A4 -E "error during build|error TS|Error:" build.log | head -n 10 | while IFS= read -r l; do echo "::error title=Build::$l"; done
+            cat build.log
+            exit 1
+          }
+          tail -n 5 build.log
+          echo "::notice title=Built::$(grep -m1 prerendered build.log)"
+          test -s dist/sitemap.xml && test -s dist/robots.txt
+          grep -q '<main' dist/index.html
+      - name: Accessibility (axe-core, WCAG 2.2 AA)
+        run: |
+          set -o pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.64.0 @axe-core/playwright@4.11.3 > install.log 2>&1 || { tail -n 5 install.log | while IFS= read -r l; do echo "::error title=install::$l"; done; exit 1; }
+          npx playwright install --with-deps chromium > browser.log 2>&1 || { tail -n 5 browser.log | while IFS= read -r l; do echo "::error title=browser::$l"; done; exit 1; }
+          npx vite preview --port 4173 --strictPort &
+          sleep 3
+          node scripts/a11y.mjs http://localhost:4173/ 2>&1 | tee a11y.log || {
+            grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script::$l"; done
+            exit 1
+          }
+      - name: Search basics
+        run: |
+          set -e
+          for f in robots.txt sitemap.xml site.webmanifest og-image.png apple-touch-icon.png; do test -s "dist/$f"; done
+          grep -q '<link rel="canonical"' dist/index.html
+          grep -q '"@type":"FAQPage"' dist/index.html
+          grep -q 'SoftwareApplication' dist/index.html
+          words=$(sed -e 's/<[^>]*>/ /g' dist/index.html | wc -w)
+          echo "::notice title=Words in the HTML before any JavaScript::$words"

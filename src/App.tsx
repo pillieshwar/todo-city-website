@@ -1,22 +1,23 @@
 import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { Playground } from "./components/Playground";
-import { Download, Features, Footer, Privacy } from "./components/Sections";
+import { Download, Faq, Features, Footer, Privacy } from "./components/Sections";
 import { Story } from "./components/Story";
 
 export function App() {
   return (
     <>
-      <a className="skip" href="#story">
-        Skip to the story
+      <a className="skip" href="#main">
+        Skip to content
       </a>
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Story />
         <Playground />
         <Features />
         <Privacy />
+        <Faq />
         <Download />
       </main>
       <Footer />
