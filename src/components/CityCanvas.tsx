@@ -11,12 +11,15 @@ export function CityCanvas({
   options,
   onEngine,
   className,
+  label,
   tooltip = true,
 }: {
   layout: Layout;
   options?: Omit<EngineOptions, "onHover" | "onReady">;
   onEngine?: (e: CityEngine | null) => void;
   className?: string;
+  /** What the city shows, for screen readers. */
+  label: string;
   tooltip?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null);
@@ -58,10 +61,10 @@ export function CityCanvas({
   }, [layout]);
 
   return (
-    <div ref={host} className={["city-host", ready ? "ready" : "", className ?? ""].filter(Boolean).join(" ")}>
+    <div ref={host} role="img" aria-label={label} className={["city-host", ready ? "ready" : "", className ?? ""].filter(Boolean).join(" ")}>
       {noGL && <p className="city-nogl">Your browser can't show 3D right now — but the city is still there in the app.</p>}
       {hover && (hover.home || hover.name) && (
-        <div className="city-tip" style={{ left: hover.x + 14, top: hover.y + 14 }}>
+        <div className="city-tip" aria-hidden style={{ left: hover.x + 14, top: hover.y + 14 }}>
           {hover.home ? (
             <>
               <strong>{hover.home.title ?? "A home"}</strong>

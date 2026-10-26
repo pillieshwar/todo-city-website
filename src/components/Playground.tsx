@@ -155,7 +155,13 @@ export function Playground() {
       </div>
       <div className="play-grid">
         <div className="play-stage">
-          <CityCanvas layout={layout} className="play-city" options={{ interactive: true, labels: true, wheelZoom: true, zoom: 0.72 }} onEngine={(e) => (engine.current = e)} />
+          <CityCanvas
+            layout={layout}
+            className="play-city"
+            label="A 3D city with your projects as buildings on its edge. Finished tasks are lit windows. Drag to turn it; use the buttons to zoom."
+            options={{ interactive: true, labels: true, wheelZoom: true, zoom: 0.72 }}
+            onEngine={(e) => (engine.current = e)}
+          />
           <div className="play-zoom">
             <button type="button" aria-label="Zoom in" onClick={() => engine.current?.zoomBy(0.75)}>
               +
@@ -167,8 +173,11 @@ export function Playground() {
               ⤢
             </button>
           </div>
+          <p className="sr-only" aria-live="polite">
+            {moved > 0 ? `${moved} ${moved === 1 ? "resident" : "residents"} moved in` : ""}
+          </p>
           {moved > 0 && (
-            <div className="play-moved" key={moved}>
+            <div className="play-moved" key={moved} aria-hidden>
               +{moved} {moved === 1 ? "resident" : "residents"} moved in
             </div>
           )}
@@ -185,13 +194,12 @@ export function Playground() {
             </div>
           </form>
 
-          <div className="play-tabs" role="tablist" aria-label="Your buildings">
+          <div className="play-tabs" role="group" aria-label="Your buildings">
             {projects.map((x) => (
               <button
                 key={x.id}
                 type="button"
-                role="tab"
-                aria-selected={x.id === p?.id}
+                aria-pressed={x.id === p?.id}
                 className={x.id === p?.id ? "on" : ""}
                 onClick={() => {
                   setSel(x.id);
@@ -200,7 +208,12 @@ export function Playground() {
                 }}
               >
                 {x.name}
-                <span>{x.tasks.filter((t) => !t.done).length || ""}</span>
+                {x.tasks.some((t) => !t.done) && (
+                  <span>
+                    {x.tasks.filter((t) => !t.done).length}
+                    <span className="sr-only"> to do</span>
+                  </span>
+                )}
               </button>
             ))}
           </div>

@@ -9,7 +9,7 @@ Built with React 18, TypeScript, Vite and three.js. No other runtime dependencie
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm run build      # type-check, then build to dist/
+npm run build      # type-check, build to dist/, then prerender the page and write sitemap.xml
 npm run preview    # serve the build
 ```
 
@@ -34,3 +34,13 @@ Import the folder as a project (or run `vercel` in it). `vercel.json` sets the V
 - three.js loads in its own chunk after the page text, and each city only draws while it's on screen.
 - On touch screens the hero city turns by itself so it never traps the page's scrolling; the playground city can be turned with a finger.
 - With *Reduce motion* on, the city stays still and the page skips its animations.
+
+## Search and sharing
+
+- `npm run build` renders the whole page to HTML at build time (`src/entry-server.tsx`, `scripts/prerender.mjs`), so search engines, link previews and visitors without JavaScript get every word. It also adds the FAQ as structured data and writes `sitemap.xml` dated that day.
+- `index.html` has the title, description, canonical URL, Open Graph and X cards, and `SoftwareApplication` structured data. `public/` has `robots.txt`, the web manifest, icons and the 1200×630 sharing image.
+- After the first deploy on the real domain, add `https://todocity.app/sitemap.xml` in Google Search Console (Sitemaps) and request indexing of the home page.
+
+## Accessibility
+
+Aimed at WCAG 2.2 AA: a skip link, landmarks and a heading order, visible focus on everything, text at 4.5:1 contrast or more, labels for every control, the 3D cities described for screen readers, a phone menu that's closed to keyboards when hidden (Escape closes it), announcements in the playground, and no moving demos or camera flights when the system asks for reduced motion.

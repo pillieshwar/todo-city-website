@@ -32,6 +32,13 @@ export function Nav() {
       window.removeEventListener("resize", on);
     };
   }, []);
+  // Escape closes the phone menu.
+  useEffect(() => {
+    if (!open) return;
+    const key = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", key);
+    return () => window.removeEventListener("keydown", key);
+  }, [open]);
   return (
     <header className={scrolled ? "nav scrolled" : "nav"}>
       <div className="nav-inner">
@@ -39,20 +46,23 @@ export function Nav() {
           <Logo />
           <span>Todo City</span>
         </a>
-        <nav className={open ? "nav-links open" : "nav-links"} aria-label="Sections">
+        <nav id="nav-links" className={open ? "nav-links open" : "nav-links"} aria-label="Sections">
           {LINKS.map(([href, text]) => (
             <a key={href} href={href} onClick={() => setOpen(false)}>
               {text}
             </a>
           ))}
+          <a href="#faq" onClick={() => setOpen(false)}>
+            FAQ
+          </a>
           <a className="nav-gh" href={SITE.repo} target="_blank" rel="noreferrer">
-            GitHub
+            GitHub<span className="sr-only"> (opens in a new tab)</span>
           </a>
         </nav>
-        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download}>
+        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download} aria-label="Download Todo City for Mac">
           <AppleIcon /> Download
         </a>
-        <button type="button" className="nav-menu" aria-label="Menu" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        <button type="button" className="nav-menu" aria-label="Menu" aria-controls="nav-links" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
           <span />
           <span />
         </button>

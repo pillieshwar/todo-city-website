@@ -128,7 +128,13 @@ export function Story() {
       <div className="story-grid">
         <div className="story-stage">
           <div className="story-sticky">
-            <CityCanvas layout={layout} className="story-city" options={{ interactive: false }} onEngine={(e) => (engine.current = e)} />
+            <CityCanvas
+              layout={layout}
+              className="story-city"
+              label="The city changes with each chapter: buildings go up, windows light as tasks are finished."
+              options={{ interactive: false }}
+              onEngine={(e) => (engine.current = e)}
+            />
             <div className="story-steps" aria-hidden>
               {CHAPTERS.map((c, i) => (
                 <span key={c.title} className={i === active ? "on" : i < active ? "done" : ""} />

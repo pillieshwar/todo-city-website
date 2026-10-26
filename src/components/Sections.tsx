@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SITE } from "../site";
+import { FAQ, SITE } from "../site";
 import { AppleIcon, Arrow, Check, GitHubIcon, Logo } from "./Icons";
 import { Reveal } from "./Reveal";
 
@@ -12,12 +12,14 @@ function DateDemo() {
   ] as const;
   const [i, setI] = useState(0);
   useEffect(() => {
+    // Changing text is a distraction for some: it holds still if motion is reduced.
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
     const t = window.setInterval(() => setI((n) => (n + 1) % PHRASES.length), 2800);
     return () => window.clearInterval(t);
   }, [PHRASES.length]);
   const [text, chip, kind] = PHRASES[i];
   return (
-    <div className="demo-date" key={i}>
+    <div className="demo-date" key={i} aria-hidden>
       <p className="demo-quote">“{text}”</p>
       <div className="demo-chip">
         <span className="demo-chip-kind">{kind}</span>
@@ -147,7 +149,7 @@ export function Privacy() {
           {[
             ["On-device AI", "The model that reads your text runs locally. Your messages, emails and pages are never uploaded."],
             ["No account", "There's nothing to sign up for. Your tasks live in one file on your Mac, with daily backups."],
-            ["Open source", "Every line is public. Read it, build it yourself, or check what it does."],
+            ["Source available", "Every line is public on GitHub. Read it, build it yourself, or check what it does."],
           ].map(([t, d]) => (
             <div key={t} className="privacy-point">
               <span className="privacy-check">
@@ -161,6 +163,27 @@ export function Privacy() {
           ))}
         </div>
       </Reveal>
+    </section>
+  );
+}
+
+export function Faq() {
+  return (
+    <section className="faq" id="faq" aria-labelledby="faq-title">
+      <div className="section-head">
+        <p className="eyebrow">Questions</p>
+        <h2 id="faq-title">
+          Good to <em>know.</em>
+        </h2>
+      </div>
+      <div className="faq-list">
+        {FAQ.map((f) => (
+          <details key={f.q} className="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
     </section>
   );
 }
@@ -217,14 +240,15 @@ export function Footer() {
         </div>
         <nav className="footer-cols" aria-label="Footer">
           <div>
-            <h4>Product</h4>
+            <h2 className="footer-h">Product</h2>
             <a href="#story">The story</a>
             <a href="#city">Your city</a>
             <a href="#features">Features</a>
+            <a href="#faq">Questions</a>
             <a href="#download">Download</a>
           </div>
           <div>
-            <h4>Resources</h4>
+            <h2 className="footer-h">Resources</h2>
             <a href={SITE.releases} target="_blank" rel="noreferrer">
               Release notes
             </a>
@@ -239,7 +263,7 @@ export function Footer() {
             </a>
           </div>
           <div>
-            <h4>Trust</h4>
+            <h2 className="footer-h">Trust</h2>
             <a href="#privacy">Privacy</a>
             <a href={SITE.license} target="_blank" rel="noreferrer">
               Non-commercial license
@@ -250,7 +274,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="footer-base">
-        <span>© {year} Todo City. Free and open source.</span>
+        <span>© {year} Todo City. Free for personal use · source available.</span>
         <span>Made for Mac, with the lights on.</span>
       </div>
     </footer>
