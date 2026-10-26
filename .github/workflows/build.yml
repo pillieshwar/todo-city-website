@@ -1,0 +1,35 @@
+name: Build
+
+# Type-checks, builds and prerenders the site on every push, so a broken
+# build shows up here (with its errors) before Vercel tries to deploy it.
+
+on:
+  push:
+  pull_request:
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm install --no-audit --no-fund
+      - name: Build
+        run: |
+          npm run build > build.log 2>&1 || {
+            grep -E "error|Error" build.log | head -n 10 | while IFS= read -r l; do echo "::error title=Build::$l"; done
+            cat build.log
+            exit 1
+          }
+          tail -n 5 build.log
+          echo "::notice title=Built::$(grep -m1 prerendered build.log)"
+          test -s dist/sitemap.xml && test -s dist/robots.txt
+          grep -q '<main' dist/index.html
