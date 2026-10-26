@@ -35,11 +35,15 @@ jobs:
           grep -q '<main' dist/index.html
       - name: Accessibility (axe-core, WCAG 2.2 AA)
         run: |
-          npm install --no-save --no-audit --no-fund playwright@1.64.0 @axe-core/playwright@4.11.3
-          npx playwright install --with-deps chromium
+          set -o pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.64.0 @axe-core/playwright@4.11.3 > install.log 2>&1 || { tail -n 5 install.log | while IFS= read -r l; do echo "::error title=install::$l"; done; exit 1; }
+          npx playwright install --with-deps chromium > browser.log 2>&1 || { tail -n 5 browser.log | while IFS= read -r l; do echo "::error title=browser::$l"; done; exit 1; }
           npx vite preview --port 4173 --strictPort &
           sleep 3
-          node scripts/a11y.mjs http://localhost:4173/
+          node scripts/a11y.mjs http://localhost:4173/ 2>&1 | tee a11y.log || {
+            grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script::$l"; done
+            exit 1
+          }
       - name: Search basics
         run: |
           set -e
