@@ -33,3 +33,19 @@ jobs:
           echo "::notice title=Built::$(grep -m1 prerendered build.log)"
           test -s dist/sitemap.xml && test -s dist/robots.txt
           grep -q '<main' dist/index.html
+      - name: Accessibility (axe-core, WCAG 2.2 AA)
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.64.0 @axe-core/playwright@4.11.3
+          npx playwright install --with-deps chromium
+          npx vite preview --port 4173 --strictPort &
+          sleep 3
+          node scripts/a11y.mjs http://localhost:4173/
+      - name: Search basics
+        run: |
+          set -e
+          for f in robots.txt sitemap.xml site.webmanifest og-image.png apple-touch-icon.png; do test -s "dist/$f"; done
+          grep -q '<link rel="canonical"' dist/index.html
+          grep -q '"@type":"FAQPage"' dist/index.html
+          grep -q 'SoftwareApplication' dist/index.html
+          words=$(sed -e 's/<[^>]*>/ /g' dist/index.html | wc -w)
+          echo "::notice title=Words in the HTML before any JavaScript::$words"
