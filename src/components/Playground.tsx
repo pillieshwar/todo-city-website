@@ -183,7 +183,7 @@ export function Playground() {
           )}
         </div>
 
-        <aside className="play-panel" aria-label="Your projects">
+        <div className="play-panel" role="group" aria-label="Your projects">
           <form className="play-new" onSubmit={addProject}>
             <label htmlFor="pname">Start a project</label>
             <div className="play-row">
@@ -271,7 +271,7 @@ export function Playground() {
             <p className="play-empty">Start a project above — a building goes up on the edge of town.</p>
           )}
           <p className="play-note">This is a demo on this page; the app keeps your real tasks privately on your Mac.</p>
-        </aside>
+        </div>
       </div>
     </section>
   );
