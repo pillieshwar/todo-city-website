@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: |
           npm run build > build.log 2>&1 || {
-            grep -E "error|Error" build.log | head -n 10 | while IFS= read -r l; do echo "::error title=Build::$l"; done
+            grep -A4 -E "error during build|error TS|Error:" build.log | head -n 10 | while IFS= read -r l; do echo "::error title=Build::$l"; done
             cat build.log
             exit 1
           }
