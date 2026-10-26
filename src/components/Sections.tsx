@@ -242,7 +242,7 @@ export function Footer() {
             <h4>Trust</h4>
             <a href="#privacy">Privacy</a>
             <a href={SITE.license} target="_blank" rel="noreferrer">
-              MIT License
+              Non-commercial license
             </a>
             <span>No account · no tracking</span>
             <span>{SITE.requirements}</span>
