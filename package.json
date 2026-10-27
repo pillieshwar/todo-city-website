@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "The Todo City website: the Lights On story, an interactive 3D city and the Mac download.",
+  "description": "The TodoCity website: the Lights On story, an interactive 3D city and the Mac download.",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",

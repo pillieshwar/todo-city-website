@@ -1,7 +1,7 @@
 /** Small inline icons (no icon font, nothing to load). */
 
 export function Logo({ size = 28 }: { size?: number }) {
-  // Todo City: a building at night whose lit windows trace a check.
+  // TodoCity: a building at night whose lit windows trace a check.
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden>
       <defs>

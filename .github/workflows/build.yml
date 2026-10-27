@@ -40,10 +40,12 @@ jobs:
           npx playwright install --with-deps chromium > browser.log 2>&1 || { tail -n 5 browser.log | while IFS= read -r l; do echo "::error title=browser::$l"; done; exit 1; }
           npx vite preview --port 4173 --strictPort &
           sleep 3
-          node scripts/a11y.mjs http://localhost:4173/ 2>&1 | tee a11y.log || {
-            grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script::$l"; done
-            exit 1
-          }
+          for page in / /things-3-alternative /move-from-things-3 /guides /faq; do
+            node scripts/a11y.mjs "http://localhost:4173$page" 2>&1 | tee -a a11y.log || {
+              grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script ($page)::$l"; done
+              exit 1
+            }
+          done
       - name: Search basics
         run: |
           set -e
@@ -51,5 +53,21 @@ jobs:
           grep -q '<link rel="canonical"' dist/index.html
           grep -q '"@type":"FAQPage"' dist/index.html
           grep -q 'SoftwareApplication' dist/index.html
+          # The guide pages, each with its own title, canonical link and structured data.
+          test -s dist/llms.txt && test -s dist/llms-full.txt
+          for page in things-3-alternative todoist-alternative move-from-things-3 guides faq; do
+            f="dist/$page/index.html"
+            test -s "$f"
+            grep -q "<link rel=\"canonical\" href=\"https://todocity.app/$page\"" "$f"
+            grep -q 'BreadcrumbList' "$f"
+            grep -q '<h1' "$f"
+          done
+          urls=$(grep -c '<loc>' dist/sitemap.xml)
+          echo "::notice title=Pages in the sitemap::$urls"
+          test "$urls" -ge 14
+          # The name is one word everywhere (the structured data's alternateName aside).
+          if grep -rn "Todo City" dist --include=*.html --include=*.txt | grep -v alternateName | grep -q .; then
+            echo "::error title=Name::'Todo City' should be 'TodoCity'"; exit 1
+          fi
           words=$(sed -e 's/<[^>]*>/ /g' dist/index.html | wc -w)
           echo "::notice title=Words in the HTML before any JavaScript::$words"

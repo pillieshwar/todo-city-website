@@ -1,0 +1,800 @@
+/**
+ * The guide pages: each answers one question people search for (or ask an
+ * AI assistant), with a direct answer first and the details after. Pages
+ * are prerendered to plain HTML with their own title, description and
+ * structured data (scripts/prerender.mjs).
+ */
+
+export type Block =
+  | { p: string }
+  | { list: string[] }
+  | { steps: { title: string; text: string }[] }
+  | { table: { head: string[]; rows: string[][]; caption: string } }
+  | { note: string };
+
+export interface Section {
+  h2: string;
+  blocks: Block[];
+}
+
+export interface Page {
+  slug: string;
+  kind: "guide" | "compare" | "howto";
+  /** The <title> (under ~60 characters). */
+  title: string;
+  /** The meta description (under ~155 characters). */
+  description: string;
+  h1: string;
+  /** The short, direct answer: the first thing on the page. */
+  answer: string;
+  /** Facts at a glance, as label → value. */
+  facts?: [string, string][];
+  sections: Section[];
+  faq?: { q: string; a: string }[];
+  /** Other pages to read next, by slug. */
+  related: string[];
+  /** For the guides list. */
+  card: string;
+}
+
+/** When the pages were last checked against the app. */
+export const UPDATED = "2026-10-27";
+
+const FACTS_APP: [string, string][] = [
+  ["Price", "Free for personal use"],
+  ["Runs on", "macOS 11 or later, Apple silicon and Intel"],
+  ["AI", "A small language model on your Mac"],
+  ["Account", "None"],
+  ["Sync", "Mac to Mac, end-to-end encrypted (optional)"],
+];
+
+export const PAGES: Page[] = [
+  {
+    slug: "private-todo-app-for-mac",
+    kind: "guide",
+    title: "A Private To-Do App for Mac, With No Account · TodoCity",
+    description:
+      "TodoCity is a private to-do app for Mac: tasks live in a file on your Mac, the AI runs on your Mac, and there's no account, cloud or tracking.",
+    h1: "A private to-do app for Mac",
+    answer:
+      "TodoCity is a to-do app for Mac that keeps everything on your Mac. Your tasks are stored in one file on your own computer, the AI that turns text into tasks runs locally, and there is no account, no cloud and no analytics. It's free for personal use.",
+    facts: FACTS_APP,
+    card: "What stays on your Mac, what (rarely) goes online, and why there's no account.",
+    sections: [
+      {
+        h2: "What stays on your Mac",
+        blocks: [
+          {
+            list: [
+              "Every task, note, sub-task, project and date — in one SQLite file in your Library folder, with seven daily backups beside it.",
+              "Everything you capture. Selected text goes only to a model running on your Mac (on 127.0.0.1, with a new random port and key each session).",
+              "Your reminders. Notifications are scheduled by macOS itself, not by a server.",
+              "Your city — the 3D picture of everything you've finished — is drawn on your Mac.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "When TodoCity goes online",
+        blocks: [
+          { p: "Only for three things, and you control each one:" },
+          {
+            list: [
+              "Downloading the AI model once, when you set it up (from Hugging Face, checked against its SHA-256).",
+              "Checking GitHub for updates — you can turn this off in Settings → General.",
+              "Sync between your Macs, only if you pair them. Changes are encrypted on your Mac before they leave, and the relay that passes them along can't read them.",
+            ],
+          },
+          { p: "There are no accounts, analytics or telemetry. Nothing is sent about how you use the app." },
+        ],
+      },
+      {
+        h2: "Why no account?",
+        blocks: [
+          {
+            p: "An account is how most to-do apps sync and how they know who you are. TodoCity doesn't need either: your tasks are on your Mac, and if you use more than one Mac, they pair directly with a code — like pairing headphones — instead of signing in. That also means it works on a work Mac that can't sign in to iCloud.",
+          },
+        ],
+      },
+      {
+        h2: "Your data, in your hands",
+        blocks: [
+          {
+            list: [
+              "Export everything to CSV or JSON at any time (Settings → Backups & export).",
+              "Seven days of automatic backups, and one before every import.",
+              "The source code is public on GitHub, so anyone can check what the app does.",
+            ],
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Does TodoCity work offline?",
+        a: "Yes. Once the AI model is downloaded, capturing, planning, reminders and your city all work with no internet connection. Only sync between Macs and update checks need the internet.",
+      },
+      {
+        q: "Can my employer or anyone else see my tasks?",
+        a: "TodoCity sends your tasks nowhere. If you pair Macs, changes travel end-to-end encrypted; the relay can't read task titles, notes, projects or Mac names. You can also keep any project on one Mac only.",
+      },
+    ],
+    related: ["ai-todo-app-on-device", "sync-macs-without-icloud", "faq"],
+  },
+  {
+    slug: "ai-todo-app-on-device",
+    kind: "guide",
+    title: "A To-Do App With On-Device AI for Mac · TodoCity",
+    description:
+      "TodoCity's AI runs on your Mac, not in the cloud: it reads the text you capture and writes the task, its date, time and repeat. Works offline.",
+    h1: "A to-do app with AI that runs on your Mac",
+    answer:
+      "TodoCity uses a small language model that runs entirely on your Mac. When you capture text — an email, a Slack message, a web page — it writes the to-do and finds the date phrase, and TodoCity turns that into a real day, time, deadline or repeat. Nothing you capture is sent to an AI service.",
+    facts: [
+      ["Model", "A small open model, downloaded once (about 2 GB)"],
+      ["Where it runs", "On your Mac, through llama.cpp"],
+      ["Internet needed", "Only for the first download"],
+      ["Macs", "Apple silicon and Intel, macOS 11+"],
+    ],
+    card: "How the local model writes your tasks, and why it can't be tricked into much.",
+    sections: [
+      {
+        h2: "What the AI does — and doesn't",
+        blocks: [
+          {
+            p: "The model has one small job: read what you captured and return three things — the task, the date phrase it found (“by Friday 3pm”), and how sure it is. Plain code then works out the actual date against today's calendar, so dates are never “hallucinated”. If a phrase could mean two days (“next Friday” on a Tuesday), TodoCity asks you instead of guessing.",
+          },
+          {
+            list: [
+              "“by Friday 3pm” becomes Friday at 3:00 PM, with a deadline.",
+              "“every Sunday” becomes a weekly repeat.",
+              "A bulleted list becomes sub-tasks.",
+              "The task remembers where it came from — the Slack thread, the email or the page — and opens it in one click.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "How it runs on your Mac",
+        blocks: [
+          {
+            p: "On first launch, TodoCity recommends a model for your Mac and downloads it once. It starts the model only when you capture something and stops it after five idle minutes, so it doesn't hold on to memory. Developers can point it at an existing Ollama instead.",
+          },
+        ],
+      },
+      {
+        h2: "Safe with text you don't control",
+        blocks: [
+          {
+            p: "Captured text is treated as data, never as instructions: it's wrapped and cleaned, the instructions live only in the system prompt, and the answer must match a strict schema. At worst, a sneaky message produces an odd task title — it can't make TodoCity do anything else.",
+          },
+        ],
+      },
+      {
+        h2: "Optional AI extras",
+        blocks: [
+          {
+            list: [
+              "Watch my screen (off by default) suggests tasks from what's in front of you — asks of you and promises you made — using the same on-device model. Password managers, Keychain, System Settings and terminals are never read.",
+              "AI agents like Claude Code, Claude Desktop, Cursor and VS Code can add tasks over MCP, on your Mac only. They can never read your list, and you approve each task.",
+            ],
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Does TodoCity use ChatGPT or another cloud AI?",
+        a: "No. The model runs on your Mac. Text you capture isn't sent to OpenAI, Anthropic, Google or anyone else.",
+      },
+      {
+        q: "Will it slow my Mac down?",
+        a: "The model runs only while it reads a capture — usually a second or two — and stops after five idle minutes. TodoCity picks a model size that suits your Mac.",
+      },
+    ],
+    related: ["turn-text-into-tasks", "private-todo-app-for-mac", "faq"],
+  },
+  {
+    slug: "turn-text-into-tasks",
+    kind: "howto",
+    title: "Turn Any Text Into a Task on Mac (Email, Slack, Web) · TodoCity",
+    description:
+      "Copy any text on your Mac and press ⌘C again: TodoCity turns it into a task with its date, time and repeat. Works in every app — email, Slack, the web.",
+    h1: "How to turn any text into a task on your Mac",
+    answer:
+      "In TodoCity, copy any text and press ⌘C once more. A card drops down from the menu bar with the task, its day and its time already filled in; press Return to save it. It works in every app — Mail, Outlook, Slack, Messages, a web page or a PDF.",
+    card: "⌘C twice, a shortcut, or right-click: three ways to capture from any app.",
+    sections: [
+      {
+        h2: "Capture with ⌘C twice",
+        blocks: [
+          {
+            steps: [
+              { title: "Copy the text", text: "Select a message, an email or a line on a web page and press ⌘C, as usual." },
+              { title: "Press ⌘C again", text: "Within a moment, press ⌘C a second time. TodoCity reads what you copied on your Mac." },
+              { title: "Check the card", text: "A card drops down from the menu bar with the task, its date and time filled in. Change anything you like." },
+              { title: "Press Return", text: "The task is saved, and you'll be reminded when its time comes — with Done and Snooze one click away." },
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Other ways to capture",
+        blocks: [
+          {
+            list: [
+              "A shortcut: select text and press ⇧⌘S — no copying at all. (This needs Accessibility access, which is how macOS lets an app read selected text.)",
+              "Right-click → Services → Add to TodoCity, in apps that offer it.",
+              "Quick add: press ⇧⌘Space anywhere and type, e.g. “pay rent friday 5pm every month #home”.",
+              "In the capture card, pick the project and floor it goes in.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Dates it understands",
+        blocks: [
+          {
+            table: {
+              caption: "Phrases and what they become",
+              head: ["You write", "TodoCity makes"],
+              rows: [
+                ["by Friday 3pm", "Friday, 3:00 PM, with a deadline"],
+                ["tomorrow evening", "Tomorrow, this evening"],
+                ["every Monday", "A weekly repeat on Mondays"],
+                ["next tuesday at 9", "Next Tuesday, 9:00 AM"],
+                ["3/4", "Asks: March 4 or April 3?"],
+              ],
+            },
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Does ⌘C twice change my clipboard?",
+        a: "No. Copying works as usual. TodoCity only reads what you just copied when you press ⌘C again; copies made inside TodoCity itself are ignored.",
+      },
+    ],
+    related: ["ai-todo-app-on-device", "work-and-personal-tasks", "faq"],
+  },
+  {
+    slug: "things-3-alternative",
+    kind: "compare",
+    title: "Things 3 Alternative for Mac: TodoCity vs Things 3",
+    description:
+      "Looking for a Things 3 alternative on Mac? TodoCity is free, captures tasks from any text with on-device AI, and imports your Things library.",
+    h1: "TodoCity vs Things 3: a Things alternative for Mac",
+    answer:
+      "TodoCity is a free alternative to Things 3 for people who live on a Mac. It keeps Things' ideas — Today, Upcoming, Anytime, Someday, projects with headings, deadlines — and adds on-device AI that turns any copied text into a dated task, plus a 3D city that grows as you finish things. Things 3 is the better pick if you need iPhone, iPad and Apple Watch apps. TodoCity can bring your whole Things library over in one step.",
+    card: "What carries over, what's different, and who should pick which.",
+    sections: [
+      {
+        h2: "At a glance",
+        blocks: [
+          {
+            table: {
+              caption: "TodoCity and Things 3 compared",
+              head: ["", "TodoCity", "Things 3"],
+              rows: [
+                ["Price", "Free for personal use", "Paid, one-time, per platform"],
+                ["Platforms", "Mac", "Mac, iPhone, iPad, Apple Watch"],
+                ["Turn any text into a task", "Yes — ⌘C twice, on-device AI", "Share sheet and Quick Entry (no AI)"],
+                ["Dates from plain words", "Yes, with deadlines and repeats", "Typed dates in the When field"],
+                ["Projects and sections", "Projects with floors", "Projects with headings, and areas"],
+                ["Sync", "Mac to Mac, end-to-end encrypted, no account", "Things Cloud (account)"],
+                ["Calendar beside your tasks", "Yes, with hours to drag tasks onto", "Calendar events in Today and Upcoming"],
+                ["Work / personal modes", "Yes, per Mac", "Via areas"],
+                ["Import from the other", "Imports your Things library", "—"],
+                ["Source code", "Public on GitHub", "Closed"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "What feels familiar",
+        blocks: [
+          {
+            p: "If you know Things, you'll find your way: Today (with This Evening), a calendar for what's coming, Anytime, Someday and the Logbook. Projects have sections — called floors — and tasks have notes, checklists, a separate deadline and repeats.",
+          },
+        ],
+      },
+      {
+        h2: "What's different",
+        blocks: [
+          {
+            list: [
+              "Capture from anywhere with AI: copy a message and press ⌘C again, and the task arrives with its date filled in.",
+              "Plan on the clock: drag a task onto an hour of today or a day of the week, beside your calendar events.",
+              "Overdue has its own list, instead of tasks quietly rolling over.",
+              "Modes: show only work projects on your work Mac, and everything at home.",
+              "Your city: every project is a building and every finished task lights a window — no streaks, no points.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Who should pick which",
+        blocks: [
+          {
+            list: [
+              "Pick TodoCity if you work mainly on a Mac, capture tasks from messages and email, want AI without the cloud, or need to sync a work Mac without iCloud.",
+              "Pick Things 3 if you add tasks on your iPhone or Apple Watch, or rely on Things' areas and iOS widgets.",
+              "Not sure? Try both: TodoCity reads a copy of your Things database and doesn't change Things, so you can keep using it.",
+            ],
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Can I move from Things 3 to TodoCity?",
+        a: "Yes. Settings → Move in reads a copy of your Things 3 database on your Mac and brings projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and your Logbook. Things isn't changed.",
+      },
+      {
+        q: "Does TodoCity have an iPhone app?",
+        a: "Not yet — TodoCity is for Mac. You can turn on two-way Apple Reminders sync to see and tick off tasks on your iPhone through Reminders.",
+      },
+    ],
+    related: ["move-from-things-3", "todoist-alternative", "apple-reminders-alternative"],
+  },
+  {
+    slug: "todoist-alternative",
+    kind: "compare",
+    title: "Todoist Alternative for Mac, Private and Offline · TodoCity",
+    description:
+      "A private Todoist alternative for Mac: no account or cloud, on-device AI that turns text into tasks, and a one-step import of your Todoist projects.",
+    h1: "TodoCity vs Todoist: a private Todoist alternative for Mac",
+    answer:
+      "TodoCity is a private, Mac-only alternative to Todoist. Where Todoist keeps your tasks in its cloud behind an account, TodoCity keeps them on your Mac, works offline and uses on-device AI to turn copied text into dated tasks. Todoist is the better pick if you need apps on every platform or shared projects with a team. TodoCity can import your Todoist projects, sections, tasks and completed tasks.",
+    card: "Cloud and account vs on your Mac: the trade-offs, and how to move.",
+    sections: [
+      {
+        h2: "At a glance",
+        blocks: [
+          {
+            table: {
+              caption: "TodoCity and Todoist compared",
+              head: ["", "TodoCity", "Todoist"],
+              rows: [
+                ["Price", "Free for personal use", "Free plan, paid plans for more"],
+                ["Platforms", "Mac", "Web, Mac, Windows, iPhone, Android and more"],
+                ["Where tasks live", "On your Mac", "Todoist's servers"],
+                ["Account", "None", "Required"],
+                ["Works offline", "Fully", "Partly"],
+                ["AI", "On your Mac", "Cloud features"],
+                ["Turn copied text into a task", "⌘C twice, in any app", "Browser extensions, email forwarding, share sheet"],
+                ["Sharing with others", "No", "Yes, shared projects"],
+                ["Import from the other", "Imports Todoist (API token or CSV)", "—"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "Why people switch",
+        blocks: [
+          {
+            list: [
+              "Privacy: no account and no cloud copy of your tasks.",
+              "Capture from any app with ⌘C twice, read by AI on your Mac.",
+              "Planning on the clock: Today with its hours and a week calendar beside your events.",
+              "A work Mac that can't use cloud apps can still sync with your personal Mac, end-to-end encrypted.",
+              "A calmer kind of motivation: your city lights up as you finish things — no karma points or streaks.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "What carries over",
+        blocks: [
+          {
+            table: {
+              caption: "Todoist in TodoCity",
+              head: ["Todoist", "TodoCity"],
+              rows: [
+                ["Project (and sub-projects)", "Project (a building)"],
+                ["Inbox", "Tasks with no project"],
+                ["Section", "Floor"],
+                ["Sub-tasks", "Sub-tasks"],
+                ["Labels", "#tags"],
+                ["Priority 1–3", "#p1–#p3, if you choose"],
+                ["Description and comments", "Notes"],
+                ["Recurring dates", "Repeats (daily, weekdays, weekly, every 2 weeks, monthly, yearly)"],
+                ["Completed tasks", "Done tasks — lit windows in your city"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "Who should pick which",
+        blocks: [
+          {
+            list: [
+              "Pick TodoCity if your tasks are personal, you work on a Mac, and you'd rather they never leave it.",
+              "Pick Todoist if you need Windows, Android or the web, or share projects with other people.",
+            ],
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "How do I move from Todoist to TodoCity?",
+        a: "In TodoCity, open Settings → Move in → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). Or export projects as CSV files. Todoist isn't changed.",
+      },
+    ],
+    related: ["move-from-todoist", "things-3-alternative", "private-todo-app-for-mac"],
+  },
+  {
+    slug: "apple-reminders-alternative",
+    kind: "compare",
+    title: "Apple Reminders Alternative for Mac (That Syncs With It) · TodoCity",
+    description:
+      "TodoCity works alongside Apple Reminders on Mac: AI capture from any text, projects, deadlines and planning by the hour — with two-way Reminders sync.",
+    h1: "TodoCity vs Apple Reminders",
+    answer:
+      "Apple Reminders is free and on every Apple device; TodoCity is a Mac app for people who want more: tasks from any copied text with on-device AI, projects with sections, separate deadlines, a calendar with hours to plan on, and modes for work and personal. You don't have to choose — TodoCity can sync both ways with a Reminders list, so your tasks also show on your iPhone.",
+    card: "Use it with Reminders, not instead: two-way sync and what TodoCity adds.",
+    sections: [
+      {
+        h2: "At a glance",
+        blocks: [
+          {
+            table: {
+              caption: "TodoCity and Apple Reminders compared",
+              head: ["", "TodoCity", "Apple Reminders"],
+              rows: [
+                ["Price", "Free for personal use", "Free, built in"],
+                ["Platforms", "Mac (iPhone through Reminders sync)", "Every Apple device"],
+                ["Turn any text into a task", "⌘C twice, on-device AI", "Siri and the share sheet"],
+                ["Deadline separate from the planned day", "Yes", "No"],
+                ["Plan tasks by the hour beside your calendar", "Yes, drag onto an hour", "Timed reminders show in Calendar"],
+                ["Projects with sections", "Projects with floors", "Lists with sections"],
+                ["Work / personal modes", "Yes, per Mac", "Separate lists"],
+                ["Shared lists", "No", "Yes, through iCloud"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "Using both: two-way Reminders sync",
+        blocks: [
+          {
+            p: "In Settings → Connectors → Apple Reminders, pick a list. Tasks you add in either app appear in the other, and ticking one off ticks off both. It's off until you turn it on.",
+          },
+          {
+            note: "If the list you pick is stored in iCloud, those tasks travel through iCloud — TodoCity warns you first. Pick an “On My Mac” list to keep them fully local.",
+          },
+        ],
+      },
+    ],
+    related: ["things-3-alternative", "todoist-alternative", "work-and-personal-tasks"],
+  },
+  {
+    slug: "move-from-things-3",
+    kind: "howto",
+    title: "How to Move From Things 3 to TodoCity (Step by Step)",
+    description:
+      "Move your Things 3 library to TodoCity in four steps: projects, headings, to-dos, checklists, deadlines, repeats and your Logbook. Things isn't changed.",
+    h1: "How to move from Things 3 to TodoCity",
+    answer:
+      "Open TodoCity's Settings → Move in, click Find my Things library, check the preview and click Move in. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
+    card: "Four steps, what each Things item becomes, and what to do if the library isn't found.",
+    sections: [
+      {
+        h2: "Steps",
+        blocks: [
+          {
+            steps: [
+              { title: "Open Things 3 on this Mac", text: "Let it finish syncing. If you only use Things on iPhone or iPad, install Things 3 for Mac and sign in to Things Cloud first." },
+              { title: "Find your library", text: "In TodoCity, open Settings → Move in and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
+              { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring the Logbook and cancelled to-dos." },
+              { title: "Click Move in", text: "TodoCity backs itself up first (Settings → Backups & export → “before import”), so you can undo it." },
+            ],
+          },
+          { p: "Running it again later brings only to-dos that are new since last time." },
+        ],
+      },
+      {
+        h2: "What each Things item becomes",
+        blocks: [
+          {
+            table: {
+              caption: "Things 3 in TodoCity",
+              head: ["Things 3", "TodoCity"],
+              rows: [
+                ["Project", "Project (a building)"],
+                ["Heading", "Floor"],
+                ["To-do", "Task (a home)"],
+                ["Checklist", "Sub-tasks"],
+                ["Area", "Its projects come as they are; to-dos right in the area become a project named after it"],
+                ["Inbox, loose to-dos", "Tasks with no project"],
+                ["Today, This Evening, Upcoming", "The same day (and evening)"],
+                ["Anytime / Someday", "No day / Someday"],
+                ["Deadline, reminder time", "Deadline, time of day"],
+                ["Tags", "#tags"],
+                ["Logbook", "Done tasks — lit windows in your city"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "If TodoCity can't find your library",
+        blocks: [
+          {
+            p: "Click Choose the database myself…, then in Finder use Go → Go to Folder… with ~/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac, open the ThingsData-… folder and pick Things Database.thingsdatabase. If macOS blocks it, give TodoCity Full Disk Access in System Settings → Privacy & Security, or copy that folder to your Desktop and choose the copy.",
+          },
+        ],
+      },
+    ],
+    related: ["things-3-alternative", "move-from-todoist", "faq"],
+  },
+  {
+    slug: "move-from-todoist",
+    kind: "howto",
+    title: "How to Move From Todoist to TodoCity (Step by Step)",
+    description:
+      "Import Todoist into TodoCity with an API token or CSV files: projects, sections, tasks, sub-tasks, labels, comments and completed tasks.",
+    h1: "How to move from Todoist to TodoCity",
+    answer:
+      "Copy your API token in Todoist (Settings → Integrations → Developer), paste it in TodoCity's Settings → Move in → Todoist, check the preview and click Move in. TodoCity brings your projects, sections, tasks, sub-tasks, labels, comments and completed tasks straight to your Mac. The token is used only for the import and never saved.",
+    card: "With an API token or CSV files — and what each Todoist item becomes.",
+    sections: [
+      {
+        h2: "Steps",
+        blocks: [
+          {
+            steps: [
+              { title: "Copy your Todoist API token", text: "In Todoist (web or app), open Settings → Integrations → Developer and click Copy API token." },
+              { title: "Connect", text: "In TodoCity, open Settings → Move in → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
+              { title: "Check the preview", text: "Untick any project you'd rather leave behind; choose whether to bring completed tasks and whether priorities 1–3 become #p1–#p3." },
+              { title: "Click Move in", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
+            ],
+          },
+        ],
+      },
+      {
+        h2: "No token? Use CSV files",
+        blocks: [
+          {
+            p: "Export each project with ⋯ → Export as CSV in Todoist (or unzip a backup from Todoist's Settings → Backups), then choose No token? Use CSV files instead and pick all the .csv files. CSV exports don't include completed tasks, so your city starts dark.",
+          },
+        ],
+      },
+    ],
+    related: ["todoist-alternative", "move-from-things-3", "faq"],
+  },
+  {
+    slug: "work-and-personal-tasks",
+    kind: "guide",
+    title: "Keep Work and Personal Tasks Apart on Mac (Modes) · TodoCity",
+    description:
+      "TodoCity's modes show only work projects on your work Mac and everything at home — in Today, the calendar, the menu bar and notifications.",
+    h1: "How to keep work and personal tasks apart on a Mac",
+    answer:
+      "In TodoCity, pick a mode from the switch at the top of the sidebar. In Work, Today, the calendar, the menu bar and notifications show only your work projects; Personal shows everything. Each Mac remembers its own mode — Work on the work laptop, Personal at home — while the tasks stay the same on both.",
+    card: "Work, Personal or your own modes — per Mac, with notifications that follow.",
+    sections: [
+      {
+        h2: "Set up your modes",
+        blocks: [
+          {
+            steps: [
+              { title: "Open Settings → Modes", text: "Work and Personal are there already. Add your own (say, Study) with + New mode." },
+              { title: "Tick the projects each mode shows", text: "Also choose whether tasks with no project show, whether new projects join automatically, and which calendars appear." },
+              { title: "Choose where new tasks go", text: "In Work, tasks you capture with no project can go straight into a work project." },
+              { title: "Switch", text: "Use the switch at the top of the sidebar, or ⌃⌥1, ⌃⌥2… (⌃⌥0 shows everything)." },
+            ],
+          },
+        ],
+      },
+      {
+        h2: "What a mode changes",
+        blocks: [
+          {
+            list: [
+              "Today, Calendar, Anytime and the menu bar show only the mode's projects. Everything else is a click away (“4 more today outside Work · Show”).",
+              "Notifications can follow the mode, so personal reminders wait until you're home.",
+              "Nothing is hidden for good and nothing moves: tasks stay the same on every Mac.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Keep a project off your work Mac entirely",
+        blocks: [
+          {
+            p: "If your Macs sync, you can also keep any project on one Mac only (Settings → Your other Macs → Keep on this Mac only) — say, a personal project that should never be on your work laptop.",
+          },
+        ],
+      },
+    ],
+    related: ["sync-macs-without-icloud", "private-todo-app-for-mac", "turn-text-into-tasks"],
+  },
+  {
+    slug: "sync-macs-without-icloud",
+    kind: "howto",
+    title: "Sync Tasks Between Macs Without iCloud or an Account · TodoCity",
+    description:
+      "Pair your Macs with a code and six matching digits: TodoCity keeps tasks the same on both, end-to-end encrypted, with no iCloud or account.",
+    h1: "How to sync tasks between Macs without iCloud",
+    answer:
+      "In TodoCity, open Settings → Your other Macs on both Macs. Show a code on one, type it on the other, and check that both show the same six digits. From then on your tasks stay the same on both — end-to-end encrypted, with no iCloud and no account. It works even on a work Mac that can't sign in to iCloud.",
+    card: "Pairing in three steps, and how the encryption keeps the relay blind.",
+    sections: [
+      {
+        h2: "Pair your Macs",
+        blocks: [
+          {
+            steps: [
+              { title: "Show a code", text: "On one Mac, choose Show a code. It shows a code like K7MX-4QRB for 10 minutes." },
+              { title: "Type it on the other Mac", text: "Choose I have a code and type it in." },
+              { title: "Compare six digits", text: "Both Macs show six digits. If they match, confirm on both — that's how you know nothing got between your Macs." },
+            ],
+          },
+          { p: "Changes show up on the other Mac within about 30 seconds while both are open. A Mac that was asleep catches up within a minute of coming back. Add more Macs the same way." },
+        ],
+      },
+      {
+        h2: "How it stays private",
+        blocks: [
+          {
+            list: [
+              "Your Macs share a key made on your Mac, handed over only inside the pairing and kept in your Keychain.",
+              "Every change is locked with it (ChaCha20-Poly1305) before it leaves your Mac.",
+              "A small relay holds the sealed boxes until your other Macs pick them up, then deletes them — after 30 days at the latest. It never has the key, so it can't read titles, notes, projects or Mac names.",
+              "There's no account behind it.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Good to know",
+        blocks: [
+          {
+            list: [
+              "Edits on two Macs at once? Each detail keeps its newest edit, so renaming on one Mac and ticking off on the other both stick.",
+              "Keep a project on one Mac only, if you like.",
+              "Lost a Mac? Turn sync off on your other Macs and pair them again: that makes a new key the lost Mac doesn't have.",
+            ],
+          },
+        ],
+      },
+    ],
+    related: ["work-and-personal-tasks", "private-todo-app-for-mac", "faq"],
+  },
+  {
+    slug: "gamified-todo-app",
+    kind: "guide",
+    title: "A Gamified To-Do App Without Streaks: Your City · TodoCity",
+    description:
+      "In TodoCity every project is a building and every finished task lights a window in your own 3D city. Milestones, no streaks, no penalties.",
+    h1: "A to-do list that rewards you — without streaks or points",
+    answer:
+      "In TodoCity, every project is a building, its sections are floors and every task is a home. Finish a task and someone moves in: the lights come on, and stay on. As your population grows, your city gains street lamps, a park, a train, a harbour and more. There are no streaks to break, no points and no penalties.",
+    card: "Buildings, floors, lit windows and milestones — rewards that never take anything away.",
+    sections: [
+      {
+        h2: "How your city works",
+        blocks: [
+          {
+            table: {
+              caption: "Your tasks as a city",
+              head: ["In your city", "In TodoCity"],
+              rows: [
+                ["An apartment building", "A project"],
+                ["A floor", "A section of a project"],
+                ["A home (dark window)", "A task to do"],
+                ["The lights come on", "A finished task"],
+                ["A faint glow", "Sub-tasks under way"],
+                ["Blinking amber", "An overdue task"],
+                ["Little houses at the edge of town", "Tasks in no project"],
+                ["Population", "Every task you've finished"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "Milestones",
+        blocks: [
+          {
+            table: {
+              caption: "What your city gains as it grows",
+              head: ["Population", "Your city gains"],
+              rows: [
+                ["10", "Street lamps on every corner"],
+                ["25", "A park"],
+                ["50", "A fountain: the town square"],
+                ["100", "A train line round the city"],
+                ["250", "A harbour with a lighthouse and boats"],
+                ["500", "A stadium with floodlights"],
+                ["1,000", "A bridge to a second island"],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        h2: "The rules",
+        blocks: [
+          {
+            list: [
+              "What's built stays built: un-ticking or deleting a task never takes anything away.",
+              "No streaks, points or penalties, and every feature is yours from day one.",
+              "Prefer a clean screen? Make the city small, or hide it.",
+            ],
+          },
+        ],
+      },
+    ],
+    related: ["private-todo-app-for-mac", "things-3-alternative", "faq"],
+  },
+];
+
+/** More questions, for the FAQ page (the home page shows the first few). */
+export const MORE_FAQ: { q: string; a: string }[] = [
+  {
+    q: "Is TodoCity open source?",
+    a: "Its source code is public on GitHub under the PolyForm Noncommercial license: free to read, build and use for personal, non-commercial purposes.",
+  },
+  {
+    q: "Does TodoCity need an account?",
+    a: "No. There's no sign-up, no email and no password. Your tasks live on your Mac.",
+  },
+  {
+    q: "Does TodoCity work offline?",
+    a: "Yes. After the one-time model download, everything works offline. Only sync between Macs and update checks use the internet.",
+  },
+  {
+    q: "Is there an iPhone or iPad app?",
+    a: "Not yet — TodoCity is for Mac. Turn on two-way Apple Reminders sync to see your tasks on iPhone through Reminders.",
+  },
+  {
+    q: "Is there a Windows or web version?",
+    a: "No. TodoCity is a native Mac app.",
+  },
+  {
+    q: "How much disk space and memory does it need?",
+    a: "The app itself is small; the AI model is a one-time download of about 2 GB. The model runs only while it reads a capture and stops after five idle minutes.",
+  },
+  {
+    q: "Can it remind me at a specific time?",
+    a: "Yes. Tasks with a time notify you with Done, Snooze and Tomorrow buttons. You can also choose one morning summary instead, and the menu-bar dropdown can open on a task when its time comes.",
+  },
+  {
+    q: "Does TodoCity support repeating tasks?",
+    a: "Yes — daily, weekdays, weekly, every two weeks, monthly, yearly and more, written in plain words like “every Monday”. Finish one and the next is scheduled; skip one or pause the series any time.",
+  },
+  {
+    q: "Can I see my calendar next to my tasks?",
+    a: "Yes. Turn on the Calendar connector to show your meetings — including Google, Outlook and iCloud calendars added to your Mac — beside your tasks. It's read-only.",
+  },
+  {
+    q: "Can AI assistants add tasks to TodoCity?",
+    a: "Yes. Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio can add tasks over MCP, on your Mac only. They can never read your list, and you approve each task.",
+  },
+  {
+    q: "How do I keep work and personal tasks separate?",
+    a: "Use modes: Work shows only the projects you tick, Personal shows everything. Each Mac remembers its own mode.",
+  },
+  {
+    q: "Can I export my tasks?",
+    a: "Yes — to CSV or JSON from Settings → Backups & export. TodoCity also keeps seven days of automatic backups.",
+  },
+  {
+    q: "How do I install TodoCity?",
+    a: "Download the .dmg, drag TodoCity to Applications and open it. If macOS says it can't verify the developer, open System Settings → Privacy & Security and click Open Anyway — once.",
+  },
+  {
+    q: "How does TodoCity update?",
+    a: "It checks GitHub for new versions and updates itself; a dot in the top bar turns red when one is ready, and Update restarts into it. You can turn update checks off.",
+  },
+];
+
+export const bySlug = (slug: string) => PAGES.find((p) => p.slug === slug);

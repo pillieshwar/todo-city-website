@@ -10,7 +10,9 @@ const LINKS = [
 ] as const;
 
 /** The top bar: glass once you scroll, with a thin progress line under it. */
-export function Nav() {
+export function Nav({ home = true }: { home?: boolean }) {
+  // On the guide pages, the section links lead back to the home page.
+  const at = (hash: string) => (home ? hash : `/${hash}`);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [open, setOpen] = useState(false);
@@ -42,24 +44,24 @@ export function Nav() {
   return (
     <header className={scrolled ? "nav scrolled" : "nav"}>
       <div className="nav-inner">
-        <a href="#top" className="brand" aria-label="Todo City home">
+        <a href={home ? "#top" : "/"} className="brand" aria-label="TodoCity home">
           <Logo />
-          <span>Todo City</span>
+          <span>TodoCity</span>
         </a>
         <nav id="nav-links" className={open ? "nav-links open" : "nav-links"} aria-label="Sections">
           {LINKS.map(([href, text]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)}>
+            <a key={href} href={at(href)} onClick={() => setOpen(false)}>
               {text}
             </a>
           ))}
-          <a href="#faq" onClick={() => setOpen(false)}>
+          <a href={home ? "#faq" : "/faq"} onClick={() => setOpen(false)}>
             FAQ
           </a>
           <a className="nav-gh" href={SITE.repo} target="_blank" rel="noreferrer">
             GitHub<span className="sr-only"> (opens in a new tab)</span>
           </a>
         </nav>
-        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download} aria-label="Download Todo City for Mac">
+        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download} aria-label="Download TodoCity for Mac">
           <AppleIcon /> Download
         </a>
         <button type="button" className="nav-menu" aria-label="Menu" aria-controls="nav-links" aria-expanded={open} onClick={() => setOpen((o) => !o)}>

@@ -3,31 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Todo City — Private AI To-Do App for Mac</title>
-    <meta name="description" content="Todo City turns any text into a dated task with AI that runs entirely on your Mac. Every task is a home in your own 3D city — finish it and the lights come on. Free." />
+    <title>TodoCity — Private AI To-Do App for Mac</title>
+    <meta name="description" content="TodoCity turns any text into a dated task with AI that runs entirely on your Mac. Every task is a home in your own 3D city — finish it and the lights come on. Free." />
     <link rel="canonical" href="https://todocity.app/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#07080f" />
     <meta name="color-scheme" content="dark" />
-    <meta name="application-name" content="Todo City" />
-    <meta name="apple-mobile-web-app-title" content="Todo City" />
+    <meta name="application-name" content="TodoCity" />
+    <meta name="apple-mobile-web-app-title" content="TodoCity" />
 
     <!-- Sharing (Open Graph, X/Twitter, iMessage, Slack, LinkedIn…) -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Todo City" />
+    <meta property="og:site_name" content="TodoCity" />
     <meta property="og:url" content="https://todocity.app/" />
-    <meta property="og:title" content="Todo City — Every task is a home. Finish it, and the lights come on." />
+    <meta property="og:title" content="TodoCity — Every task is a home. Finish it, and the lights come on." />
     <meta property="og:description" content="A private to-do app for Mac: on-device AI turns any text into a dated task, and every task you finish lights a window in your own 3D city." />
     <meta property="og:image" content="https://todocity.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Todo City: a night skyline with lit windows, and the line “Every task is a home. Finish it, and the lights come on.”" />
+    <meta property="og:image:alt" content="TodoCity: a night skyline with lit windows, and the line “Every task is a home. Finish it, and the lights come on.”" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Todo City — Private AI To-Do App for Mac" />
+    <meta name="twitter:title" content="TodoCity — Private AI To-Do App for Mac" />
     <meta name="twitter:description" content="On-device AI turns any text into a dated task. Every task you finish lights a window in your own 3D city." />
     <meta name="twitter:image" content="https://todocity.app/og-image.png" />
-    <meta name="twitter:image:alt" content="Todo City: a night skyline with lit windows." />
+    <meta name="twitter:image:alt" content="TodoCity: a night skyline with lit windows." />
 
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
@@ -46,14 +46,27 @@
             "@type": "WebSite",
             "@id": "https://todocity.app/#website",
             "url": "https://todocity.app/",
-            "name": "Todo City",
-            "inLanguage": "en"
+            "name": "TodoCity",
+            "alternateName": ["Todo City", "TodoCity for Mac"],
+            "inLanguage": "en",
+            "publisher": { "@id": "https://todocity.app/#org" }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://todocity.app/#org",
+            "name": "TodoCity",
+            "url": "https://todocity.app/",
+            "logo": "https://todocity.app/icon-512.png",
+            "sameAs": ["https://github.com/pillieshwar/TodoCity"]
           },
           {
             "@type": "SoftwareApplication",
             "@id": "https://todocity.app/#app",
-            "name": "Todo City",
+            "name": "TodoCity",
+            "alternateName": "Todo City",
             "url": "https://todocity.app/",
+            "author": { "@id": "https://todocity.app/#org" },
+            "publisher": { "@id": "https://todocity.app/#org" },
             "description": "A private to-do app for Mac. On-device AI turns any text into a dated task, and every task you finish lights a window in your own 3D city.",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "macOS 11 or later",
@@ -83,7 +96,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <noscript>Todo City is a private to-do app for Mac. Download it at github.com/pillieshwar/TodoCity.</noscript>
+    <noscript>TodoCity is a private to-do app for Mac. Download it at github.com/pillieshwar/TodoCity.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
