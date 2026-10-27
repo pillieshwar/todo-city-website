@@ -296,7 +296,7 @@ export const PAGES: Page[] = [
         h2: "What feels familiar",
         blocks: [
           {
-            p: "If you know Things, you'll find your way: Today (with This Evening), a calendar for what's coming, Anytime, Someday and the Logbook. Projects have sections — called floors — and tasks have notes, checklists, a separate deadline and repeats.",
+            p: "If you know Things, you'll find your way: Today (with This Evening), a calendar for what's coming, an Inbox for tasks in no project, Someday and Completed. Projects have sections — called floors — and tasks have notes, checklists, a separate deadline and repeats.",
           },
         ],
       },
@@ -330,7 +330,7 @@ export const PAGES: Page[] = [
     faq: [
       {
         q: "Can I move from Things 3 to TodoCity?",
-        a: "Yes. Settings → Move in reads a copy of your Things 3 database on your Mac and brings projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and your Logbook. Things isn't changed.",
+        a: "Yes. Settings → Import Data reads a copy of your Things 3 database on your Mac and brings projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and your Logbook. Things isn't changed.",
       },
       {
         q: "Does TodoCity have an iPhone app?",
@@ -423,7 +423,7 @@ export const PAGES: Page[] = [
     faq: [
       {
         q: "How do I move from Todoist to TodoCity?",
-        a: "In TodoCity, open Settings → Move in → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). Or export projects as CSV files. Todoist isn't changed.",
+        a: "In TodoCity, open Settings → Import Data → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). Or export projects as CSV files. Todoist isn't changed.",
       },
     ],
     related: ["move-from-todoist", "things-3-alternative", "private-todo-app-for-mac"],
@@ -482,7 +482,7 @@ export const PAGES: Page[] = [
       "Move your Things 3 library to TodoCity in four steps: projects, headings, to-dos, checklists, deadlines, repeats and your Logbook. Things isn't changed.",
     h1: "How to move from Things 3 to TodoCity",
     answer:
-      "Open TodoCity's Settings → Move in, click Find my Things library, check the preview and click Move in. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
+      "Open TodoCity's Settings → Import Data, click Find my Things library, check the preview and click Import. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
     card: "Four steps, what each Things item becomes, and what to do if the library isn't found.",
     sections: [
       {
@@ -491,9 +491,9 @@ export const PAGES: Page[] = [
           {
             steps: [
               { title: "Open Things 3 on this Mac", text: "Let it finish syncing. If you only use Things on iPhone or iPad, install Things 3 for Mac and sign in to Things Cloud first." },
-              { title: "Find your library", text: "In TodoCity, open Settings → Move in and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
+              { title: "Find your library", text: "In TodoCity, open Settings → Import Data and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring the Logbook and cancelled to-dos." },
-              { title: "Click Move in", text: "TodoCity backs itself up first (Settings → Backups & export → “before import”), so you can undo it." },
+              { title: "Click Import", text: "TodoCity backs itself up first (Settings → Backups & export → “before import”), so you can undo it." },
             ],
           },
           { p: "Running it again later brings only to-dos that are new since last time." },
@@ -542,7 +542,7 @@ export const PAGES: Page[] = [
       "Import Todoist into TodoCity with an API token or CSV files: projects, sections, tasks, sub-tasks, labels, comments and completed tasks.",
     h1: "How to move from Todoist to TodoCity",
     answer:
-      "Copy your API token in Todoist (Settings → Integrations → Developer), paste it in TodoCity's Settings → Move in → Todoist, check the preview and click Move in. TodoCity brings your projects, sections, tasks, sub-tasks, labels, comments and completed tasks straight to your Mac. The token is used only for the import and never saved.",
+      "Copy your API token in Todoist (Settings → Integrations → Developer), paste it in TodoCity's Settings → Import Data → Todoist, check the preview and click Import. TodoCity brings your projects, sections, tasks, sub-tasks, labels, comments and completed tasks straight to your Mac. The token is used only for the import and never saved.",
     card: "With an API token or CSV files — and what each Todoist item becomes.",
     sections: [
       {
@@ -551,9 +551,9 @@ export const PAGES: Page[] = [
           {
             steps: [
               { title: "Copy your Todoist API token", text: "In Todoist (web or app), open Settings → Integrations → Developer and click Copy API token." },
-              { title: "Connect", text: "In TodoCity, open Settings → Move in → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
+              { title: "Connect", text: "In TodoCity, open Settings → Import Data → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind; choose whether to bring completed tasks and whether priorities 1–3 become #p1–#p3." },
-              { title: "Click Move in", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
+              { title: "Click Import", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
             ],
           },
         ],
@@ -598,7 +598,7 @@ export const PAGES: Page[] = [
         blocks: [
           {
             list: [
-              "Today, Calendar, Anytime and the menu bar show only the mode's projects. Everything else is a click away (“4 more today outside Work · Show”).",
+              "Today, Calendar, Inbox and the menu bar show only the mode's projects; the rest is one mode switch away.",
               "Notifications can follow the mode, so personal reminders wait until you're home.",
               "Nothing is hidden for good and nothing moves: tasks stay the same on every Mac.",
             ],
@@ -792,8 +792,12 @@ export const MORE_FAQ: { q: string; a: string }[] = [
     a: "Download the .dmg, drag TodoCity to Applications and open it. If macOS says it can't verify the developer, open System Settings → Privacy & Security and click Open Anyway — once.",
   },
   {
+    q: "Can I see my tasks as a board?",
+    a: "Yes. Inbox and every project have a List / Board switch: Inbox's board has columns for Today, Tomorrow, Next 7 days, Later and Someday, and a project's board has a column for each floor. Drag a card to move it.",
+  },
+  {
     q: "How does TodoCity update?",
-    a: "It checks GitHub for new versions and updates itself; a dot in the top bar turns red when one is ready, and Update restarts into it. You can turn update checks off.",
+    a: "It checks GitHub for new versions when it opens and every day at 12:00 PM. The version in the footer turns red when one is ready, and Update restarts into it. You can turn update checks off.",
   },
 ];
 
