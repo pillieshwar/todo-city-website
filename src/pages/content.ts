@@ -275,7 +275,7 @@ export const PAGES: Page[] = [
           {
             table: {
               caption: "TodoCity and Things 3 compared",
-              head: ["", "TodoCity", "Things 3"],
+              head: ["Feature", "TodoCity", "Things 3"],
               rows: [
                 ["Price", "Free for personal use", "Paid, one-time, per platform"],
                 ["Platforms", "Mac", "Mac, iPhone, iPad, Apple Watch"],
@@ -356,7 +356,7 @@ export const PAGES: Page[] = [
           {
             table: {
               caption: "TodoCity and Todoist compared",
-              head: ["", "TodoCity", "Todoist"],
+              head: ["Feature", "TodoCity", "Todoist"],
               rows: [
                 ["Price", "Free for personal use", "Free plan, paid plans for more"],
                 ["Platforms", "Mac", "Web, Mac, Windows, iPhone, Android and more"],
@@ -445,7 +445,7 @@ export const PAGES: Page[] = [
           {
             table: {
               caption: "TodoCity and Apple Reminders compared",
-              head: ["", "TodoCity", "Apple Reminders"],
+              head: ["Feature", "TodoCity", "Apple Reminders"],
               rows: [
                 ["Price", "Free for personal use", "Free, built in"],
                 ["Platforms", "Mac (iPhone through Reminders sync)", "Every Apple device"],
