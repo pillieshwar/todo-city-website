@@ -96,7 +96,7 @@ function PrivacyDemo() {
 
 const FEATURES = [
   { title: "Copy twice to capture", text: "Copy any text and press ⌘C once more. The task, its date and time are filled in before you've looked up.", demo: <KeysDemo /> },
-  { title: "Dates, done right", text: "“by Friday 3pm” becomes a deadline, “every Sunday” a repeat. When a phrase is vague, Todo City asks instead of guessing.", demo: <DateDemo /> },
+  { title: "Dates, done right", text: "“by Friday 3pm” becomes a deadline, “every Sunday” a repeat. When a phrase is vague, TodoCity asks instead of guessing.", demo: <DateDemo /> },
   { title: "Today, with its hours", text: "Your list beside the day's hours and a month calendar. Drag a task onto an hour to time it, or onto a date to move it.", demo: <HoursDemo /> },
   { title: "Overdue, in one place", text: "Anything whose day, time or deadline has passed gathers in one list — not a banner on every screen.", demo: <OverdueDemo /> },
   { title: "AI that never leaves your Mac", text: "A small language model runs on your own computer. No account, no cloud, no tracking — and it works offline.", demo: <PrivacyDemo /> },
@@ -124,7 +124,7 @@ export function Features() {
       <Reveal className="ways">
         {[
           ["Side panel", "Docks at the edge of your screen — even over full-screen apps."],
-          ["Menu bar", "Today's agenda under the Todo City icon, one click away."],
+          ["Menu bar", "Today's agenda under the TodoCity icon, one click away."],
           ["Full screen", "A sidebar of projects and floors, the month, the week — and your city."],
         ].map(([t, d]) => (
           <div key={t} className="way">
@@ -184,6 +184,11 @@ export function Faq() {
           </details>
         ))}
       </div>
+      <p className="faq-more">
+        <a href="/faq">
+          More questions <Arrow />
+        </a>
+      </p>
     </section>
   );
 }
@@ -209,10 +214,10 @@ export function Download() {
         <p className="hero-fine">{SITE.requirements} · one model download from inside the app</p>
         <ol className="install">
           <li>
-            <b>1</b> Open the downloaded file and drag Todo City to Applications.
+            <b>1</b> Open the downloaded file and drag TodoCity to Applications.
           </li>
           <li>
-            <b>2</b> Open Todo City — it lives in your menu bar.
+            <b>2</b> Open TodoCity — it lives in your menu bar.
           </li>
           <li>
             <b>3</b> Copy any text and press <kbd>⌘C</kbd> again.
@@ -223,15 +228,16 @@ export function Download() {
   );
 }
 
-export function Footer() {
+export function Footer({ home = true }: { home?: boolean }) {
   const year = new Date().getFullYear();
+  const at = (hash: string) => (home ? hash : `/${hash}`);
   return (
     <footer className="footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <a href="#top" className="brand">
+          <a href={home ? "#top" : "/"} className="brand">
             <Logo />
-            <span>Todo City</span>
+            <span>TodoCity</span>
           </a>
           <p>{SITE.tagline}</p>
           <a className="btn btn-primary btn-sm" href={SITE.download}>
@@ -241,11 +247,19 @@ export function Footer() {
         <nav className="footer-cols" aria-label="Footer">
           <div>
             <h2 className="footer-h">Product</h2>
-            <a href="#story">The story</a>
-            <a href="#city">Your city</a>
-            <a href="#features">Features</a>
-            <a href="#faq">Questions</a>
-            <a href="#download">Download</a>
+            <a href={at("#story")}>The story</a>
+            <a href={at("#city")}>Your city</a>
+            <a href={at("#features")}>Features</a>
+            <a href="/faq">Questions</a>
+            <a href={at("#download")}>Download</a>
+          </div>
+          <div>
+            <h2 className="footer-h">Guides</h2>
+            <a href="/things-3-alternative">TodoCity vs Things 3</a>
+            <a href="/todoist-alternative">TodoCity vs Todoist</a>
+            <a href="/private-todo-app-for-mac">A private to-do app</a>
+            <a href="/turn-text-into-tasks">Text into tasks</a>
+            <a href="/guides">All guides</a>
           </div>
           <div>
             <h2 className="footer-h">Resources</h2>
@@ -264,7 +278,7 @@ export function Footer() {
           </div>
           <div>
             <h2 className="footer-h">Trust</h2>
-            <a href="#privacy">Privacy</a>
+            <a href={at("#privacy")}>Privacy</a>
             <a href={SITE.license} target="_blank" rel="noreferrer">
               Non-commercial license
             </a>
@@ -274,7 +288,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="footer-base">
-        <span>© {year} Todo City. Free for personal use · source available.</span>
+        <span>© {year} TodoCity. Free for personal use · source available.</span>
         <span>Made for Mac, with the lights on.</span>
       </div>
     </footer>

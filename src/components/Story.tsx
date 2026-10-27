@@ -123,7 +123,7 @@ export function Story() {
         <h2>
           A to-do list you can <em>see</em> getting done.
         </h2>
-        <p className="lede">Most to-do apps forget everything you finish. Todo City builds a city out of it.</p>
+        <p className="lede">Most to-do apps forget everything you finish. TodoCity builds a city out of it.</p>
       </div>
       <div className="story-grid">
         <div className="story-stage">

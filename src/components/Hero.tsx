@@ -40,7 +40,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="hero" id="top" aria-label="Todo City">
+    <section className="hero" id="top" aria-label="TodoCity">
       <CityCanvas
         layout={layout}
         className="hero-city"
@@ -67,7 +67,7 @@ export function Hero() {
           <em>Finish it,</em> and the lights come on.
         </h1>
         <p className="lede">
-          Todo City turns any text into a dated task — an email, a message, a web page — with an AI that runs entirely on your Mac. Then every task
+          TodoCity turns any text into a dated task — an email, a message, a web page — with an AI that runs entirely on your Mac. Then every task
           becomes a home in your own city, and every one you finish switches on a light.
         </p>
         <div className="hero-ctas">

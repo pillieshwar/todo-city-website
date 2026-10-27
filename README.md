@@ -1,6 +1,6 @@
-# Todo City website
+# TodoCity website
 
-The Todo City website: the Lights On story told as you scroll, a living 3D city you can turn and explore, a playground where visitors put up their own buildings and light them up, and the Mac download.
+The TodoCity website: the Lights On story told as you scroll, a living 3D city you can turn and explore, a playground where visitors put up their own buildings and light them up, and the Mac download.
 
 Built with React 18, TypeScript, Vite and three.js. No other runtime dependencies.
 

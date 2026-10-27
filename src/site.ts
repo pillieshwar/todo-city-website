@@ -1,6 +1,6 @@
 /** Links and facts used across the site. */
 export const SITE = {
-  name: "Todo City",
+  name: "TodoCity",
   tagline: "Every task is a home. Finish it, and the lights come on.",
   download: "https://github.com/pillieshwar/TodoCity/releases/latest/download/TodoCity-macOS.dmg",
   repo: "https://github.com/pillieshwar/TodoCity",
@@ -14,8 +14,8 @@ export const SITE = {
 /** Questions people ask, answered on the page and given to search engines. */
 export const FAQ: { q: string; a: string }[] = [
   {
-    q: "Is Todo City free?",
-    a: "Yes. Todo City is free for personal, non-commercial use under the PolyForm Noncommercial license, and its source code is on GitHub for anyone to read.",
+    q: "Is TodoCity free?",
+    a: "Yes. TodoCity is free for personal, non-commercial use under the PolyForm Noncommercial license, and its source code is on GitHub for anyone to read.",
   },
   {
     q: "Does anything I capture leave my Mac?",
@@ -23,19 +23,19 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How do I turn text into a task?",
-    a: "Select or copy any text — an email, a Slack message, a web page — and press ⌘C once more. Todo City fills in the task, its day and its time; phrases like “by Friday 3pm” become a deadline and “every Sunday” a repeat.",
+    a: "Select or copy any text — an email, a Slack message, a web page — and press ⌘C once more. TodoCity fills in the task, its day and its time; phrases like “by Friday 3pm” become a deadline and “every Sunday” a repeat.",
   },
   {
     q: "Which Macs does it run on?",
-    a: "Any Mac with macOS 11 Big Sur or later, Apple silicon or Intel. The first time you open it, Todo City downloads its AI model (about 2 GB) once.",
+    a: "Any Mac with macOS 11 Big Sur or later, Apple silicon or Intel. The first time you open it, TodoCity downloads its AI model (about 2 GB) once.",
   },
   {
-    q: "Can I use Todo City on my work and personal Macs?",
+    q: "Can I use TodoCity on my work and personal Macs?",
     a: "Yes. Pair them with a code and six matching digits, and your tasks stay the same on both — no iCloud or account needed. Changes are end-to-end encrypted on your Mac before they leave, so the relay that passes them along can't read them. You can keep any project on one Mac only.",
   },
   {
     q: "Can I move my tasks from Things 3 or Todoist?",
-    a: "Yes. In Preferences → Data transfer, Todo City brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks. Things and Todoist aren't changed.",
+    a: "Yes. In Settings → Move in, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks. Things and Todoist aren't changed.",
   },
   {
     q: "What does the city have to do with my to-do list?",

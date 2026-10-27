@@ -1,6 +1,6 @@
 {
-  "name": "Todo City",
-  "short_name": "Todo City",
+  "name": "TodoCity",
+  "short_name": "TodoCity",
   "description": "A private to-do app for Mac where every task is a home in your own city.",
   "start_url": "/",
   "display": "browser",
