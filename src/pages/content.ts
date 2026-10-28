@@ -44,6 +44,7 @@ const FACTS_APP: [string, string][] = [
   ["Price", "Free for personal use"],
   ["Runs on", "macOS 11 or later, Apple silicon and Intel"],
   ["AI", "A small language model on your Mac"],
+  ["AI agents", "Built-in MCP server, write-only"],
   ["Account", "None"],
   ["Sync", "Mac to Mac, end-to-end encrypted (optional)"],
 ];
@@ -192,7 +193,105 @@ export const PAGES: Page[] = [
         a: "The model runs only while it reads a capture — usually a second or two — and stops after five idle minutes. TodoCity picks a model size that suits your Mac.",
       },
     ],
-    related: ["turn-text-into-tasks", "private-todo-app-for-mac", "faq"],
+    related: ["ai-agents-mcp-todo-app", "turn-text-into-tasks", "private-todo-app-for-mac"],
+  },
+  {
+    slug: "ai-agents-mcp-todo-app",
+    kind: "guide",
+    title: "A To-Do App With MCP for AI Agents, on Mac · TodoCity",
+    description:
+      "TodoCity has a built-in MCP server: Claude, Cursor and VS Code can add tasks — write-only, approved by you — plus a background agent for email.",
+    h1: "A to-do app built for AI agents",
+    answer:
+      "TodoCity is a Mac to-do app made for the age of AI assistants. Its built-in MCP server lets Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio add tasks for you — but never read, change or delete them, and each task waits for your OK. It can also run Claude Code in the background, on a schedule, to pull the to-dos out of your new email. And TodoCity's own AI runs on your Mac.",
+    facts: [
+      ["MCP server", "Built in, with one tool: add_task"],
+      ["AI apps", "Claude Code, Claude Desktop, Cursor, VS Code, Windsurf, LM Studio"],
+      ["Access", "Write-only — you approve every task"],
+      ["Where it works", "On this Mac only, over a private local connection"],
+    ],
+    card: "MCP for Claude, Cursor and VS Code, write-only — and an agent that turns email into tasks.",
+    sections: [
+      {
+        h2: "Three kinds of AI, each with one job",
+        blocks: [
+          {
+            list: [
+              "On-device AI reads what you capture (⌘C twice) and writes the task with its date and repeat — offline, never sent to a cloud AI.",
+              "The AI apps you already use add tasks over MCP: tell Claude “add a TodoCity task to send the deck Friday 3pm”.",
+              "A background agent checks your new email on a schedule and sends you the to-dos it finds, for review.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "Connect an AI app",
+        blocks: [
+          {
+            steps: [
+              { title: "Open Connectors", text: "In TodoCity, open Settings → Connectors → AI agents and turn on “Let AI agents on this Mac add tasks”." },
+              { title: "Pick your app", text: "Click Connect next to Claude Code, Claude Desktop, Cursor, VS Code, Windsurf or LM Studio. TodoCity adds itself to that app's MCP settings and backs up the original first." },
+              { title: "Ask for a task", text: "In the AI app, say “add a TodoCity task to call the bank tomorrow at 10”." },
+              { title: "Approve it", text: "The task waits in the menu-bar dropdown. Add puts it on your list; Dismiss drops it." },
+            ],
+          },
+          {
+            p: "Prefer agents to notice deadlines on their own? Turn on “Let agents suggest tasks on their own” — when you mention a deadline or say “remind me”, they send it to TodoCity without being asked. You still approve each one.",
+          },
+        ],
+      },
+      {
+        h2: "Write-only, on purpose",
+        blocks: [
+          {
+            p: "Agents get exactly one tool, add_task, and the same reply for every task — no ids, no counts, no duplicate check — so an agent can't learn anything about your list by probing. Tasks travel over a private connection that only your Mac user account can open, so agents in the cloud can't reach it. At most 20 tasks arrive every 10 minutes, and 50 can wait for review.",
+          },
+        ],
+      },
+      {
+        h2: "A background agent for your email",
+        blocks: [
+          {
+            p: "Turn on Email to tasks and TodoCity runs Claude Code on a schedule — every 15, 30 or 60 minutes, between the hours you choose, weekdays only if you like. Claude Code reads your new mail through your own mail connection and sends the action items to TodoCity, where they wait for review like any other agent task. The run may use only your mail connection and add_task, and TodoCity itself never reads your mail.",
+          },
+          {
+            note: "Email to tasks needs Claude Code on your Mac, connected to TodoCity and to your mail (for example an Outlook or Microsoft 365 MCP server). Your email is read by Claude Code under your own Claude account; TodoCity only receives the tasks.",
+          },
+        ],
+      },
+      {
+        h2: "How it compares",
+        blocks: [
+          {
+            table: {
+              caption: "AI agents in TodoCity, Things 3, Todoist and Apple Reminders",
+              head: ["Feature", "TodoCity", "Things 3", "Todoist", "Apple Reminders"],
+              rows: [
+                ["MCP server for AI apps", "Built in, on your Mac", "No official one", "Official, in the cloud", "No official one"],
+                ["What agents can do", "Add tasks only, approved by you", "—", "Read and change your tasks", "—"],
+                ["Background AI agent", "Email to tasks, on a schedule", "No", "No", "No"],
+                ["AI on your device", "Yes, any Mac with macOS 11+", "No", "No (cloud)", "Apple Intelligence on supported Macs"],
+              ],
+            },
+          },
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Which AI apps can add tasks to TodoCity?",
+        a: "Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio connect in one click from Settings → Connectors → AI agents. Any other app that supports local (stdio) MCP servers can run TodoCity --mcp.",
+      },
+      {
+        q: "Can an AI agent see my tasks?",
+        a: "No. TodoCity's MCP server is write-only: agents can add a task, and every task gets the same reply, so they can't read, change, delete or even count your tasks.",
+      },
+      {
+        q: "Does the background agent send my email anywhere?",
+        a: "TodoCity never reads your email. Claude Code reads it through the mail connection you set up in Claude Code, under your Claude account, the same as if you asked it yourself. TodoCity only receives the tasks it finds.",
+      },
+    ],
+    related: ["ai-todo-app-on-device", "todoist-alternative", "things-3-alternative"],
   },
   {
     slug: "turn-text-into-tasks",
@@ -280,6 +379,9 @@ export const PAGES: Page[] = [
                 ["Price", "Free for personal use", "Paid, one-time, per platform"],
                 ["Platforms", "Mac", "Mac, iPhone, iPad, Apple Watch"],
                 ["Turn any text into a task", "Yes — ⌘C twice, on-device AI", "Share sheet and Quick Entry (no AI)"],
+                ["AI that runs on your Mac", "Yes, works offline", "No AI features"],
+                ["AI apps can add tasks (MCP)", "Built in: Claude, Cursor, VS Code and more — write-only, you approve each", "No official MCP server (community ones exist)"],
+                ["Background AI agent", "Yes: checks new email on a schedule and sends the to-dos for review", "No"],
                 ["Dates from plain words", "Yes, with deadlines and repeats", "Typed dates in the When field"],
                 ["Projects and sections", "Projects with floors", "Projects with headings, and areas"],
                 ["Sync", "Mac to Mac, end-to-end encrypted, no account", "Things Cloud (account)"],
@@ -315,11 +417,24 @@ export const PAGES: Page[] = [
         ],
       },
       {
+        h2: "Built for the AI era",
+        blocks: [
+          {
+            list: [
+              "AI apps you already use — Claude Code, Claude Desktop, Cursor, VS Code, Windsurf, LM Studio — can add tasks through TodoCity's built-in MCP server. Ask “add a TodoCity task to send the deck Friday 3pm” and it's done.",
+              "Write-only by design: agents can never read, change or delete your tasks, and each one waits in the menu bar for your OK.",
+              "A background agent: TodoCity can run Claude Code on a schedule to find the to-dos in your new email and send them to you for review.",
+              "Its own AI runs on your Mac, so what you capture never goes to a cloud AI.",
+            ],
+          },
+        ],
+      },
+      {
         h2: "Who should pick which",
         blocks: [
           {
             list: [
-              "Pick TodoCity if you work mainly on a Mac, capture tasks from messages and email, want AI without the cloud, or need to sync a work Mac without iCloud.",
+              "Pick TodoCity if you work mainly on a Mac, capture tasks from messages and email, want AI without the cloud — or want Claude and your other AI tools to add tasks for you — or need to sync a work Mac without iCloud.",
               "Pick Things 3 if you add tasks on your iPhone or Apple Watch, or rely on Things' areas and iOS widgets.",
               "Not sure? Try both: TodoCity reads a copy of your Things database and doesn't change Things, so you can keep using it.",
             ],
@@ -337,7 +452,7 @@ export const PAGES: Page[] = [
         a: "Not yet — TodoCity is for Mac. You can turn on two-way Apple Reminders sync to see and tick off tasks on your iPhone through Reminders.",
       },
     ],
-    related: ["move-from-things-3", "todoist-alternative", "apple-reminders-alternative"],
+    related: ["move-from-things-3", "ai-agents-mcp-todo-app", "todoist-alternative", "apple-reminders-alternative"],
   },
   {
     slug: "todoist-alternative",
@@ -363,7 +478,9 @@ export const PAGES: Page[] = [
                 ["Where tasks live", "On your Mac", "Todoist's servers"],
                 ["Account", "None", "Required"],
                 ["Works offline", "Fully", "Partly"],
-                ["AI", "On your Mac", "Cloud features"],
+                ["AI", "On your Mac, works offline", "Cloud features"],
+                ["AI apps can add tasks (MCP)", "Built in, on your Mac — write-only, you approve each task", "Official MCP server in the cloud — agents can read and change your tasks"],
+                ["Background AI agent", "Yes: checks new email on a schedule and sends the to-dos for review", "No — forward each email yourself"],
                 ["Turn copied text into a task", "⌘C twice, in any app", "Browser extensions, email forwarding, share sheet"],
                 ["Sharing with others", "No", "Yes, shared projects"],
                 ["Import from the other", "Imports Todoist (API token or CSV)", "—"],
@@ -383,6 +500,17 @@ export const PAGES: Page[] = [
               "A work Mac that can't use cloud apps can still sync with your personal Mac, end-to-end encrypted.",
               "A calmer kind of motivation: your city lights up as you finish things — no karma points or streaks.",
             ],
+          },
+        ],
+      },
+      {
+        h2: "AI agents, on your terms",
+        blocks: [
+          {
+            p: "Both apps work with AI assistants over MCP, but in opposite ways. Todoist's MCP server lives in the cloud and lets an agent read and change your account. TodoCity's runs on your Mac and is write-only: Claude, Cursor, VS Code and other AI apps can add tasks, can't see a thing, and every task waits for your OK.",
+          },
+          {
+            p: "TodoCity can also work in the background: turn on Email to tasks and it runs Claude Code on a schedule to find the to-dos in your new email and send them to you for review. TodoCity itself never reads your mail.",
           },
         ],
       },
@@ -426,7 +554,7 @@ export const PAGES: Page[] = [
         a: "In TodoCity, open Settings → Import Data → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). Or export projects as CSV files. Todoist isn't changed.",
       },
     ],
-    related: ["move-from-todoist", "things-3-alternative", "private-todo-app-for-mac"],
+    related: ["move-from-todoist", "ai-agents-mcp-todo-app", "things-3-alternative", "private-todo-app-for-mac"],
   },
   {
     slug: "apple-reminders-alternative",
@@ -449,7 +577,10 @@ export const PAGES: Page[] = [
               rows: [
                 ["Price", "Free for personal use", "Free, built in"],
                 ["Platforms", "Mac (iPhone through Reminders sync)", "Every Apple device"],
-                ["Turn any text into a task", "⌘C twice, on-device AI", "Siri and the share sheet"],
+                ["Turn any text into a task", "⌘C twice, on-device AI", "Siri, the share sheet, and Apple Intelligence suggestions"],
+                ["AI", "On your Mac, on any Mac with macOS 11+", "Apple Intelligence, on supported Macs with macOS 26"],
+                ["AI apps can add tasks (MCP)", "Built in: Claude, Cursor, VS Code and more — write-only, you approve each", "No official MCP server"],
+                ["Background AI agent", "Yes: checks new email on a schedule and sends the to-dos for review", "No"],
                 ["Deadline separate from the planned day", "Yes", "No"],
                 ["Plan tasks by the hour beside your calendar", "Yes, drag onto an hour", "Timed reminders show in Calendar"],
                 ["Projects with sections", "Projects with floors", "Lists with sections"],
@@ -471,8 +602,20 @@ export const PAGES: Page[] = [
           },
         ],
       },
+      {
+        h2: "What TodoCity adds for AI",
+        blocks: [
+          {
+            list: [
+              "A built-in MCP server: Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio can add tasks for you — write-only, and you approve each one.",
+              "A background agent that checks your new email on a schedule and sends the to-dos for review.",
+              "On-device AI that works on any Mac with macOS 11 or later, with no Apple Intelligence needed.",
+            ],
+          },
+        ],
+      },
     ],
-    related: ["things-3-alternative", "todoist-alternative", "work-and-personal-tasks"],
+    related: ["things-3-alternative", "ai-agents-mcp-todo-app", "todoist-alternative", "work-and-personal-tasks"],
   },
   {
     slug: "move-from-things-3",
@@ -778,6 +921,10 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   {
     q: "Can AI assistants add tasks to TodoCity?",
     a: "Yes. Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio can add tasks over MCP, on your Mac only. They can never read your list, and you approve each task.",
+  },
+  {
+    q: "Can TodoCity run an AI agent in the background?",
+    a: "Yes. Turn on Email to tasks and TodoCity runs Claude Code on a schedule to find the to-dos in your new email and send them for review. TodoCity itself never reads your mail.",
   },
   {
     q: "How do I keep work and personal tasks separate?",
