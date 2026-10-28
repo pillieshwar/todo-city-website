@@ -1,22 +1,34 @@
 /** Small inline icons (no icon font, nothing to load). */
 
 export function Logo({ size = 28 }: { size?: number }) {
-  // TodoCity: a building at night whose lit windows trace a check.
+  // TodoCity: one building whose three lit windows trace a tick.
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" aria-hidden>
       <defs>
         <linearGradient id="lg-logo" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#2d2770" />
-          <stop offset="1" stopColor="#0f0f28" />
+          <stop offset="0" stopColor="#34307f" />
+          <stop offset="1" stopColor="#121232" />
+        </linearGradient>
+        <linearGradient id="lg-wall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2e3166" />
+          <stop offset="1" stopColor="#20234a" />
         </linearGradient>
       </defs>
       <rect width="100" height="100" rx="22" fill="url(#lg-logo)" />
-      <rect x="20" y="16" width="60" height="74" rx="6" fill="#262955" />
-      <path d="M33 50 L50 66 L67 30" fill="none" stroke="#ffd27a" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
+      <rect x="22" y="15" width="56" height="70" rx="7" fill="url(#lg-wall)" />
+      <g fill="#3a3e78">
+        <rect x="30" y="28.5" width="11" height="11" rx="2.5" />
+        <rect x="44.5" y="28.5" width="11" height="11" rx="2.5" />
+        <rect x="44.5" y="44.5" width="11" height="11" rx="2.5" />
+        <rect x="59" y="44.5" width="11" height="11" rx="2.5" />
+        <rect x="30" y="60.5" width="11" height="11" rx="2.5" />
+        <rect x="59" y="60.5" width="11" height="11" rx="2.5" />
+      </g>
+      <path d="M35.5 50 L50 66 L64.5 34" fill="none" stroke="#ffd27a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" opacity="0.5" />
       <g fill="#ffd27a">
-        <rect x="26" y="43" width="14" height="14" rx="3" />
-        <rect x="43" y="59" width="14" height="14" rx="3" />
-        <rect x="60" y="24" width="14" height="14" rx="3" />
+        <rect x="30" y="44.5" width="11" height="11" rx="2.5" />
+        <rect x="44.5" y="60.5" width="11" height="11" rx="2.5" />
+        <rect x="59" y="28.5" width="11" height="11" rx="2.5" />
       </g>
     </svg>
   );

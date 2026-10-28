@@ -257,6 +257,7 @@ export function Footer({ home = true }: { home?: boolean }) {
             <h2 className="footer-h">Guides</h2>
             <a href="/things-3-alternative">TodoCity vs Things 3</a>
             <a href="/todoist-alternative">TodoCity vs Todoist</a>
+            <a href="/ai-agents-mcp-todo-app">AI agents and MCP</a>
             <a href="/private-todo-app-for-mac">A private to-do app</a>
             <a href="/turn-text-into-tasks">Text into tasks</a>
             <a href="/guides">All guides</a>
