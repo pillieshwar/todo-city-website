@@ -35,7 +35,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I move my tasks from Things 3 or Todoist?",
-    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks. Things and Todoist aren't changed.",
+    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks — and can keep them in sync as you go. Things and Todoist aren't changed.",
   },
   {
     q: "What does the city have to do with my to-do list?",
