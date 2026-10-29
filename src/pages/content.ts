@@ -137,7 +137,7 @@ export const PAGES: Page[] = [
       ["Internet needed", "Only for the first download"],
       ["Macs", "Apple silicon and Intel, macOS 11+"],
     ],
-    card: "How the local model writes your tasks, and why it can't be tricked into much.",
+    card: "How the local model writes your tasks, and why it stays safe with any text.",
     sections: [
       {
         h2: "What the AI does — and doesn't",
@@ -167,7 +167,7 @@ export const PAGES: Page[] = [
         h2: "Safe with text you don't control",
         blocks: [
           {
-            p: "Captured text is treated as data, never as instructions: it's wrapped and cleaned, the instructions live only in the system prompt, and the answer must match a strict schema. At worst, a sneaky message produces an odd task title — it can't make TodoCity do anything else.",
+            p: "Captured text is treated as data, never as instructions: it's wrapped and cleaned, the instructions live only in the system prompt, and the answer must match a strict schema. The most any message can do is suggest a task for you to review — it can't make TodoCity do anything else.",
           },
         ],
       },
@@ -449,7 +449,7 @@ export const PAGES: Page[] = [
       },
       {
         q: "Does TodoCity have an iPhone app?",
-        a: "Not yet — TodoCity is for Mac. You can turn on two-way Apple Reminders sync to see and tick off tasks on your iPhone through Reminders.",
+        a: "TodoCity is a Mac app. You can turn on two-way Apple Reminders sync to see and tick off tasks on your iPhone through Reminders.",
       },
     ],
     related: ["move-from-things-3", "ai-agents-mcp-todo-app", "todoist-alternative", "apple-reminders-alternative"],
@@ -527,7 +527,7 @@ export const PAGES: Page[] = [
                 ["Section", "Floor"],
                 ["Sub-tasks", "Sub-tasks"],
                 ["Labels", "#tags"],
-                ["Priority 1–3", "#p1–#p3, if you choose"],
+                ["Priority 1–3", "Priority P1–P3"],
                 ["Description and comments", "Notes"],
                 ["Recurring dates", "Repeats (daily, weekdays, weekly, every 2 weeks, monthly, yearly)"],
                 ["Completed tasks", "Done tasks — lit windows in your city"],
@@ -598,7 +598,7 @@ export const PAGES: Page[] = [
             p: "In Settings → Connectors → Apple Reminders, pick a list. Tasks you add in either app appear in the other, and ticking one off ticks off both. It's off until you turn it on.",
           },
           {
-            note: "If the list you pick is stored in iCloud, those tasks travel through iCloud — TodoCity warns you first. Pick an “On My Mac” list to keep them fully local.",
+            note: "If the list you pick is stored in iCloud, those tasks travel through iCloud — TodoCity tells you first. Pick an “On My Mac” list to keep them fully local.",
           },
         ],
       },
@@ -622,11 +622,11 @@ export const PAGES: Page[] = [
     kind: "howto",
     title: "How to Move From Things 3 to TodoCity (Step by Step)",
     description:
-      "Move your Things 3 library to TodoCity in four steps: projects, headings, to-dos, checklists, deadlines, repeats and your Logbook. Things isn't changed.",
+      "Move your Things 3 library to TodoCity in a few steps: projects, headings, to-dos, checklists, deadlines, repeats and your Logbook. Things isn't changed.",
     h1: "How to move from Things 3 to TodoCity",
     answer:
       "Open TodoCity's Settings → Import Data, click Find my Things library, check the preview and click Import. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
-    card: "Four steps, what each Things item becomes, and what to do if the library isn't found.",
+    card: "The steps, staying in sync, and what each Things item becomes.",
     sections: [
       {
         h2: "Steps",
@@ -636,10 +636,11 @@ export const PAGES: Page[] = [
               { title: "Open Things 3 on this Mac", text: "Let it finish syncing. If you only use Things on iPhone or iPad, install Things 3 for Mac and sign in to Things Cloud first." },
               { title: "Find your library", text: "In TodoCity, open Settings → Import Data and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring the Logbook and cancelled to-dos." },
+              { title: "Keep in sync", text: "Leave it on and new to-dos and changes in Things keep flowing into TodoCity on their own. Your edits in TodoCity stay, and nothing is sent back to Things." },
               { title: "Click Import", text: "TodoCity backs itself up first (Settings → Backups & export → “before import”), so you can undo it." },
             ],
           },
-          { p: "Running it again later brings only to-dos that are new since last time." },
+          { p: "Stop syncing any time — for one project from its ⋯ menu, or for all of Things in Settings → Import Data. Its tasks stay in TodoCity." },
         ],
       },
       {
@@ -667,7 +668,7 @@ export const PAGES: Page[] = [
         ],
       },
       {
-        h2: "If TodoCity can't find your library",
+        h2: "Choosing your library yourself",
         blocks: [
           {
             p: "Click Choose the database myself…, then in Finder use Go → Go to Folder… with ~/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsMac, open the ThingsData-… folder and pick Things Database.thingsdatabase. If macOS blocks it, give TodoCity Full Disk Access in System Settings → Privacy & Security, or copy that folder to your Desktop and choose the copy.",
@@ -695,7 +696,8 @@ export const PAGES: Page[] = [
             steps: [
               { title: "Copy your Todoist API token", text: "In Todoist (web or app), open Settings → Integrations → Developer and click Copy API token." },
               { title: "Connect", text: "In TodoCity, open Settings → Import Data → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
-              { title: "Check the preview", text: "Untick any project you'd rather leave behind; choose whether to bring completed tasks and whether priorities 1–3 become #p1–#p3." },
+              { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring completed tasks." },
+              { title: "Keep in sync", text: "Leave it on and Todoist changes keep flowing in every few minutes. Your token is kept in your Mac's Keychain, your edits in TodoCity stay, and nothing is sent back to Todoist." },
               { title: "Click Import", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
             ],
           },
@@ -705,7 +707,7 @@ export const PAGES: Page[] = [
         h2: "No token? Use CSV files",
         blocks: [
           {
-            p: "Export each project with ⋯ → Export as CSV in Todoist (or unzip a backup from Todoist's Settings → Backups), then choose No token? Use CSV files instead and pick all the .csv files. CSV exports don't include completed tasks, so your city starts dark.",
+            p: "Export each project with ⋯ → Export as CSV in Todoist (or unzip a backup from Todoist's Settings → Backups), then choose No token? Use CSV files instead and pick all the .csv files. CSV exports carry your open tasks; connect with a token to bring completed ones and keep them in sync.",
           },
         ],
       },
@@ -896,7 +898,7 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is there an iPhone or iPad app?",
-    a: "Not yet — TodoCity is for Mac. Turn on two-way Apple Reminders sync to see your tasks on iPhone through Reminders.",
+    a: "TodoCity is a Mac app. Turn on two-way Apple Reminders sync to see your tasks on iPhone through Reminders.",
   },
   {
     q: "Is there a Windows or web version?",
@@ -936,7 +938,7 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How do I install TodoCity?",
-    a: "Download the .dmg, drag TodoCity to Applications and open it. If macOS says it can't verify the developer, open System Settings → Privacy & Security and click Open Anyway — once.",
+    a: "Download the .dmg, drag TodoCity to Applications and open it. It's signed and notarized by Apple, so it opens like any other Mac app, and it updates itself from then on.",
   },
   {
     q: "Can I see my tasks as a board?",
