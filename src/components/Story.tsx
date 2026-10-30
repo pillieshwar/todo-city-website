@@ -27,7 +27,7 @@ const CHAPTERS: { kicker: string; title: string; text: string; points?: string[]
   {
     kicker: "Chapter 2",
     title: "Every project is a building.",
-    text: "Start a project and an apartment building goes up. Its sections are floors you name, like “1st Floor: Travel” and “2nd Floor: Program”, and tasks on no floor live on the ground floor.",
+    text: "Start a project and an apartment building goes up. Its sections are floors you name, like “1st Floor: Travel” and “2nd Floor: Program”, and tasks in General (no section) live on the ground floor.",
     points: ["The older the project, the closer to downtown it stands.", "A floor with more homes is wider; buildings narrow as they rise."],
   },
   {

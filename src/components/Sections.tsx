@@ -125,7 +125,7 @@ export function Features() {
         {[
           ["Side panel", "Docks at the edge of your screen, even over full-screen apps."],
           ["Menu bar", "Today's agenda under the TodoCity icon, one click away."],
-          ["Full screen", "A sidebar of projects and floors, the month, the week, and your city."],
+          ["Full screen", "A sidebar of projects and their sections, the month, the week, and your city."],
         ].map(([t, d]) => (
           <div key={t} className="way">
             <b>{t}</b>
