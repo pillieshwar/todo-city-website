@@ -126,7 +126,7 @@ const blockText = (b) =>
         : "steps" in b
           ? b.steps.map((s, i) => `${i + 1}. **${s.title}.** ${s.text}`).join("\n")
           : [`| ${b.table.head.join(" | ")} |`, `| ${b.table.head.map(() => "---").join(" | ")} |`, ...b.table.rows.map((r) => `| ${r.join(" | ")} |`)].join("\n");
-const full = `# ${SITE.name} — every guide, in full
+const full = `# ${SITE.name}: every guide, in full
 
 Source: ${ORIGIN} · updated ${UPDATED}
 

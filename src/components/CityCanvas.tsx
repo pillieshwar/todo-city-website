@@ -62,7 +62,7 @@ export function CityCanvas({
 
   return (
     <div ref={host} role="img" aria-label={label} className={["city-host", ready ? "ready" : "", className ?? ""].filter(Boolean).join(" ")}>
-      {noGL && <p className="city-nogl">Your browser can't show 3D right now — but the city is still there in the app.</p>}
+      {noGL && <p className="city-nogl">Your browser can't show 3D right now, but the city is still there in the app.</p>}
       {hover && (hover.home || hover.name) && (
         <div className="city-tip" aria-hidden style={{ left: hover.x + 14, top: hover.y + 14 }}>
           {hover.home ? (

@@ -1,4 +1,5 @@
-import { Hero } from "./components/Hero";
+import { AppHero } from "./components/AppHero";
+import { CityIntro } from "./components/CityIntro";
 import { Nav } from "./components/Nav";
 import { Playground } from "./components/Playground";
 import { Download, Faq, Features, Footer, Privacy } from "./components/Sections";
@@ -12,7 +13,8 @@ export function App() {
       </a>
       <Nav />
       <main id="main" tabIndex={-1}>
-        <Hero />
+        <AppHero />
+        <CityIntro />
         <Story />
         <Playground />
         <Features />

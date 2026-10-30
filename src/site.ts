@@ -23,7 +23,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How do I turn text into a task?",
-    a: "Select or copy any text — an email, a Slack message, a web page — and press ⌘C once more. TodoCity fills in the task, its day and its time; phrases like “by Friday 3pm” become a deadline and “every Sunday” a repeat.",
+    a: "Select or copy any text (an email, a Slack message, a web page) and press ⌘C once more. TodoCity fills in the task, its day and its time; phrases like “by Friday 3pm” become a deadline and “every Sunday” a repeat.",
   },
   {
     q: "Which Macs does it run on?",
@@ -31,15 +31,15 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I use TodoCity on my work and personal Macs?",
-    a: "Yes. Pair them with a code and six matching digits, and your tasks stay the same on both — no iCloud or account needed. Changes are end-to-end encrypted on your Mac before they leave, so the relay that passes them along can't read them. You can keep any project on one Mac only.",
+    a: "Yes. Pair them with a code and six matching digits, and your tasks stay the same on both, with no iCloud or account needed. Changes are end-to-end encrypted on your Mac before they leave, so the relay that passes them along can't read them. You can keep any project on one Mac only.",
   },
   {
     q: "Can I move my tasks from Things 3 or Todoist?",
-    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks — and can keep them in sync as you go. Things and Todoist aren't changed.",
+    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks, and can keep them in sync as you go. Things and Todoist aren't changed.",
   },
   {
     q: "What does the city have to do with my to-do list?",
-    a: "Every project is a building, its sections are floors, and every task is a home. When you finish a task, someone moves in and the lights come on — so over time your city shows everything you've done.",
+    a: "Every project is a building, its sections are floors, and every task is a home. When you finish a task, someone moves in and the lights come on, so over time your city shows everything you've done.",
   },
 ];
 

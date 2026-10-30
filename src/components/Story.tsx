@@ -22,23 +22,23 @@ const CHAPTERS: { kicker: string; title: string; text: string; points?: string[]
   {
     kicker: "Chapter 1",
     title: "Welcome, Mayor.",
-    text: "Your city starts quiet and dark. Your job is to fill it with people — and the only way anyone moves in is when you get something done.",
+    text: "Your city starts quiet and dark. Your job is to fill it with people, and the only way anyone moves in is when you get something done.",
   },
   {
     kicker: "Chapter 2",
     title: "Every project is a building.",
-    text: "Start a project and an apartment building goes up. Its sections are floors you name — “1st Floor: Travel”, “2nd Floor: Program” — and tasks on no floor live on the ground floor.",
+    text: "Start a project and an apartment building goes up. Its sections are floors you name, like “1st Floor: Travel” and “2nd Floor: Program”, and tasks on no floor live on the ground floor.",
     points: ["The older the project, the closer to downtown it stands.", "A floor with more homes is wider; buildings narrow as they rise."],
   },
   {
     kicker: "Chapter 3",
     title: "Every task is a home.",
-    text: "A new task is an empty home with a dark window. Finish it, someone moves in, and the lights come on — and they stay on for good.",
+    text: "A new task is an empty home with a dark window. Finish it, someone moves in, and the lights come on, and they stay on for good.",
   },
   {
     kicker: "Chapter 4",
     title: "Sub-tasks get a home ready.",
-    text: "Paint the walls, fix the boiler, hand over the keys. Tick sub-tasks off and the window glows behind the curtains. An amber window blinking? Something's overdue — someone's waiting at the door.",
+    text: "Paint the walls, fix the boiler, hand over the keys. Tick sub-tasks off and the window glows behind the curtains. An amber window blinking? Something's overdue: someone's waiting at the door.",
   },
   {
     kicker: "Chapter 5",

@@ -151,7 +151,7 @@ export function Playground() {
         <h2>
           Put up a building. <em>Light it up.</em>
         </h2>
-        <p className="lede">This is a real city — turn it, zoom in, hover any window. Then start a project of your own and watch it rise on the edge of town.</p>
+        <p className="lede">This is a real city: turn it, zoom in, hover any window. Then start a project of your own and watch it rise on the edge of town.</p>
       </div>
       <div className="play-grid">
         <div className="play-stage">
@@ -224,7 +224,7 @@ export function Playground() {
                 <span>
                   {done} lived in · {p.tasks.length - done} still empty
                 </span>
-                <button type="button" className="link" onClick={() => deleteProject(p.id)} disabled={p.tasks.length > 0} title={p.tasks.length ? "Delete its tasks first — just like the app" : "Take down this building"}>
+                <button type="button" className="link" onClick={() => deleteProject(p.id)} disabled={p.tasks.length > 0} title={p.tasks.length ? "Delete its tasks first, just like the app" : "Take down this building"}>
                   Delete project
                 </button>
               </div>
@@ -268,7 +268,7 @@ export function Playground() {
               })}
             </div>
           ) : (
-            <p className="play-empty">Start a project above — a building goes up on the edge of town.</p>
+            <p className="play-empty">Start a project above, and a building goes up on the edge of town.</p>
           )}
           <p className="play-note">This is a demo on this page; the app keeps your real tasks privately on your Mac.</p>
         </div>
