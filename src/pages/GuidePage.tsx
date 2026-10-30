@@ -39,7 +39,7 @@ function DownloadCard() {
     <section className="doc-cta" aria-label="Download TodoCity">
       <Logo size={48} />
       <div>
-        <p className="doc-cta-title">Try TodoCity — free for Mac</p>
+        <p className="doc-cta-title">Try TodoCity, free for Mac</p>
         <p className="doc-cta-sub">{SITE.requirements} · no account</p>
       </div>
       <a className="btn btn-primary doc-cta-btn" href={SITE.download}>

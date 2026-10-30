@@ -1,14 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { bigCity } from "../city/layout";
 import { SITE } from "../site";
 import { CityCanvas } from "./CityCanvas";
 import { AppleIcon, Arrow } from "./Icons";
 
 /**
- * The opening: a whole city at night you can turn and zoom, where people keep
- * moving in — each one a task someone finished.
+ * After the app: a whole city at night you can turn and zoom, where people
+ * keep moving in — each one a task someone finished.
  */
-export function Hero() {
+export function CityIntro() {
   const layout = useMemo(() => bigCity(7), []);
   const start = useMemo(
     () =>
@@ -20,27 +20,9 @@ export function Hero() {
   );
   const [population, setPopulation] = useState(start);
   const [blip, setBlip] = useState(0);
-  const copy = useRef<HTMLDivElement>(null);
-
-  // The words fade as you scroll into the story (they never slide under the top bar).
-  useEffect(() => {
-    let raf = 0;
-    const on = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const y = Math.min(window.scrollY, window.innerHeight);
-        const el = copy.current;
-        if (el) {
-          el.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.45)));
-        }
-      });
-    };
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-  }, []);
 
   return (
-    <section className="hero" id="top" aria-label="TodoCity">
+    <section className="hero" id="lights" aria-labelledby="lights-title">
       <CityCanvas
         layout={layout}
         className="hero-city"
@@ -57,18 +39,18 @@ export function Hero() {
         }}
       />
       <div className="hero-shade" aria-hidden />
-      <div className="hero-copy" ref={copy}>
+      <div className="hero-copy">
         <p className="eyebrow">
-          <span className="eyebrow-dot" /> A private to-do app for Mac
+          <span className="eyebrow-dot" /> Your city
         </p>
-        <h1>
+        <h2 id="lights-title">
           Every task is a home.
           <br />
           <em>Finish it,</em> and the lights come on.
-        </h1>
+        </h2>
         <p className="lede">
-          TodoCity turns any text into a dated task — an email, a message, a web page — with an AI that runs entirely on your Mac. Then every task
-          becomes a home in your own city, and every one you finish switches on a light.
+          In TodoCity, each project is a building and each of its sections a floor. Every task you finish moves someone in and switches on a light.
+          This is a city after a few months of getting things done. Drag it, and hover a window to see its task.
         </p>
         <div className="hero-ctas">
           <a className="btn btn-primary btn-lg" href={SITE.download}>
@@ -78,7 +60,7 @@ export function Hero() {
             Hear the story <Arrow />
           </a>
         </div>
-        <p className="hero-fine">Free for personal use · {SITE.requirements}</p>
+        <p className="hero-fine">{SITE.requirements}</p>
       </div>
       <div className="hero-pop" aria-hidden>
         <span key={blip} className="pop-light" aria-hidden />
@@ -90,9 +72,6 @@ export function Hero() {
       <p className="hero-hint" aria-hidden>
         Drag to turn the city · hover a window to see its task
       </p>
-      <a className="hero-scroll" href="#story" aria-label="Scroll to the story">
-        <span />
-      </a>
     </section>
   );
 }

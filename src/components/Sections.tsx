@@ -98,8 +98,8 @@ const FEATURES = [
   { title: "Copy twice to capture", text: "Copy any text and press ⌘C once more. The task, its date and time are filled in before you've looked up.", demo: <KeysDemo /> },
   { title: "Dates, done right", text: "“by Friday 3pm” becomes a deadline, “every Sunday” a repeat. When a phrase is vague, TodoCity asks instead of guessing.", demo: <DateDemo /> },
   { title: "Today, with its hours", text: "Your list beside the day's hours and a month calendar. Drag a task onto an hour to time it, or onto a date to move it.", demo: <HoursDemo /> },
-  { title: "Overdue, in one place", text: "Anything whose day, time or deadline has passed gathers in one list — not a banner on every screen.", demo: <OverdueDemo /> },
-  { title: "AI that never leaves your Mac", text: "A small language model runs on your own computer. No account, no cloud, no tracking — and it works offline.", demo: <PrivacyDemo /> },
+  { title: "Overdue, in one place", text: "Anything whose day, time or deadline has passed gathers in one list, not a banner on every screen.", demo: <OverdueDemo /> },
+  { title: "AI that never leaves your Mac", text: "A small language model runs on your own computer. No account, no cloud, no tracking. And it works offline.", demo: <PrivacyDemo /> },
   { title: "Make it yours", text: "Pick an accent color, a 12- or 24-hour clock, the first day of your week, compact rows, and your city's sky.", demo: <AccentDemo /> },
 ];
 
@@ -123,9 +123,9 @@ export function Features() {
       </div>
       <Reveal className="ways">
         {[
-          ["Side panel", "Docks at the edge of your screen — even over full-screen apps."],
+          ["Side panel", "Docks at the edge of your screen, even over full-screen apps."],
           ["Menu bar", "Today's agenda under the TodoCity icon, one click away."],
-          ["Full screen", "A sidebar of projects and floors, the month, the week — and your city."],
+          ["Full screen", "A sidebar of projects and floors, the month, the week, and your city."],
         ].map(([t, d]) => (
           <div key={t} className="way">
             <b>{t}</b>
@@ -217,7 +217,7 @@ export function Download() {
             <b>1</b> Open the downloaded file and drag TodoCity to Applications.
           </li>
           <li>
-            <b>2</b> Open TodoCity — it lives in your menu bar.
+            <b>2</b> Open TodoCity. It lives in your menu bar.
           </li>
           <li>
             <b>3</b> Copy any text and press <kbd>⌘C</kbd> again.
@@ -289,7 +289,7 @@ export function Footer({ home = true }: { home?: boolean }) {
         </nav>
       </div>
       <div className="footer-base">
-        <span>© {year} TodoCity. Free for personal use · source available.</span>
+        <span>© {year} TodoCity. Source available.</span>
         <span>Made for Mac, with the lights on.</span>
       </div>
     </footer>
