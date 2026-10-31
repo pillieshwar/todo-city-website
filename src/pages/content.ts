@@ -55,12 +55,12 @@ export const PAGES: Page[] = [
     kind: "guide",
     title: "A Private To-Do App for Mac, With No Account · TodoCity",
     description:
-      "TodoCity is a private to-do app for Mac: tasks live in a file on your Mac, the AI runs on your Mac, and there's no account, cloud or tracking.",
+      "TodoCity is a private to-do app for Mac: tasks live in a file on your Mac, capture runs on your Mac, and there's no account or tracking. Features that share data are off until you turn them on.",
     h1: "A private to-do app for Mac",
     answer:
-      "TodoCity is a to-do app for Mac that keeps everything on your Mac. Your tasks are stored in one file on your own computer, the AI that turns text into tasks runs locally, and there is no account, no cloud and no analytics. It's private by default: nothing leaves your Mac unless you turn it on. It's free for personal use.",
+      "TodoCity is a to-do app for Mac that is private by default. Your tasks are stored in one file on your own computer, the AI that turns what you capture into tasks runs locally, and there is no account and no analytics. Some features send data to a service you choose, like Claude or Codex for AI agents and Watch; each one is off until you turn it on. It's free for personal use.",
     facts: FACTS_APP,
-    card: "What stays on your Mac, what (rarely) goes online, and why there's no account.",
+    card: "What stays on your Mac, what you can choose to share, and why there's no account.",
     sections: [
       {
         h2: "What stays on your Mac",
@@ -76,14 +76,26 @@ export const PAGES: Page[] = [
         ],
       },
       {
-        h2: "When TodoCity goes online",
+        h2: "What you can choose to share",
         blocks: [
-          { p: "Only for three things, and you control each one:" },
+          { p: "These are off until you turn them on, and each says where your data goes:" },
           {
             list: [
-              "Downloading the AI model once, when you set it up (from Hugging Face, checked against its SHA-256).",
+              "Agents (Settings → Agents). Connect Claude Code, Codex, Cursor and other AI agents to add tasks for your review, or give them full access to plan and tidy your list. What an agent reads, it sends to its AI service.",
+              "Watch (Settings → Watch). Spots to-dos in the app in front of you. New messages that look like to-dos go to the agent you pick, and from it to its AI service, or to an open model on your Mac.",
+              "Sync between your Macs, if you pair them. Changes are encrypted on your Mac before they leave, and the relay that passes them along can't read them.",
+              "Apple Reminders and Calendar, through iCloud if you pick an iCloud list or account.",
+            ],
+          },
+        ],
+      },
+      {
+        h2: "When TodoCity goes online by itself",
+        blocks: [
+          {
+            list: [
+              "Downloading an open model, when you choose one (from Hugging Face, checked against its SHA-256).",
               "Checking GitHub for updates. You can turn this off in Settings → General.",
-              "Sync between your Macs, only if you pair them. Changes are encrypted on your Mac before they leave, and the relay that passes them along can't read them.",
             ],
           },
           { p: "There are no accounts, analytics or telemetry. Nothing is sent about how you use the app." },
@@ -117,7 +129,7 @@ export const PAGES: Page[] = [
       },
       {
         q: "Can my employer or anyone else see my tasks?",
-        a: "TodoCity sends your tasks nowhere unless you turn something on. If you pair Macs, changes travel end-to-end encrypted; the relay can't read task titles, notes, projects or Mac names. You can also keep any project on one Mac only.",
+        a: "TodoCity sends your tasks nowhere unless you turn something on. If you connect an AI agent, it can read what you allow and sends that to its AI service. If you pair Macs, changes travel end-to-end encrypted; the relay can't read task titles, notes, projects or Mac names. You can also keep any project on one Mac only.",
       },
     ],
     related: ["ai-todo-app-on-device", "sync-macs-without-icloud", "faq"],
@@ -176,8 +188,8 @@ export const PAGES: Page[] = [
         blocks: [
           {
             list: [
-              "Watch my screen (off by default) suggests tasks from what's in front of you (asks of you and promises you made) using the same on-device model. Password managers, Keychain, System Settings and terminals are never read.",
-              "AI agents like Claude Code, Claude Desktop, Cursor and VS Code can add tasks over MCP, on your Mac only, and you approve each one. Turn on Full access and they can run your whole list: read, add, change, schedule and complete tasks, projects and sections.",
+              "Watch (off until you turn it on) suggests tasks from what's in front of you (asks of you and promises you made). Pick who reads new messages: an AI agent you've connected, which sends them to its AI service, or an open model on your Mac. Password managers, Keychain, System Settings and terminals are never read.",
+              "AI agents like Claude Code, Codex, Cursor and Claude Desktop connect in one click and can add tasks for you to approve. Turn on Full access and they can run your whole list: read, add, change, schedule and complete tasks, projects and sections. What they read goes to their AI service.",
             ],
           },
         ],
