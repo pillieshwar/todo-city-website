@@ -259,7 +259,7 @@ export const PAGES: Page[] = [
             p: "Out of the box, agents get one tool, add_task, and the same reply for every task (no ids, no counts, no duplicate check), so an agent learns nothing about your list. At most 20 tasks arrive every 10 minutes, and 50 can wait for review.",
           },
           {
-            p: "Turn on Full access (Settings → Connectors → AI agents) and agents get 28 tools to run your list on their own: read and search tasks, add and change them, schedule them to the minute with a length, snooze reminders, tick off sub-tasks, complete, delete, and manage projects and sections. Changes apply right away. What an agent reads, it may send to its AI service, as with anything you share with it.",
+            p: "Turn on Full access (Settings → Agents) and agents get 28 tools to run your list on their own: read and search tasks, add and change them, schedule them to the minute with a length, snooze reminders, tick off sub-tasks, complete, delete, and manage projects and sections. Changes apply right away. What an agent reads, it may send to its AI service, as with anything you share with it.",
           },
           {
             p: "Either way, TodoCity talks to agents over a private connection that only your Mac user account can open, so agents in the cloud can't reach it on their own.",
@@ -267,13 +267,13 @@ export const PAGES: Page[] = [
         ],
       },
       {
-        h2: "A background agent for your email",
+        h2: "Tasks from what's on your screen",
         blocks: [
           {
-            p: "Turn on Email to tasks and TodoCity runs Claude Code on a schedule: every 15, 30 or 60 minutes, between the hours you choose, weekdays only if you like. Claude Code reads your new mail through your own mail connection and sends the action items to TodoCity, where they wait for review like any other agent task. The run may use only your mail connection and add_task, and TodoCity itself never reads your mail.",
+            p: "Turn on Watch and TodoCity suggests tasks from the app in front of you: requests in Mail, Outlook or Slack, deadlines, and things you promised. You pick who reads the new text: the open model on your Mac, or an agent you've connected, like Claude Code or Codex. Every suggestion waits for your OK.",
           },
           {
-            note: "Email to tasks needs Claude Code on your Mac, connected to TodoCity and to your mail (for example an Outlook or Microsoft 365 MCP server). Your email is read by Claude Code under your own Claude account; TodoCity only receives the tasks.",
+            note: "Watch is off until you turn it on. When an agent reads for it, the new text goes to that agent and its AI service, signed in as you. Password managers, Keychain and terminals are never read.",
           },
         ],
       },
@@ -287,7 +287,7 @@ export const PAGES: Page[] = [
               rows: [
                 ["MCP server for AI apps", "Built in, on your Mac", "No official one", "Official, in the cloud", "No official one"],
                 ["What agents can do", "Add tasks only, approved by you", "Nothing", "Read and change your tasks", "Nothing"],
-                ["Background AI agent", "Email to tasks, on a schedule", "No", "No", "No"],
+                ["Tasks from your screen", "Watch, with an agent or on-device model", "No", "No", "No"],
                 ["AI on your device", "Yes, any Mac with macOS 11+", "No", "No (cloud)", "Apple Intelligence on supported Macs"],
               ],
             },
@@ -528,7 +528,7 @@ export const PAGES: Page[] = [
             p: "Both apps work with AI assistants over MCP, but in opposite ways. Todoist's MCP server lives in the cloud and lets an agent read and change your account. TodoCity's runs on your Mac and starts add-only: Claude, Cursor, VS Code and other AI apps can add tasks, can't see a thing, and every task waits for your OK. Turn on Full access and they can read and change your list too, still through your Mac.",
           },
           {
-            p: "TodoCity can also work in the background: turn on Email to tasks and it runs Claude Code on a schedule to find the to-dos in your new email and send them to you for review. TodoCity itself never reads your mail.",
+            p: "TodoCity can also suggest tasks on its own: turn on Watch and it spots requests and promises in the app in front of you, read by the open model on your Mac or by an agent you choose. Every suggestion waits for your OK.",
           },
         ],
       },
@@ -943,8 +943,8 @@ export const MORE_FAQ: { q: string; a: string }[] = [
     a: "Yes. Claude Code, Claude Desktop, Cursor, VS Code, Windsurf and LM Studio can add tasks over MCP, on your Mac only, and you approve each one. Turn on Full access and they can read, change, schedule and complete your tasks too.",
   },
   {
-    q: "Can TodoCity run an AI agent in the background?",
-    a: "Yes. Turn on Email to tasks and TodoCity runs Claude Code on a schedule to find the to-dos in your new email and send them for review. TodoCity itself never reads your mail.",
+    q: "Can TodoCity find tasks for me?",
+    a: "Yes. Turn on Watch and it suggests tasks from the app in front of you, like a request in Slack or a deadline in an email. The open model on your Mac or an agent you pick reads the new text, and each suggestion waits for your OK.",
   },
   {
     q: "How do I keep work and personal tasks separate?",
