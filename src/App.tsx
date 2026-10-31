@@ -1,10 +1,9 @@
 import { AppHero } from "./components/AppHero";
-import { CityIntro } from "./components/CityIntro";
+import { Features, PrivacyRow, WorksWith } from "./components/Features";
 import { Nav } from "./components/Nav";
-import { Playground } from "./components/Playground";
-import { Download, Faq, Features, Footer, Privacy } from "./components/Sections";
-import { Story } from "./components/Story";
+import { Download, Faq, Footer } from "./components/Sections";
 
+/** The home page: what TodoCity does, the app to try, and how to get it. The city has its own page (/city). */
 export function App() {
   return (
     <>
@@ -14,11 +13,9 @@ export function App() {
       <Nav />
       <main id="main" tabIndex={-1}>
         <AppHero />
-        <CityIntro />
-        <Story />
-        <Playground />
         <Features />
-        <Privacy />
+        <WorksWith />
+        <PrivacyRow />
         <Faq />
         <Download />
       </main>

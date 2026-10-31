@@ -1,6 +1,7 @@
 // After `vite build`: put the rendered pages into dist (the home page into
 // dist/index.html, each guide into dist/<slug>/index.html with its own head),
 // add structured data, and write sitemap.xml, llms.txt and llms-full.txt.
+// The city page (/city) is written the same way as the guides.
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 
 const server = await import(new URL("../dist-server/entry-server.js", import.meta.url));
@@ -44,7 +45,7 @@ for (const p of pages) {
   page = swap(page, /(<meta name="description" content=")([^"]*)(")/, esc(p.description), "description");
   page = swap(page, /(<link rel="canonical" href=")([^"]*)(")/, url, "canonical");
   page = swap(page, /(<meta property="og:url" content=")([^"]*)(")/, url, "og:url");
-  page = swap(page, /(<meta property="og:type" content=")([^"]*)(")/, "article", "og:type");
+  page = swap(page, /(<meta property="og:type" content=")([^"]*)(")/, p.path === "/city" ? "website" : "article", "og:type");
   page = swap(page, /(<meta property="og:title" content=")([^"]*)(")/, esc(p.title), "og:title");
   page = swap(page, /(<meta property="og:description" content=")([^"]*)(")/, esc(p.description), "og:description");
   page = swap(page, /(<meta name="twitter:title" content=")([^"]*)(")/, esc(p.title), "twitter:title");
