@@ -311,7 +311,7 @@ main:focus { outline: none; }
   max-width: 1240px; margin: 0 auto; padding: clamp(28px, 5vw, 64px); border-radius: 30px; border: 1px solid var(--line);
   background: radial-gradient(80% 120% at 0% 0%, rgba(82, 73, 217, 0.22), transparent 60%), radial-gradient(60% 100% at 100% 100%, rgba(255, 210, 122, 0.1), transparent 60%), var(--bg-2);
 }
-.privacy-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 40px; }
+.privacy-points { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 40px; }
 .privacy-point { display: flex; gap: 14px; }
 .privacy-point b { font-size: 16px; }
 .privacy-point p { margin: 6px 0 0; font-size: 14.5px; color: var(--muted); }

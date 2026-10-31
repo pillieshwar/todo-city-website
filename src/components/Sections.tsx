@@ -99,7 +99,7 @@ const FEATURES = [
   { title: "Dates, done right", text: "“by Friday 3pm” becomes a deadline, “every Sunday” a repeat. When a phrase is vague, TodoCity asks instead of guessing.", demo: <DateDemo /> },
   { title: "Today, with its hours", text: "Your list beside the day's hours and a month calendar. Drag a task onto an hour to time it, or onto a date to move it.", demo: <HoursDemo /> },
   { title: "Overdue, in one place", text: "Anything whose day, time or deadline has passed gathers in one list, not a banner on every screen.", demo: <OverdueDemo /> },
-  { title: "AI that never leaves your Mac", text: "A small language model runs on your own computer. No account, no cloud, no tracking. And it works offline.", demo: <PrivacyDemo /> },
+  { title: "Capture that stays on your Mac", text: "A small language model on your own computer turns what you capture into tasks. No account, no tracking, and it works offline. Sharing with AI agents is up to you.", demo: <PrivacyDemo /> },
   { title: "Make it yours", text: "Pick an accent color, a 12- or 24-hour clock, the first day of your week, compact rows, and your city's sky.", demo: <AccentDemo /> },
 ];
 
@@ -143,11 +143,12 @@ export function Privacy() {
       <Reveal className="privacy-card">
         <p className="eyebrow">Privacy</p>
         <h2>
-          Nothing you capture <em>ever</em> leaves your Mac.
+          Private by default. <em>Yours</em> to share.
         </h2>
         <div className="privacy-points">
           {[
-            ["On-device AI", "The model that reads your text runs locally. Your messages, emails and pages are never uploaded."],
+            ["On-device capture", "The model that turns what you capture into tasks runs on your Mac, offline."],
+            ["Your choice", "Agents and Watch can send data to Claude, Codex and others, only after you turn them on."],
             ["No account", "There's nothing to sign up for. Your tasks live in one file on your Mac, with daily backups."],
             ["Source available", "Every line is public on GitHub. Read it, build it yourself, or check what it does."],
           ].map(([t, d]) => (
