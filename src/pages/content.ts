@@ -42,7 +42,7 @@ export interface Page {
 export const UPDATED = "2026-10-27";
 
 const FACTS_APP: [string, string][] = [
-  ["Price", "Free for personal use"],
+  ["Price", "Free, open source (MIT)"],
   ["Runs on", "macOS 11 or later, Apple silicon and Intel"],
   ["AI", "A small language model on your Mac"],
   ["AI agents", "Built-in MCP server: add-only, or full access if you turn it on"],
@@ -59,7 +59,7 @@ export const PAGES: Page[] = [
       "TodoCity is a private to-do app for Mac: tasks live in a file on your Mac, capture runs on your Mac, and there's no account or tracking. Features that share data are off until you turn them on.",
     h1: "A private to-do app for Mac",
     answer:
-      "TodoCity is a to-do app for Mac that is private by default. Your tasks are stored in one file on your own computer, the AI that turns what you capture into tasks runs locally, and there is no account and no analytics. Some features send data to a service you choose, like Claude or Codex for AI agents and Watch; each one is off until you turn it on. It's free for personal use.",
+      "TodoCity is a to-do app for Mac that is private by default. Your tasks are stored in one file on your own computer, the AI that turns what you capture into tasks runs locally, and there is no account and no analytics. Some features send data to a service you choose, like Claude or Codex for AI agents and Watch; each one is off until you turn it on. It's free and open source (MIT).",
     facts: FACTS_APP,
     card: "What stays on your Mac, what you can choose to share, and why there's no account.",
     sections: [
@@ -117,7 +117,7 @@ export const PAGES: Page[] = [
             list: [
               "Export everything to CSV or JSON at any time (Settings → Backups & export).",
               "Seven days of automatic backups, and one before every import.",
-              "The source code is public on GitHub, so anyone can check what the app does.",
+              "The source code is on GitHub under the MIT License, so anyone can check what the app does.",
             ],
           },
         ],
@@ -395,7 +395,7 @@ export const PAGES: Page[] = [
               caption: "TodoCity and Things 3 compared",
               head: ["Feature", "TodoCity", "Things 3"],
               rows: [
-                ["Price", "Free for personal use", "Paid, one-time, per platform"],
+                ["Price", "Free, open source (MIT)", "Paid, one-time, per platform"],
                 ["Platforms", "Mac", "Mac, iPhone, iPad, Apple Watch"],
                 ["Turn any text into a task", "Yes: ⌘C twice, on-device AI", "Share sheet and Quick Entry (no AI)"],
                 ["AI that runs on your Mac", "Yes, works offline", "No AI features"],
@@ -407,7 +407,7 @@ export const PAGES: Page[] = [
                 ["Calendar beside your tasks", "Yes, with hours to drag tasks onto", "Calendar events in Today and Upcoming"],
                 ["Work / personal modes", "Yes, per Mac", "Via areas"],
                 ["Import from the other", "Imports your Things library", "No"],
-                ["Source code", "Public on GitHub", "Closed"],
+                ["Source code", "Open source (MIT)", "Closed"],
               ],
             },
           },
@@ -492,7 +492,7 @@ export const PAGES: Page[] = [
               caption: "TodoCity and Todoist compared",
               head: ["Feature", "TodoCity", "Todoist"],
               rows: [
-                ["Price", "Free for personal use", "Free plan, paid plans for more"],
+                ["Price", "Free, open source (MIT)", "Free plan, paid plans for more"],
                 ["Platforms", "Mac", "Web, Mac, Windows, iPhone, Android and more"],
                 ["Where tasks live", "On your Mac", "Todoist's servers"],
                 ["Account", "None", "Required"],
@@ -594,7 +594,7 @@ export const PAGES: Page[] = [
               caption: "TodoCity and Apple Reminders compared",
               head: ["Feature", "TodoCity", "Apple Reminders"],
               rows: [
-                ["Price", "Free for personal use", "Free, built in"],
+                ["Price", "Free, open source (MIT)", "Free, built in"],
                 ["Platforms", "Mac (iPhone through Reminders sync)", "Every Apple device"],
                 ["Turn any text into a task", "⌘C twice, on-device AI", "Siri, the share sheet, and Apple Intelligence suggestions"],
                 ["AI", "On your Mac, on any Mac with macOS 11+", "Apple Intelligence, on supported Macs with macOS 26"],
@@ -906,7 +906,7 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   ...FAQ_MORE,
   {
     q: "Is TodoCity open source?",
-    a: "Its source code is public on GitHub under the PolyForm Noncommercial license: free to read, build and use for personal, non-commercial purposes.",
+    a: "Yes. Its source code is on GitHub under the MIT License: free to read, build, change and use, including at work.",
   },
   {
     q: "Does TodoCity need an account?",

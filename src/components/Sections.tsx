@@ -109,7 +109,7 @@ export function Footer({ home = true }: { home?: boolean }) {
             <h2 className="footer-h">Trust</h2>
             <a href="/private-todo-app-for-mac">Privacy</a>
             <a href={SITE.license} target="_blank" rel="noreferrer">
-              Non-commercial license
+              MIT License
             </a>
             <span>No account · no tracking</span>
             <span>{SITE.requirements}</span>
@@ -117,7 +117,7 @@ export function Footer({ home = true }: { home?: boolean }) {
         </nav>
       </div>
       <div className="footer-base">
-        <span>© {year} TodoCity. Source available.</span>
+        <span>© {year} TodoCity. Open source (MIT).</span>
         <span>Made for Mac, with the lights on.</span>
       </div>
     </footer>

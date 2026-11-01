@@ -23,7 +23,7 @@ export const CITY = {
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "Is TodoCity free?",
-    a: "Yes. TodoCity is free for personal, non-commercial use under the PolyForm Noncommercial license, and its source code is on GitHub for anyone to read.",
+    a: "Yes. TodoCity is free and open source under the MIT License, for personal use and at work. Its source code is on GitHub for anyone to read.",
   },
   {
     q: "Does anything I capture leave my Mac?",
