@@ -4,6 +4,7 @@
  * are prerendered to plain HTML with their own title, description and
  * structured data (scripts/prerender.mjs).
  */
+import { FAQ_MORE } from "../site";
 
 export type Block =
   | { p: string }
@@ -902,6 +903,7 @@ export const PAGES: Page[] = [
 
 /** More questions, for the FAQ page (the home page shows the first few). */
 export const MORE_FAQ: { q: string; a: string }[] = [
+  ...FAQ_MORE,
   {
     q: "Is TodoCity open source?",
     a: "Its source code is public on GitHub under the PolyForm Noncommercial license: free to read, build and use for personal, non-commercial purposes.",
@@ -913,10 +915,6 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   {
     q: "Does TodoCity work offline?",
     a: "Yes. After the one-time model download, everything works offline. Only sync between Macs and update checks use the internet.",
-  },
-  {
-    q: "Is there an iPhone or iPad app?",
-    a: "TodoCity is a Mac app. Turn on two-way Apple Reminders sync to see your tasks on iPhone through Reminders.",
   },
   {
     q: "Is there a Windows or web version?",

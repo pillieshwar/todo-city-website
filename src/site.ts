@@ -1,7 +1,7 @@
 /** Links and facts used across the site. */
 export const SITE = {
   name: "TodoCity",
-  tagline: "Every task is a home. Finish it, and the lights come on.",
+  tagline: "A private to-do app for Mac. Press ⌘C twice, and it's a task.",
   download: "https://github.com/pillieshwar/TodoCity/releases/latest/download/TodoCity-macOS.dmg",
   repo: "https://github.com/pillieshwar/TodoCity",
   releases: "https://github.com/pillieshwar/TodoCity/releases",
@@ -11,7 +11,15 @@ export const SITE = {
   requirements: "macOS 11 or later · Apple silicon and Intel",
 };
 
-/** Questions people ask, answered on the page and given to search engines. */
+/** The city's own page: its address and the words for search results. */
+export const CITY = {
+  path: "/city",
+  title: "Your City: Every Task You Finish Lights a Window | TodoCity",
+  description:
+    "In TodoCity, each project is a building and each task a home. Finish a task and someone moves in: the lights come on. See how your city grows, with no streaks or points.",
+};
+
+/** The questions on the home page, also given to search engines. */
 export const FAQ: { q: string; a: string }[] = [
   {
     q: "Is TodoCity free?",
@@ -19,23 +27,31 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Does anything I capture leave my Mac?",
-    a: "No. The AI that reads your text is a small language model that runs on your own Mac, and your tasks are stored in a file on it. There's no account and no tracking. The internet is used only for the one-time model download, checking for updates (you can turn that off), and sync between your Macs if you turn it on.",
+    a: "Not unless you turn something on. The AI that reads what you capture runs on your Mac, and your tasks live in one file on it, with no account and no tracking. The internet is used for the one-time model download and for update checks (you can turn those off). Sync between your Macs and sharing with AI agents happen only after you turn them on.",
   },
+  {
+    q: "What do I need, and what does it download?",
+    a: "A Mac with macOS 11 Big Sur or later, Apple silicon or Intel. The first time you open it, TodoCity downloads its AI model (about 2 GB) once. After that, capture works offline.",
+  },
+  {
+    q: "Can I see my tasks on my iPhone?",
+    a: "Yes, through Apple Reminders. Turn on Reminders sync in Settings → Connectors and your tasks appear in Reminders on your iPhone, both ways. TodoCity itself is a Mac app.",
+  },
+  {
+    q: "Can I move my tasks from Things 3 or Todoist?",
+    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks, and can keep them in sync as you go. Things and Todoist aren't changed.",
+  },
+];
+
+/** More questions people ask, on the FAQ page after the home page's. */
+export const FAQ_MORE: { q: string; a: string }[] = [
   {
     q: "How do I turn text into a task?",
     a: "Select or copy any text (an email, a Slack message, a web page) and press ⌘C once more. TodoCity fills in the task, its day and its time; phrases like “by Friday 3pm” become a deadline and “every Sunday” a repeat.",
   },
   {
-    q: "Which Macs does it run on?",
-    a: "Any Mac with macOS 11 Big Sur or later, Apple silicon or Intel. The first time you open it, TodoCity downloads its AI model (about 2 GB) once.",
-  },
-  {
     q: "Can I use TodoCity on my work and personal Macs?",
     a: "Yes. Pair them with a code and six matching digits, and your tasks stay the same on both, with no iCloud or account needed. Changes are end-to-end encrypted on your Mac before they leave, so the relay that passes them along can't read them. You can keep any project on one Mac only.",
-  },
-  {
-    q: "Can I move my tasks from Things 3 or Todoist?",
-    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks, and can keep them in sync as you go. Things and Todoist aren't changed.",
   },
   {
     q: "What does the city have to do with my to-do list?",

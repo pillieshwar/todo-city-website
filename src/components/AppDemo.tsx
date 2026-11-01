@@ -49,10 +49,10 @@ function colOf(t: DemoTask): Col {
   return d <= 7 ? "week" : "later";
 }
 
-/** The guided path: copy → add → tick → city → free to explore. */
-type Step = 0 | 1 | 2 | 3 | 4;
+/** The guided path: copy → add → tick → free to explore. */
+type Step = 0 | 1 | 2 | 3;
 
-const STEPS = ["Copy a message twice", "Add the task", "Tick it off", "Find its light"];
+const STEPS = ["Copy a message twice", "Add the task", "Tick it off"];
 
 const SLACK_TEXT = "can you send me the rollout checklist by Friday 3pm?";
 const CAPTURED = "Send Maya the rollout checklist";
@@ -220,7 +220,6 @@ export function AppDemo() {
     setCityFocus(focus);
     setView("city");
     setCapture(null);
-    if (step === 3) setStep(4);
   }
 
   // ── Quick add: type a task the way you'd say it ───────────────────────────
@@ -371,7 +370,7 @@ export function AppDemo() {
   return (
     <div className="ad">
       <div className="ad-coach">
-        <ol className="ad-steps" aria-label="Try it in four steps">
+        <ol className="ad-steps" aria-label="Try it in three steps">
           {STEPS.map((s, i) => (
             <li key={s} className={step === i ? "on" : step > i ? "done" : ""} aria-current={step === i ? "step" : undefined}>
               <span>{step > i ? "✓" : i + 1}</span>
@@ -388,14 +387,6 @@ export function AppDemo() {
           )}
           {step === 2 && <p>It's in the <b>Launch</b> project, in the <b># Rollout</b> section. Tick its circle once it's done.</p>}
           {step === 3 && (
-            <p>
-              Someone just moved in.{" "}
-              <button type="button" className="ad-link" onClick={() => openCity("launch")}>
-                Open your city to find the light →
-              </button>
-            </p>
-          )}
-          {step === 4 && (
             <p>
               That's the whole idea. Now click around: every list, project and button in this window works.{" "}
               <button type="button" className="ad-link" onClick={reset}>

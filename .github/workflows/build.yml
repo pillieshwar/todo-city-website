@@ -40,7 +40,7 @@ jobs:
           npx playwright install --with-deps chromium > browser.log 2>&1 || { tail -n 5 browser.log | while IFS= read -r l; do echo "::error title=browser::$l"; done; exit 1; }
           npx vite preview --port 4173 --strictPort &
           sleep 3
-          for page in / /things-3-alternative /move-from-things-3 /guides /faq; do
+          for page in / /city /things-3-alternative /move-from-things-3 /guides /faq; do
             node scripts/a11y.mjs "http://localhost:4173$page" 2>&1 | tee -a a11y.log || {
               grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script ($page)::$l"; done
               exit 1
@@ -55,7 +55,7 @@ jobs:
           grep -q 'SoftwareApplication' dist/index.html
           # The guide pages, each with its own title, canonical link and structured data.
           test -s dist/llms.txt && test -s dist/llms-full.txt
-          for page in things-3-alternative todoist-alternative move-from-things-3 guides faq; do
+          for page in city things-3-alternative todoist-alternative move-from-things-3 guides faq; do
             f="dist/$page/index.html"
             test -s "$f"
             grep -q "<link rel=\"canonical\" href=\"https://todocity.app/$page\"" "$f"

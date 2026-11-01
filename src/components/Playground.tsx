@@ -145,12 +145,9 @@ export function Playground() {
 
   const done = p ? p.tasks.filter((t) => t.done).length : 0;
   return (
-    <section className="play" id="city" aria-label="Build your own block">
+    <section className="play" id="build" aria-label="Build your own block">
       <div className="section-head">
-        <p className="eyebrow">Try it</p>
-        <h2>
-          Put up a building. <em>Light it up.</em>
-        </h2>
+        <h2>Put up a building and light it up.</h2>
         <p className="lede">This is a real city: turn it, zoom in, hover any window. Then start a project of your own and watch it rise on the edge of town.</p>
       </div>
       <div className="play-grid">

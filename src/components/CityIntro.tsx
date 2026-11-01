@@ -5,8 +5,8 @@ import { CityCanvas } from "./CityCanvas";
 import { AppleIcon, Arrow } from "./Icons";
 
 /**
- * After the app: a whole city at night you can turn and zoom, where people
- * keep moving in — each one a task someone finished.
+ * The city page's opening: a whole city at night you can turn and zoom, where
+ * people keep moving in, each one a task someone finished.
  */
 export function CityIntro() {
   const layout = useMemo(() => bigCity(7), []);
@@ -40,24 +40,18 @@ export function CityIntro() {
       />
       <div className="hero-shade" aria-hidden />
       <div className="hero-copy">
-        <p className="eyebrow">
-          <span className="eyebrow-dot" /> Your city
-        </p>
-        <h2 id="lights-title">
+        <h1 id="lights-title">
           Every task is a home.
           <br />
           <em>Finish it,</em> and the lights come on.
-        </h2>
-        <p className="lede">
-          In TodoCity, each project is a building and each of its sections a floor. Every task you finish moves someone in and switches on a light.
-          This is a city after a few months of getting things done. Drag it, and hover a window to see its task.
-        </p>
+        </h1>
+        <p className="lede">Your projects become buildings. Everything you finish moves someone in. This city is a few months of getting things done: drag it, and hover a window to see its task.</p>
         <div className="hero-ctas">
           <a className="btn btn-primary btn-lg" href={SITE.download}>
             <AppleIcon /> Download for Mac
           </a>
-          <a className="btn btn-ghost btn-lg" href="#story">
-            Hear the story <Arrow />
+          <a className="btn btn-ghost btn-lg" href="#how">
+            How it works <Arrow />
           </a>
         </div>
         <p className="hero-fine">{SITE.requirements}</p>

@@ -2,16 +2,9 @@ import { useEffect, useState } from "react";
 import { SITE } from "../site";
 import { AppleIcon, Logo } from "./Icons";
 
-const LINKS = [
-  ["#story", "Story"],
-  ["#city", "Your city"],
-  ["#features", "Features"],
-  ["#privacy", "Privacy"],
-] as const;
-
 /** The top bar: glass once you scroll, with a thin progress line under it. */
-export function Nav({ home = true }: { home?: boolean }) {
-  // On the guide pages, the section links lead back to the home page.
+export function Nav({ home = true, page }: { home?: boolean; page?: "city" }) {
+  // On other pages, the section links lead back to the home page.
   const at = (hash: string) => (home ? hash : `/${hash}`);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -49,20 +42,18 @@ export function Nav({ home = true }: { home?: boolean }) {
           <span>TodoCity</span>
         </a>
         <nav id="nav-links" className={open ? "nav-links open" : "nav-links"} aria-label="Sections">
-          {LINKS.map(([href, text]) => (
-            <a key={href} href={at(href)} onClick={() => setOpen(false)}>
-              {text}
-            </a>
-          ))}
+          <a href={at("#features")} onClick={() => setOpen(false)}>
+            Features
+          </a>
+          <a href="/city" className={page === "city" ? "on" : undefined} aria-current={page === "city" ? "page" : undefined} onClick={() => setOpen(false)}>
+            Your city
+          </a>
           <a href={home ? "#faq" : "/faq"} onClick={() => setOpen(false)}>
             FAQ
           </a>
-          <a className="nav-gh" href={SITE.repo} target="_blank" rel="noreferrer">
-            GitHub<span className="sr-only"> (opens in a new tab)</span>
-          </a>
         </nav>
-        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download} aria-label="Download TodoCity for Mac">
-          <AppleIcon /> Download
+        <a className="btn btn-primary btn-sm nav-dl" href={SITE.download}>
+          <AppleIcon /> Download<span className="nav-dl-more"> for Mac</span>
         </a>
         <button type="button" className="nav-menu" aria-label="Menu" aria-controls="nav-links" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
           <span />

@@ -2,8 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-// The home page (with the 3D city) and the guide pages load separately, so a
-// guide never downloads three.js.
+// The home page, the city page and the guide pages load separately, and
+// three.js loads only where a 3D city is shown.
 const path = window.location.pathname.replace(/\/+$/, "") || "/";
 const root = createRoot(document.getElementById("root")!);
 if (path === "/") {
@@ -11,6 +11,14 @@ if (path === "/") {
     root.render(
       <StrictMode>
         <App />
+      </StrictMode>,
+    ),
+  );
+} else if (path === "/city") {
+  void import("./CityPage").then(({ CityPage }) =>
+    root.render(
+      <StrictMode>
+        <CityPage />
       </StrictMode>,
     ),
   );
