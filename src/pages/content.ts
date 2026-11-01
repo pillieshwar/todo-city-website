@@ -934,7 +934,7 @@ export const MORE_FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I see my calendar next to my tasks?",
-    a: "Yes, both ways. Turn on the Apple Calendar connector to show your meetings (including Google, Outlook and iCloud calendars added to your Mac) beside your tasks. Turn on Put my tasks in Calendar and tasks with a day and time become events, in calendars of their own: one per project, grouped like TodoCity · Work · Launch, never your default calendar. Move or stretch an event and the task follows.",
+    a: "Yes, both ways. Turn on the Apple Calendar connector to show your meetings (including Google, Outlook and iCloud calendars added to your Mac) beside your tasks. Turn on Put my tasks in Calendar and tasks with a day and time become events, in calendars of their own: one per project, grouped like TodoCity · Work · Launch, never your default calendar. Move or stretch an event and the task follows. Your own meetings move from TodoCity too: drag one to a new time in Calendar and it moves in Apple Calendar.",
   },
   {
     q: "Can AI assistants add tasks to TodoCity?",
