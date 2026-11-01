@@ -464,7 +464,7 @@ export const PAGES: Page[] = [
     faq: [
       {
         q: "Can I move from Things 3 to TodoCity?",
-        a: "Yes. Settings → Import Data reads a copy of your Things 3 database on your Mac and brings projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and your Logbook. Things isn't changed.",
+        a: "Yes. Settings → Connectors → Things 3 reads a copy of your Things 3 database on your Mac and brings projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and your Logbook. Things isn't changed.",
       },
       {
         q: "Does TodoCity have an iPhone app?",
@@ -502,7 +502,7 @@ export const PAGES: Page[] = [
                 ["Background AI agent", "Yes: checks new email on a schedule and sends the to-dos for review", "No, forward each email yourself"],
                 ["Turn copied text into a task", "⌘C twice, in any app", "Browser extensions, email forwarding, share sheet"],
                 ["Sharing with others", "No", "Yes, shared projects"],
-                ["Import from the other", "Imports Todoist (API token or CSV)", "No"],
+                ["Works with the other", "Two-way sync with Todoist, or import (API token or CSV)", "No"],
               ],
             },
           },
@@ -570,7 +570,7 @@ export const PAGES: Page[] = [
     faq: [
       {
         q: "How do I move from Todoist to TodoCity?",
-        a: "In TodoCity, open Settings → Import Data → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). Or export projects as CSV files. Todoist isn't changed.",
+        a: "In TodoCity, open Settings → Connectors → Todoist and paste your Todoist API token (Todoist → Settings → Integrations → Developer). With Keep in sync on, TodoCity and Todoist stay in sync both ways, so you can keep Todoist on your phone. Or export projects as CSV files.",
       },
     ],
     related: ["move-from-todoist", "ai-agents-mcp-todo-app", "things-3-alternative", "private-todo-app-for-mac"],
@@ -644,7 +644,7 @@ export const PAGES: Page[] = [
       "Move your Things 3 library to TodoCity in a few steps: projects, headings, to-dos, checklists, deadlines, repeats and your Logbook. Things isn't changed.",
     h1: "How to move from Things 3 to TodoCity",
     answer:
-      "Open TodoCity's Settings → Import Data, click Find my Things library, check the preview and click Import. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
+      "Open TodoCity's Settings → Connectors → Things 3, click Find my Things library, check the preview and click Import. TodoCity reads a copy of Things 3's database on your Mac and brings your projects, headings, to-dos, checklists, dates, deadlines, repeats, tags and Logbook. Things itself isn't changed, so you can keep using it while you try TodoCity.",
     card: "The steps, staying in sync, and what each Things item becomes.",
     sections: [
       {
@@ -653,13 +653,13 @@ export const PAGES: Page[] = [
           {
             steps: [
               { title: "Open Things 3 on this Mac", text: "Let it finish syncing. If you only use Things on iPhone or iPad, install Things 3 for Mac and sign in to Things Cloud first." },
-              { title: "Find your library", text: "In TodoCity, open Settings → Import Data and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
+              { title: "Find your library", text: "In TodoCity, open Settings → Connectors → Things 3 and click Find my Things library. If macOS asks whether TodoCity may access data from other apps, click Allow." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring the Logbook and cancelled to-dos." },
-              { title: "Keep in sync", text: "Leave it on and new to-dos and changes in Things keep flowing into TodoCity on their own. Your edits in TodoCity stay, and nothing is sent back to Things." },
+              { title: "Keep in sync", text: "Leave it on and new to-dos and changes in Things keep flowing into TodoCity on their own. Your edits in TodoCity stay in TodoCity." },
               { title: "Click Import", text: "TodoCity backs itself up first (Settings → Backups & export → “before import”), so you can undo it." },
             ],
           },
-          { p: "Stop syncing any time: for one project from its ⋯ menu, or for all of Things in Settings → Import Data. Its tasks stay in TodoCity." },
+          { p: "Stop syncing any time: for one project from its ⋯ menu, or for all of Things in its card in Settings → Connectors. Its tasks stay in TodoCity." },
         ],
       },
       {
@@ -702,10 +702,10 @@ export const PAGES: Page[] = [
     kind: "howto",
     title: "How to Move From Todoist to TodoCity (Step by Step)",
     description:
-      "Import Todoist into TodoCity with an API token or CSV files: projects, sections, tasks, sub-tasks, labels, comments and completed tasks.",
+      "Bring Todoist into TodoCity and keep the two in sync both ways, with an API token (or import CSV files): projects, sections, tasks, sub-tasks, labels, comments and completed tasks.",
     h1: "How to move from Todoist to TodoCity",
     answer:
-      "Copy your API token in Todoist (Settings → Integrations → Developer), paste it in TodoCity's Settings → Import Data → Todoist, check the preview and click Import. TodoCity brings your projects, sections, tasks, sub-tasks, labels, comments and completed tasks straight to your Mac. The token is used only for the import and never saved.",
+      "Copy your API token in Todoist (Settings → Integrations → Developer), paste it in TodoCity's Settings → Connectors → Todoist, check the preview and click Import. TodoCity brings your projects, sections, tasks, sub-tasks, labels, comments and completed tasks to your Mac, and with Keep in sync on, the two stay in sync both ways. Without it, the token is used once and never saved.",
     card: "With an API token or CSV files, and what each Todoist item becomes.",
     sections: [
       {
@@ -714,9 +714,9 @@ export const PAGES: Page[] = [
           {
             steps: [
               { title: "Copy your Todoist API token", text: "In Todoist (web or app), open Settings → Integrations → Developer and click Copy API token." },
-              { title: "Connect", text: "In TodoCity, open Settings → Import Data → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
+              { title: "Connect", text: "In TodoCity, open Settings → Connectors → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring completed tasks." },
-              { title: "Keep in sync", text: "Leave it on and Todoist changes keep flowing in every few minutes. Your token is kept in your Mac's Keychain, your edits in TodoCity stay, and nothing is sent back to Todoist." },
+              { title: "Keep in sync", text: "Leave it on and TodoCity and Todoist stay in sync both ways every few minutes: change, add, finish or delete a task in either app and the other follows. Your token is kept in your Mac's Keychain. Prefer one-way? Switch it in Todoist's card." },
               { title: "Click Import", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
             ],
           },
