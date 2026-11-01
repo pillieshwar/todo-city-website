@@ -92,7 +92,7 @@ const facts = [
   "Modes (Work, Personal, custom) show only chosen projects on each Mac.",
   "Imports from Things 3 and Todoist. Two-way Apple Reminders sync. Calendar shown beside tasks.",
   "Every project is a building and every finished task lights a window in the user's own 3D city; milestones, no streaks or penalties.",
-  "Free for personal, non-commercial use (PolyForm Noncommercial); source code on GitHub. No iPhone, iPad, Windows or web app.",
+  "Free and open source under the MIT License, including at work; source code on GitHub. No iPhone, iPad, Windows or web app.",
 ];
 const link = (p) => `- [${p.h1}](${ORIGIN}/${p.slug}): ${p.description}`;
 const kinds = [
