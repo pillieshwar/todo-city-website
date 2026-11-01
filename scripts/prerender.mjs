@@ -90,7 +90,7 @@ const facts = [
   "Optional sync between a person's Macs: paired with a code, end-to-end encrypted (ChaCha20-Poly1305), no iCloud or account.",
   "Views: Today with its hours, a week calendar, Anytime, Someday, Overdue, Logbook; projects with sections (floors), sub-tasks, deadlines, repeats, tags.",
   "Modes (Work, Personal, custom) show only chosen projects on each Mac.",
-  "Imports from Things 3 and Todoist. Two-way Apple Reminders sync. Calendar shown beside tasks.",
+  "Two-way sync with Todoist (or one-way, if preferred); Things 3 moves in and keeps flowing in. Two-way Apple Reminders sync. Calendar shown beside tasks.",
   "Every project is a building and every finished task lights a window in the user's own 3D city; milestones, no streaks or penalties.",
   "Free for personal, non-commercial use (PolyForm Noncommercial); source code on GitHub. No iPhone, iPad, Windows or web app.",
 ];

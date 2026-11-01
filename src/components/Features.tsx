@@ -136,7 +136,8 @@ const WORKS: [string, string][] = [
   ["Your other Macs", "Encrypted sync, no account"],
   ["iPhone", "Through Apple Reminders"],
   ["Apple Calendar", "Meetings in, tasks out"],
-  ["Things 3 and Todoist", "Bring your tasks over"],
+  ["Todoist", "Two-way sync"],
+  ["Things 3", "Move in, stay in step"],
 ];
 
 export function WorksWith() {

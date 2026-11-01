@@ -27,7 +27,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Does anything I capture leave my Mac?",
-    a: "Not unless you turn something on. The AI that reads what you capture runs on your Mac, and your tasks live in one file on it, with no account and no tracking. The internet is used for the one-time model download and for update checks (you can turn those off). Sync between your Macs and sharing with AI agents happen only after you turn them on.",
+    a: "Not unless you turn something on. The AI that reads what you capture runs on your Mac, and your tasks live in one file on it, with no account and no tracking. The internet is used for the one-time model download and for update checks (you can turn those off). Sync between your Macs, two-way sync with Todoist and sharing with AI agents happen only after you turn them on.",
   },
   {
     q: "What do I need, and what does it download?",
@@ -39,7 +39,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Can I move my tasks from Things 3 or Todoist?",
-    a: "Yes. In Settings → Import Data, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks, and can keep them in sync as you go. Things and Todoist aren't changed.",
+    a: "Yes. In Settings → Connectors, TodoCity brings in your projects, headings or sections, tasks, checklists, dates, repeats and finished tasks, and keeps them in sync as you go: both ways with Todoist (or one-way, if you prefer), and flowing in from Things.",
   },
 ];
 
