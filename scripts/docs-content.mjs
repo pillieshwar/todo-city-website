@@ -109,6 +109,8 @@ function prepare(body) {
 function render(body, file) {
   const headings = [];
   const used = new Set();
+  // Each table is a labelled region; its label starts with the heading above it, so labels stay unique.
+  let lastHeading = "";
   const marked = new Marked({ gfm: true });
   marked.use({
     renderer: {
@@ -119,6 +121,7 @@ function render(body, file) {
         for (let n = 2; used.has(id); n++) id = `${slugify(inner)}-${n}`;
         used.add(id);
         headings.push({ depth, id, text: stripTags(inner) });
+        lastHeading = stripTags(inner);
         return `<h${depth} id="${id}"><a class="dx-anchor" href="#${id}" aria-hidden="true" tabindex="-1">#</a>${inner}</h${depth}>\n`;
       },
       table(token) {
@@ -131,7 +134,8 @@ function render(body, file) {
                 .join("")}</tr>`,
           )
           .join("\n");
-        const label = token.header.map((c) => stripTags(this.parser.parseInline(c.tokens))).join(" and ");
+        const columns = token.header.map((c) => stripTags(this.parser.parseInline(c.tokens))).join(" and ");
+        const label = lastHeading ? `${lastHeading}: ${columns}` : columns;
         return `<div class="dx-table" role="region" aria-label="${esc(label)}" tabindex="0"><table><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>\n`;
       },
       blockquote({ tokens }) {
