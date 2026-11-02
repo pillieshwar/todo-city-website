@@ -5,7 +5,7 @@ section: plan
 order: 9
 ---
 
-TodoCity has two kinds of keys: shortcuts that work anywhere on your Mac, and keys for the task list. Press <kbd>?</kbd> in TodoCity to see them all in the **Keyboard shortcuts** sheet.
+TodoCity has two kinds of keys. Some shortcuts work anywhere on your Mac, and others work in the task list. To see them all, press <kbd>?</kbd> in TodoCity and the **Keyboard shortcuts** sheet opens.
 
 ![The Keyboard shortcuts sheet: Anywhere on your Mac at the top, then the keys in TodoCity, each with its key](/docs/img/keyboard-shortcuts.webp "Press ? to open the Keyboard shortcuts sheet.")
 
@@ -13,12 +13,12 @@ TodoCity has two kinds of keys: shortcuts that work anywhere on your Mac, and ke
 
 | Shortcut | What it does |
 | --- | --- |
-| <kbd>⌘C</kbd> <kbd>⌘C</kbd> | Capture what you just copied: copy, then press <kbd>⌘C</kbd> again |
+| <kbd>⌘C</kbd> <kbd>⌘C</kbd> | Capture what you just copied. Copy as usual, then press <kbd>⌘C</kbd> again |
 | <kbd>⇧⌘S</kbd> | Capture selected text |
-| <kbd>⇧⌘Space</kbd> | Quick add: type a task from anywhere |
+| <kbd>⇧⌘Space</kbd> | Quick add, so you can type a task from anywhere |
 | <kbd>⇧⌘H</kbd> | Show or hide TodoCity, even over full-screen apps |
 
-Change these in **Settings → Capture & shortcuts**, or in the sheet: click **Change shortcut** and press the new keys, or **Clear** to turn one off. **Restore defaults** puts them back.
+You can change these in **Settings → Capture & shortcuts**, or right in the sheet. Click **Change shortcut** and press the new keys, or click **Clear** to turn one off. **Restore defaults** puts them all back.
 
 ## In the task list
 
@@ -43,15 +43,15 @@ Change these in **Settings → Capture & shortcuts**, or in the sheet: click **C
 
 ## Pick your own keys
 
-Every letter key in the table above can change:
+You can change any of the letter keys in the table above:
 
 :::steps
 1. **Press <kbd>?</kbd>** to open **Keyboard shortcuts**.
 2. **Click the key** next to an action.
-3. **Press the new key**: a letter, a digit, or one of `, . ; ' [ ] - =`. Press <kbd>Esc</kbd> to keep the old one.
+3. **Press the new key.** It can be a letter, a digit, or one of `, . ; ' [ ] - =`. If you change your mind, press <kbd>Esc</kbd> to keep the old one.
 :::
 
-Choose a key that's already taken and the two swap, so every key still does one thing. **Use the usual keys** puts them all back. <kbd>Space</kbd>, <kbd>Return</kbd> and the arrow keys always work too.
+If you pick a key that's already taken, the two actions swap keys, so each key still does just one thing. **Use the usual keys** puts everything back. <kbd>Space</kbd>, <kbd>Return</kbd> and the arrow keys always work as well.
 
 ## Keys that stay the same
 
