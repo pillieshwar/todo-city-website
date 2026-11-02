@@ -5,7 +5,7 @@ section: city
 order: 1
 ---
 
-You're the mayor of a new city. It starts quiet and dark, and the only way anyone moves in is when you get something done: every task you finish lights a window, for good.
+Congratulations, you're the mayor of a brand-new city. It starts out quiet and dark, and the only way anyone moves in is when you get something done. Every task you finish lights up a window, and it stays lit for good.
 
 ![Your city at night in 3D: a building for each project with lit windows, houses at the edge of town, a park and a town square](/docs/img/city.webp "Lumen Bay, population 198.")
 
@@ -14,82 +14,82 @@ You're the mayor of a new city. It starts quiet and dark, and the only way anyon
 | In your city | In TodoCity | What you see |
 | --- | --- | --- |
 | An apartment building | A project | It goes up when you start the project. The older the project, the closer to downtown it stands |
-| A floor | A section of a project | You name it: “1st Floor: Travel”, “2nd Floor: Program”. Tasks in no section live on the ground floor |
-| A home | A task | A new task is an empty home with a dark window. Finish it and someone moves in: the lights come on and stay on |
-| A faint glow | Sub-tasks under way | Tick some sub-tasks and the window glows behind the curtains |
+| A floor | A section of a project | You name it, like “1st Floor: Travel” or “2nd Floor: Program”. Tasks that aren't in a section live on the ground floor |
+| A home | A task | A new task is an empty home with a dark window. Finish it and someone moves in, so the lights come on and stay on |
+| A faint glow | Sub-tasks under way | Tick off some sub-tasks and the window starts to glow behind the curtains |
 | Blinking amber | An overdue task | Someone's waiting at the door |
-| A house | A task in no project | Little houses line the edge of town; their porch lights come on when they're done |
+| A house | A task in no project | Little houses line the edge of town, and their porch lights come on once they're done |
 | “Coming soon” plots | Someday ideas | Ideas you haven't planned yet |
-| The “Moving in today” billboard | Today's timed tasks | On the building's roof, in time order |
-| A rooftop light | A finished project | Every home in the building is lived in |
-| A crane and trucks | A project just starting | A crane over an empty lot; trucks circle buildings with nobody moved in yet |
+| The “Moving in today” billboard | Today's timed tasks | Up on the building's roof, in time order |
+| A rooftop light | A finished project | Every home in the building has someone living in it |
+| A crane and trucks | A project just starting | A crane stands over an empty lot, and trucks circle buildings nobody has moved into yet |
 | Luxury cars | Your tallest tower | The project you've finished the most of |
-| Population | Every task you've finished | Your number as mayor: “Mayor Sam · Lumen Bay · population 198” |
+| Population | Every task you've finished | Your number as mayor, as in “Mayor Sam · Lumen Bay · population 198” |
 
-Each floor is as wide as its homes need, and floors stack with the most homes at the bottom, so every building narrows as it rises.
+Each floor is just as wide as its homes need, and the floors with the most homes go at the bottom, so every building gets narrower as it rises.
 
 ## Milestones
 
-Your population is every task you've finished. At each milestone, your city gains something new, for good.
+Your population counts every task you've ever finished. Each time you hit a milestone, your city gains something new, and it's yours to keep.
 
 | Population | Your city gains |
 | --- | --- |
 | 10 | Street lamps on every corner |
 | 25 | A park at the south end of town |
-| 50 | A fountain in the park: the town square |
+| 50 | A fountain in the park, which becomes the town square |
 | 100 | A train line looping round the city |
 | 250 | A harbour with a pier, a lighthouse and boats |
 | 500 | A stadium with floodlights |
 | 1,000 | A bridge across the harbour to a second island |
 
-Open your city and click **Milestones** to see what's built and how far it is to the next one. Each milestone is celebrated once and adds a chapter to your city's **Story**.
+To see what's been built and how far you are from the next one, open your city and click **Milestones**. Each milestone gets celebrated once, and adds a new chapter to your city's **Story**.
 
 ![The Milestones sheet: population 198, 52 more tasks to the harbour, the rules, and each milestone with Built or the population it needs](/docs/img/city-milestones.webp "Milestones: what's built and what's next.")
 
 ## Calm by design
 
-Your city only ever grows:
+Your city only ever grows.
 
 - **What's built stays built.** Un-ticking or deleting a task never takes anything away.
-- **No streaks, points or penalties.** A quiet week is simply a quiet week.
-- **Rewards are for your city only.** Every feature of TodoCity is yours from day one.
+- **There are no streaks, points or penalties.** A quiet week is just a quiet week.
+- **Rewards are just for your city.** You get every feature of TodoCity from day one.
 
 ## Explore it
 
 In full screen, your city sits in the bottom-right corner and glows whenever someone moves in. Click it to open the city in 3D.
 
-- **Drag** to turn it to any angle, **scroll** to zoom, and **double-click** to reset. The arrow keys, <kbd>+</kbd>, <kbd>−</kbd> and <kbd>0</kbd> work too.
-- **Point at a window** to see its task: empty, being readied, overdue, or when someone moved in. Point at a building for how many homes are lived in and still empty.
-- **Click a building** and TodoCity glides to it and opens that project. Click the houses for tasks in no project, or a plot for Someday.
-- **Story** walks you through how the city works, page by page.
-- See the last **7 days**, **30 days** or **All time**: new residents, population, your tallest tower, finished projects and your busiest moving day.
+- **Drag** to look at it from any angle, **scroll** to zoom, and **double-click** to reset the view. The arrow keys, <kbd>+</kbd>, <kbd>−</kbd> and <kbd>0</kbd> work too.
+- **Point at a window** to see its task, and whether the home is empty, being readied or overdue, or when someone moved in. Point at a building to see how many of its homes are lived in and how many are still empty.
+- **Click a building** and TodoCity glides over to it and opens that project. Click the houses to see tasks that aren't in a project, or a plot to see Someday.
+- **Story** walks you through how the city works, one page at a time.
+- Look back over the last **7 days**, **30 days** or **All time** to see new residents, your population, your tallest tower, finished projects and your busiest moving day.
 
 Press <kbd>Esc</kbd> to go back to your tasks.
 
 ## Share a picture of your city
 
-Click **Share** in your city to make a picture of it with its name and, if you like, how many things you did this week.
+Click **Share** in your city to make a picture of it with its name, and if you like, how many things you got done this week.
 
 ![Share your city: a picture of Lumen Bay with this week's count, with Copy image and Save to Downloads](/docs/img/city-share.webp "Share your city.")
 
 - **Show this week's count** adds the number of things you finished this week.
-- **Show project names on buildings** is off unless you turn it on.
-- **Copy image**, or **Save to Downloads**.
+- **Show project names on buildings** stays off unless you turn it on.
+- Then choose **Copy image** or **Save to Downloads**.
 
 > [!PRIVATE]
-> Only the picture is shared, and only when you share it. It's made on your Mac and holds no task names, notes or times.
+> Only the picture is shared, and only when you choose to share it. It's made on your Mac and doesn't include any task names, notes or times.
 
 ## Make it yours
 
-In **Settings → Your city**:
+You'll find these in **Settings → Your city**:
 
 | Setting | What it does |
 | --- | --- |
-| **Show my city in the footer** | Keep the city card in full screen's footer, or hide it for a clean screen |
-| **City name** | Name your city, or rename it |
+| **Show my city in the footer** | Keeps the city card in full screen's footer, or hides it if you prefer a clean screen |
+| **City name** | Names your city, or renames it |
 | **Mayor** | Your name as mayor |
-| **Mayor's figure** | Pick the 3D mayor |
+| **Mayor's figure** | Picks your 3D mayor |
 | **Sky** | **Follow theme**, **Night** or **Dusk** |
-| **Moving cars and blinking windows** | Cars, trucks and blinking windows, or a still city |
+| **Moving cars and blinking windows** | Turns on cars, trucks and blinking windows, or keeps the city still |
 
-With **Reduce motion** on in macOS, the city stays still too.
+If you have **Reduce motion** turned on in macOS, the city stays still too.

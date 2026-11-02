@@ -5,8 +5,8 @@ section: help
 order: 2
 ---
 
-What's new in each version of TodoCity, newest first. The current version is **{{version}}**. TodoCity shows the same notes after it updates, and the full history is on [GitHub](https://github.com/pillieshwar/TodoCity/releases).
+Here's what's new in each version of TodoCity, with the newest at the top. The current version is **{{version}}**. These are the same notes TodoCity shows you after it updates, and you'll find the full history on [GitHub](https://github.com/pillieshwar/TodoCity/releases).
 
-To see your version, open **Settings → General → Updates**. See [Install](/docs/install#updates) for how updates arrive.
+To check which version you have, open **Settings → General → Updates**. [Install](/docs/install#updates) explains how updates arrive.
 
 :::release-notes

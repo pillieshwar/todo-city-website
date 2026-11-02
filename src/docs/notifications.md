@@ -6,7 +6,7 @@ section: plan
 order: 10
 ---
 
-When a task's time comes, TodoCity tells you, with **Done**, **Snooze** and **Tomorrow** right in the notification. Set it all up in **Settings → Notifications**.
+When it's time for a task, TodoCity lets you know, and you can hit **Done**, **Snooze** or **Tomorrow** right from the notification. You'll find all the settings for this in **Settings → Notifications**.
 
 ![Settings → Notifications: reminders, a 9:00 AM time for tasks without a time, the done sound, and the menu-bar check-in](/docs/img/settings-notifications.webp "Settings → Notifications.")
 
@@ -14,45 +14,45 @@ When a task's time comes, TodoCity tells you, with **Done**, **Snooze** and **To
 
 | Setting | What it does |
 | --- | --- |
-| **Remind me when tasks are due** | Reminders on or off. They're on from the start |
-| **Tasks without a time** | A task with a day but no time reminds you on that day at the time you set here |
-| **One morning summary instead** | One notification each morning in place of one per task. Timed tasks still remind on time |
-| **Test** | **Send a test** notification to check everything works |
+| **Remind me when tasks are due** | Turns reminders on or off. They're on from the start |
+| **Tasks without a time** | If a task has a day but no time, it reminds you on that day at the time you set here |
+| **One morning summary instead** | Sends one notification each morning instead of one per task. Timed tasks still remind you on time |
+| **Test** | **Send a test** notification to make sure everything works |
 
-macOS asks once whether TodoCity may send notifications. If they're turned off for TodoCity, Settings says so: click **Open System Settings** and turn them on there.
+macOS asks you once whether TodoCity can send notifications. If they're turned off for TodoCity, Settings will tell you. Click **Open System Settings** and turn them on there.
 
 ## When a task comes due
 
-As well as the notification, the menu-bar dropdown opens on just that task, with everything else blurred behind it. It never takes your keyboard, so you can keep typing.
+Along with the notification, the menu-bar dropdown opens on just that task, with everything else blurred behind it. It never steals your keyboard, so you can keep typing.
 
-To have it stay closed, turn off **Open on a task when it's due**.
+If you'd rather it stayed closed, turn off **Open on a task when it's due**.
 
 ## Snooze
 
-Snooze a task from its notification, from the dropdown, from its **⋯** menu, or with <kbd>S</kbd>:
+You can snooze a task from its notification, from the dropdown, from its **⋯** menu, or by pressing <kbd>S</kbd>:
 
 | Choice | What it does |
 | --- | --- |
-| **15 min**, **1 hour** | Moves the task to that time from now |
-| **Tonight** | Moves it to 8:00 PM today. Offered until 7 PM |
+| **15 min**, **1 hour** | Moves the task to that long from now |
+| **Tonight** | Moves it to 8:00 PM today. You'll see this option until 7 PM |
 | **Tomorrow**, **Next week** | Moves it to that day |
 
-A repeating task keeps its own days and times: it reminds you again later, and **Tomorrow** or **Next week** move just this one.
+Repeating tasks keep their usual days and times. Snoozing one just reminds you again later, and **Tomorrow** or **Next week** only move this one occurrence.
 
 ![A task's More menu open on Snooze, with 15 min, 1 hour, Tonight, Tomorrow and Next week](/docs/img/snooze.webp "Snooze options.")
 
 ## The daily check-in
 
-Once a day, the menu-bar dropdown asks you to plan tasks that have no date, one tap each. Turn it on or off with **Daily check-in for undated tasks**, and pick when it comes with **Check-in time**.
+Once a day, the menu-bar dropdown asks you to plan any tasks that don't have a date, with one tap each. You can turn this on or off with **Daily check-in for undated tasks**, and choose when it happens with **Check-in time**.
 
 ## The “Lights on” sound
 
-Finishing a task plays **Lights on**: a light switch and a warm chime. Click **Play** next to **Hear it** to listen. To turn it off, switch off **Play a sound when a task is done** in **Settings → Notifications**.
+Whenever you finish a task, you'll hear **Lights on**, a light switch followed by a warm chime. To listen to it, click **Play** next to **Hear it**. If you'd rather not hear it, switch off **Play a sound when a task is done** in **Settings → Notifications**.
 
 ## Modes and other Macs
 
-- In a [mode](/docs/modes) with **Notifications only for these projects** on, reminders for other projects wait until you switch.
-- Notifications and snoozes stay on the Mac where you set them, even with [sync between your Macs](/docs/sync-between-macs).
+- If you're in a [mode](/docs/modes) with **Notifications only for these projects** turned on, reminders for other projects wait until you switch.
+- Notifications and snoozes stay on the Mac where you set them, even if you use [sync between your Macs](/docs/sync-between-macs).
 
 > [!PRIVATE]
-> Notifications are scheduled by your Mac, not by a server.
+> Your Mac schedules notifications itself. No server is involved.
