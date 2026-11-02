@@ -27,7 +27,11 @@ A page whose path sits under another page's path in the same section (`connector
 - **Keys:** `<kbd>⌘C</kbd>`.
 - **Screenshots:** a paragraph with only an image becomes a figure; its title is the caption: `![Alt text that describes it](/docs/img/today.webp "Caption.")`. Images live in `public/docs/img/` (WebP, 1440 px wide for full-screen shots). Use only shots from the app repo's `ui-previews` branch, which use made-up data.
 - **Missing screenshot:** leave `<!-- TODO screenshot: what it should show -->`. It doesn't show on the site.
-- **Cards** (overview pages): a list between `:::cards` and `:::`, each line `- [Title](/docs/page) One line about it.`
+- **Link lists** (overview pages): a list between `:::cards` and `:::`, each line `- [Title](/docs/page) One line about it.` They show as a two-column list with an icon picked from where the link goes (`ICON_PATHS` in `scripts/docs-content.mjs`).
+- **Start here:** `:::start`, the left column, a line with only `+++`, the right column, then `:::`. For the fastest path on an overview page.
+- **Button:** `[Download for Mac]({{download}} "button")`, a link whose title is `button`.
+- **Variables:** `{{version}}` (the newest version in `whats-new.json`), `{{download}}`, `{{requirements}}` and `{{repo}}`, set once in `VARS` in `scripts/docs-content.mjs`. An unknown name stops the build.
+- **Links are checked:** every `/docs/…` link and `#anchor` must lead to a page and heading, or the build stops.
 - **Release notes:** `:::release-notes` on its own line expands `whats-new.json`.
 
 ## Release notes

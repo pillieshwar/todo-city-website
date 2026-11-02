@@ -1,52 +1,72 @@
 ---
-title: TodoCity Docs
+title: Get started
 nav: Overview
-description: How to use TodoCity, the private to-do app for Mac. Capture any text as a task, plan your day, connect your apps and watch your city grow.
+description: Install TodoCity, turn your first piece of text into a task, and connect the tools you already use.
 section: get-started
 order: 1
 ---
 
-TodoCity turns any text into a dated task, right on your Mac. Select or copy text in any app, press <kbd>⌘C</kbd> twice, and a small AI model running on your Mac writes the task. Each project is a building in your own 3D city, and every task you finish lights a window.
+Read this page as Markdown: `curl https://todocity.app/docs/index.md`
+
+## Start here
+
+:::start
+**Install and capture in a minute**
+
+1. Download TodoCity and drag it to Applications.
+2. Pick the on-device model the tour suggests.
+3. Copy any text and press <kbd>⌘C</kbd> again.
+
+[Download for Mac]({{download}} "button") [Quick start →](/docs/quick-start)
+
+Free and open source (MIT) · {{requirements}} · version {{version}}
++++
+**What a capture becomes**
+
+```text
+# you copy
+Could you send me the Q3 numbers
+by Friday 3pm? Thanks!
+
+# TodoCity writes
+task      Send Q3 numbers
+when      Friday · 3:00 PM
+deadline  Friday
+```
+
+Read by the model on your Mac. The date is worked out by code.
+:::
+
+## Set up
+
+:::cards
+- [Install TodoCity](/docs/install) Download, open, and allow only the permissions you use.
+- [Capture text](/docs/capture) ⌘C twice, the ⇧⌘S shortcut, right-click, or Quick Add.
+- [Dates and times](/docs/dates-and-times) How “by Friday 3pm” becomes a day, a time and a deadline.
+- [AI models](/docs/ai-models) Pick a model that fits your Mac's memory. It runs offline.
+- [Keyboard shortcuts](/docs/keyboard-shortcuts) Every key, and how to pick your own.
+- [Privacy](/docs/privacy) What stays on your Mac, and what leaves when you turn it on.
+:::
+
+## Common workflows
+
+:::cards
+- [Move from Todoist](/docs/connectors/todoist) Connect with your API token and sync both ways.
+- [Move from Things 3](/docs/connectors/things) Bring your library in, entirely on your Mac.
+- [Tasks on your iPhone](/docs/connectors/apple-reminders) Two-way sync through Apple Reminders.
+- [Work and personal Macs](/docs/sync-between-macs) End-to-end encrypted sync, with a mode on each Mac.
+- [Let Claude Code plan your day](/docs/agents) Connect an agent over MCP; you approve what it changes.
+- [Turn emails into tasks](/docs/email-to-tasks) Capture from Mail, let Watch spot them, or ask an agent.
+:::
+
+## More resources
+
+:::cards
+- [Troubleshooting](/docs/troubleshooting) Quick fixes for capture, models, imports and sync.
+- [Release notes](/docs/release-notes) What's new in each version. Current: {{version}}.
+- [Source code]({{repo}}) TodoCity is open source under the MIT License.
+- [Report an issue](https://github.com/pillieshwar/TodoCity/issues) Attach the log from Settings → Help.
+:::
 
 > [!PRIVATE]
-> Nothing leaves your Mac unless you turn it on. Each feature that sends data somewhere says where it goes. See [Privacy](/docs/privacy).
-
-## Get started
-
-:::cards
-- [Install TodoCity](/docs/install) Download it, open it and give it the permissions it asks for.
-- [Quick start](/docs/quick-start) Your first task in a minute, with the three-step tour.
-- [Capture text](/docs/capture) Press ⌘C twice, use the shortcut, right-click or Quick Add.
-- [Dates and times](/docs/dates-and-times) How “by Friday 3pm” becomes a day, a time and a deadline.
-:::
-
-## Plan your work
-
-:::cards
-- [Today](/docs/today) What's due, what's planned for this evening, and anything late.
-- [Calendar](/docs/calendar) Your week by the hour, with your meetings beside your tasks.
-- [Projects and sections](/docs/projects-and-sections) Group tasks into projects, and projects into sections.
-- [Repeats](/docs/repeats) Every week, every 2nd Tuesday, or counted from when you finish.
-- [Modes](/docs/modes) Work, Personal or your own: each Mac shows what it needs.
-- [Keyboard shortcuts](/docs/keyboard-shortcuts) Every key, and how to pick your own.
-:::
-
-## Connect your apps
-
-:::cards
-- [Connectors](/docs/connectors) Todoist, Things 3, Apple Reminders and Apple Calendar.
-- [Todoist](/docs/connectors/todoist) Bring your Todoist in and keep both in sync, both ways.
-- [Sync between your Macs](/docs/sync-between-macs) The same tasks on every Mac, end-to-end encrypted.
-- [AI agents](/docs/agents) Let Claude Code, Codex, Cursor and others add tasks or run your list.
-:::
-
-## Your city and your data
-
-:::cards
-- [Your city](/docs/city) Buildings, floors, residents and the milestones your city reaches.
-- [Privacy](/docs/privacy) What stays on your Mac, and what leaves only when you turn it on.
-- [Your data](/docs/data) The data folder, daily backups, export and restore.
-- [Troubleshooting](/docs/troubleshooting) Quick fixes for capture, models, imports and sync.
-:::
-
-TodoCity is free and open source under the MIT License. It runs on macOS 11 or later, on Apple silicon and Intel. The [source code](https://github.com/pillieshwar/TodoCity) is on GitHub.
+> Nothing leaves your Mac unless you turn it on. See [Privacy](/docs/privacy) for how each feature handles data.

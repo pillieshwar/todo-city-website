@@ -61,12 +61,17 @@ for (const p of pages) {
 
 // ── Docs (/docs/…) ─────────────────────────────────────────────────────────
 // Each page as HTML with its own head, plus its Markdown at /docs/<path>.md,
-// a search index, and 404.html. Docs follow the Mac's light or dark setting.
+// a search index, and 404.html. Docs are dark by default, with a theme switch.
 const docs = await server.renderDocs();
 const docSources = loadDocs();
 if (!docs.length) throw new Error("prerender: no docs pages");
 const docsTemplate = template
-  .replace('<html lang="en">', '<html lang="en" class="docs-html">')
+  .replace('<html lang="en">', '<html lang="en" class="docs-html" data-theme="dark">')
+  // Apply the reader's saved theme (Match my Mac · Light · Dark) before the page paints. Dark is the default.
+  .replace(
+    "</head>",
+    `    <script>try{var t=localStorage.getItem("todocity-docs-theme");if(t==="system"||t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>\n  </head>`,
+  )
   .replace(/<meta name="color-scheme" content="[^"]*" \/>/, '<meta name="color-scheme" content="light dark" />')
   .replace(
     /<meta name="theme-color" content="[^"]*" \/>/,

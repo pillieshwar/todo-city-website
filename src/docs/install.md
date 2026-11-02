@@ -10,7 +10,7 @@ TodoCity is a free Mac app. You download it once, drag it to Applications, and i
 
 ## What you need
 
-- A Mac with macOS 11 Big Sur or later, Apple silicon or Intel.
+- A Mac with {{requirements}}.
 - Room for one AI model. TodoCity downloads it from inside the app the first time you open it. See [AI models](/docs/ai-models) for the sizes.
 
 There's no account to make, and nothing else to install.
@@ -18,7 +18,7 @@ There's no account to make, and nothing else to install.
 ## Download and open
 
 :::steps
-1. **Download.** Get [TodoCity-macOS.dmg](https://github.com/pillieshwar/TodoCity/releases/latest/download/TodoCity-macOS.dmg), the latest release.
+1. **Download.** Get [TodoCity-macOS.dmg]({{download}}), the latest release (version {{version}}).
 2. **Open it** and drag **TodoCity** into **Applications**.
 3. **Open TodoCity.** It's signed and notarized by Apple, so it opens like any other Mac app.
 4. **Take the three-step tour.** Pick your on-device model, choose how you capture, and try a capture on a sample message. See [Quick start](/docs/quick-start).

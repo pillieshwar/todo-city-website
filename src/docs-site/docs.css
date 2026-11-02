@@ -1,14 +1,21 @@
 /* ── TodoCity Docs ──────────────────────────────────────────────────────────
    A docs layout (header, section tabs, sidebar, article, "On this page") in
-   the site's own palette. Docs follow the Mac's light or dark setting: the
-   prerender marks their <html> with .docs-html, and light mode swaps the
-   site's tokens below. Everything else on the site stays night-only. */
+   the site's own palette. Docs are dark by default, like the app. The theme
+   switch in the header sets <html data-theme="system|light|dark"> (the
+   prerender adds a tiny script that applies the saved choice before the page
+   paints). Light, or "system" on a Mac set to light, swaps the tokens below.
+   Everything else on the site stays night-only. */
 
-@media (prefers-color-scheme: light) {
-  html.docs-html {
-    --bg: #f7f6f2;
-    --bg-2: #efede7;
-    --card: #ffffff;
+html.docs-html {
+  --dx-accent-soft: rgba(162, 155, 255, 0.14);
+  --dx-gold-soft: rgba(255, 210, 122, 0.12);
+  --dx-code: #0e0f19;
+  color-scheme: dark;
+}
+html.docs-html[data-theme="light"] {
+    --bg: #ffffff;
+    --bg-2: #f6f6f9;
+    --card: #fafafc;
     --card-solid: #ffffff;
     --line: rgba(24, 24, 48, 0.1);
     --line-2: rgba(24, 24, 48, 0.18);
@@ -20,12 +27,37 @@
     --gold: #8a5a00;
     --amber: #a8500a;
     --green: #17734b;
+    --dx-accent-soft: rgba(76, 67, 208, 0.09);
+    --dx-gold-soft: rgba(214, 150, 30, 0.13);
+    --dx-code: #f3f2f8;
+    color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  html.docs-html[data-theme="system"] {
+    --bg: #ffffff;
+    --bg-2: #f6f6f9;
+    --card: #fafafc;
+    --card-solid: #ffffff;
+    --line: rgba(24, 24, 48, 0.1);
+    --line-2: rgba(24, 24, 48, 0.18);
+    --ink: #16172b;
+    --muted: #464960;
+    --faint: #5a5d74;
+    --violet: #4c43d0;
+    --violet-deep: #3d35b8;
+    --gold: #8a5a00;
+    --amber: #a8500a;
+    --green: #17734b;
+    --dx-accent-soft: rgba(76, 67, 208, 0.09);
+    --dx-gold-soft: rgba(214, 150, 30, 0.13);
+    --dx-code: #f3f2f8;
     color-scheme: light;
   }
-  html.docs-html kbd { background: rgba(24, 24, 48, 0.04); }
-  html.docs-html ::selection { background: rgba(76, 67, 208, 0.2); }
-  html.docs-html .skip { color: #fff; }
 }
+html.docs-html[data-theme="light"] kbd,
+html.docs-html[data-theme="system"] kbd { background: color-mix(in srgb, var(--ink) 4%, transparent); }
+html.docs-html[data-theme="light"] .skip { color: #fff; }
+@media (prefers-color-scheme: light) { html.docs-html[data-theme="system"] .skip { color: #fff; } }
 html.docs-html { scroll-padding-top: 132px; }
 html.docs-html body { overflow-x: hidden; }
 body.dx-locked { overflow: hidden; }
@@ -36,14 +68,18 @@ body.dx-locked { overflow: hidden; }
   --dx-top: calc(var(--dx-header) + var(--dx-tabs));
   --dx-side: 264px;
   --dx-toc: 220px;
-  --dx-accent-soft: rgba(162, 155, 255, 0.14);
   min-height: 100vh;
   background: var(--bg);
   color: var(--ink);
 }
-@media (prefers-color-scheme: light) {
-  html.docs-html .dx { --dx-accent-soft: rgba(76, 67, 208, 0.09); }
+
+/* Theme switch: Match my Mac · Light · Dark */
+.dx-theme { display: flex; gap: 2px; padding: 3px; flex: none; border-radius: 9px; border: 1px solid var(--line-2); background: var(--card-solid); }
+.dx-theme button {
+  display: grid; place-items: center; width: 30px; height: 28px; padding: 0; border: 0; border-radius: 6px; background: transparent; color: var(--faint); cursor: pointer;
 }
+.dx-theme button:hover { color: var(--ink); }
+.dx-theme button[aria-pressed="true"] { background: var(--dx-accent-soft); color: var(--violet); }
 
 /* Header */
 .dx-header {
@@ -233,6 +269,32 @@ body.dx-locked { overflow: hidden; }
 .dx-card-title::after { content: " →"; color: var(--violet); }
 .dx-card-text { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
+/* Link lists (overview pages): an icon, a title, one line, a hairline; two columns */
+.dx-content .dx-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; margin: 0 0 28px; padding: 0; list-style: none; }
+.dx-content .dx-links li { margin: 0; }
+.dx-content .dx-links li::marker { content: ""; }
+.dx-content a.dx-link { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
+.dx-link-icon { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 8px; background: var(--dx-accent-soft); color: var(--violet); }
+.dx-link-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.dx-link-title { color: var(--violet); font-weight: 650; font-size: 15px; line-height: 1.4; }
+.dx-link-text { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.dx-content a.dx-link:hover .dx-link-title { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Start here: the fastest path on the left, what you get on the right */
+.dx-start { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 4px 0 28px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--card); }
+.dx-start-main, .dx-start-aside { padding: 22px 24px; min-width: 0; }
+.dx-start-aside { border-left: 1px solid var(--line); background: var(--dx-code); }
+.dx-start p { margin: 0 0 12px; font-size: 14.5px; }
+.dx-start p:last-child { margin-bottom: 0; font-size: 13px; color: var(--faint); }
+.dx-start ol { margin: 0 0 18px; font-size: 14.5px; }
+.dx-start pre { margin: 0 0 12px; padding: 0; border: 0; background: none; font-size: 13px; }
+.dx-start p:has(.dx-button) { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 14.5px; color: inherit; }
+.dx-content a.dx-button {
+  display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 8px; background: var(--violet); color: var(--bg);
+  font-weight: 650; font-size: 14px; text-decoration: none;
+}
+.dx-content a.dx-button:hover { filter: brightness(1.08); }
+
 /* Previous / Next and Last updated */
 .dx-page-foot { max-width: 760px; margin-top: 48px; }
 .dx-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -305,6 +367,9 @@ body.dx-locked { overflow: hidden; }
   .dx-content { font-size: 16px; }
   .dx-steps > li { padding-left: 50px; }
   .dx-pager { grid-template-columns: 1fr; }
+  .dx-content .dx-links, .dx-start { grid-template-columns: minmax(0, 1fr); }
+  .dx-start-aside { border-left: 0; border-top: 1px solid var(--line); }
+  .dx-theme button { width: 26px; }
   .dx-pager-next { grid-column: 1; }
   .dx-anchor { display: none; }
 }
