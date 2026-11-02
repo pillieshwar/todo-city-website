@@ -717,6 +717,7 @@ export const PAGES: Page[] = [
               { title: "Connect", text: "In TodoCity, open Settings → Connectors → Todoist, paste the token and click Connect. Big accounts take a minute while completed tasks come in." },
               { title: "Check the preview", text: "Untick any project you'd rather leave behind, and choose whether to bring completed tasks." },
               { title: "Keep in sync", text: "Leave it on and TodoCity and Todoist stay in sync both ways every few minutes: change, add, finish or delete a task in either app and the other follows. Your token is kept in your Mac's Keychain. Prefer one-way? Switch it in Todoist's card." },
+              { title: "Send TodoCity projects too", text: "A project you started in TodoCity can join in: open its ⋯ menu and choose Sync with Todoist. TodoCity makes it in Todoist with its sections, or links to a Todoist project with the same name, and its open tasks follow." },
               { title: "Click Import", text: "TodoCity backs itself up first, so you can undo it. Running it again later brings only new tasks." },
             ],
           },
