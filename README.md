@@ -46,7 +46,7 @@ Import the folder as a project (or run `vercel` in it). `vercel.json` sets the V
 
 ## Docs
 
-`todocity.app/docs` is the user documentation, one page per feature. Each page is prerendered to HTML with its own title, description and canonical URL, served as raw Markdown at its address plus `.md`, listed in the sitemap and `llms.txt`, and found by a search box that runs in the browser (the index is `/docs/search.json`, built with the site). Docs follow the visitor's light or dark setting. Unknown addresses get `404.html`, a page that leads back to the docs.
+`todocity.app/docs` is the user documentation, one page per feature. Each page is prerendered to HTML with its own title, description and canonical URL, served as raw Markdown at its address plus `.md`, listed in the sitemap and `llms.txt`, and found by a search box that runs in the browser (the index is `/docs/search.json`, built with the site). Docs are dark by default, with a Match my Mac · Light · Dark switch in the header (kept in the reader's browser). Unknown addresses get `404.html`, a page that leads back to the docs.
 
 - Write or change a page in `src/docs/` (see its README) and run `npm run dev`.
 - After each app release, refresh the release notes: `npm run docs:release-notes`.

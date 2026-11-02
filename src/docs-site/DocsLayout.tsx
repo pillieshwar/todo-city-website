@@ -92,6 +92,7 @@ function Shell({ section, current, children, aside }: { section: string | null; 
           </a>
           <DocsSearch />
           <div className="dx-header-end">
+            <ThemeSwitch />
             <a className="dx-back" href="/">
               todocity.app
             </a>
@@ -318,6 +319,46 @@ function PageActions({ meta, body }: { meta: DocMeta; body: DocBody }) {
   );
 }
 
+type Theme = "system" | "light" | "dark";
+const THEME_KEY = "todocity-docs-theme";
+const THEMES: { id: Theme; label: string; d: string }[] = [
+  { id: "system", label: "Match my Mac", d: "M2.5 3.5h11v7h-11zM6 13.5h4M8 10.5v3" },
+  { id: "light", label: "Light", d: "M8 5.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zM8 1.5v1.3M8 13.2v1.3M1.5 8h1.3M13.2 8h1.3M3.4 3.4l.9.9M11.7 11.7l.9.9M3.4 12.6l.9-.9M11.7 4.3l.9-.9" },
+  { id: "dark", label: "Dark", d: "M13 9.6A5.5 5.5 0 0 1 6.4 3a5.5 5.5 0 1 0 6.6 6.6z" },
+];
+
+/**
+ * Match my Mac · Light · Dark. Dark is the default, like the app. The choice is
+ * kept in this browser only and applied before the page paints (prerender.mjs).
+ */
+function ThemeSwitch() {
+  const [theme, setTheme] = useState<Theme>("dark");
+  useEffect(() => {
+    const t = document.documentElement.dataset.theme;
+    if (t === "system" || t === "light" || t === "dark") setTheme(t);
+  }, []);
+  const pick = (t: Theme) => {
+    setTheme(t);
+    document.documentElement.dataset.theme = t;
+    try {
+      localStorage.setItem(THEME_KEY, t);
+    } catch {
+      // Storage unavailable: the choice lasts until the page changes.
+    }
+  };
+  return (
+    <div className="dx-theme" role="group" aria-label="Theme">
+      {THEMES.map((t) => (
+        <button key={t.id} type="button" aria-label={t.label} title={t.label} aria-pressed={theme === t.id} onClick={() => pick(t.id)}>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d={t.d} />
+          </svg>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /** One docs page. */
 export function DocsPage({ meta, body }: { meta: DocMeta; body: DocBody }) {
   const { prev, next } = neighbours(meta);
@@ -369,17 +410,21 @@ export function DocsNotFound() {
         <h1 className="dx-title">Let's find that page</h1>
         <p className="dx-subtitle">This address has no page in TodoCity Docs. Search above, or start from one of the sections below.</p>
         <div className="dx-content">
-          <div className="dx-cards">
+          <ul className="dx-links">
             {SECTION_LIST.map((s) => {
               const first = firstPage(s.id);
               return first ? (
-                <a key={s.id} className="dx-card" href={first.path}>
-                  <span className="dx-card-title">{s.label}</span>
-                  <span className="dx-card-text">{s.blurb}</span>
-                </a>
+                <li key={s.id}>
+                  <a className="dx-link" href={first.path}>
+                    <span className="dx-link-body">
+                      <span className="dx-link-title">{s.label}</span>
+                      <span className="dx-link-text">{s.blurb}</span>
+                    </span>
+                  </a>
+                </li>
               ) : null;
             })}
-          </div>
+          </ul>
           <p>
             <a href="/docs">Docs home</a> · <a href="/">todocity.app</a>
           </p>
