@@ -51,6 +51,9 @@ export function Nav({ home = true, page }: { home?: boolean; page?: "city" }) {
           <a href={home ? "#faq" : "/faq"} onClick={() => setOpen(false)}>
             FAQ
           </a>
+          <a href="/docs" onClick={() => setOpen(false)}>
+            Docs
+          </a>
         </nav>
         <a className="btn btn-primary btn-sm nav-dl" href={SITE.download}>
           <AppleIcon /> Download<span className="nav-dl-more"> for Mac</span>

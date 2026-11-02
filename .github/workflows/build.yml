@@ -40,7 +40,7 @@ jobs:
           npx playwright install --with-deps chromium > browser.log 2>&1 || { tail -n 5 browser.log | while IFS= read -r l; do echo "::error title=browser::$l"; done; exit 1; }
           npx vite preview --port 4173 --strictPort &
           sleep 3
-          for page in / /city /things-3-alternative /move-from-things-3 /guides /faq; do
+          for page in / /city /things-3-alternative /move-from-things-3 /guides /faq /docs /docs/connectors/todoist /docs/keyboard-shortcuts; do
             node scripts/a11y.mjs "http://localhost:4173$page" 2>&1 | tee -a a11y.log || {
               grep -m3 -iE "error|cannot|failed" a11y.log | while IFS= read -r l; do echo "::error title=a11y script ($page)::$l"; done
               exit 1
@@ -62,6 +62,20 @@ jobs:
             grep -q 'BreadcrumbList' "$f"
             grep -q '<h1' "$f"
           done
+          # The docs: every page prerendered with its own canonical link, its Markdown, the search index and 404.html.
+          test -s dist/docs/search.json && test -s dist/404.html && test -s dist/docs/index.md
+          docs=0
+          for f in $(find dist/docs -name index.html); do
+            path="/${f#dist/}"; path="${path%/index.html}"
+            grep -q "<link rel=\"canonical\" href=\"https://todocity.app$path\"" "$f"
+            grep -q 'TechArticle' "$f"
+            if [ "$path" = "/docs" ]; then test -s dist/docs/index.md; else test -s "dist$path.md"; fi
+            grep -q "<loc>https://todocity.app$path</loc>" dist/sitemap.xml
+            grep -q "(https://todocity.app$path)" dist/llms.txt
+            docs=$((docs + 1))
+          done
+          echo "::notice title=Docs pages::$docs"
+          test "$docs" -ge 32
           urls=$(grep -c '<loc>' dist/sitemap.xml)
           echo "::notice title=Pages in the sitemap::$urls"
           test "$urls" -ge 14
