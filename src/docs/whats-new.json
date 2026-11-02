@@ -1,0 +1,149 @@
+{
+  "0.4.74": [
+    "Todoist now syncs both ways: change, add, finish or delete a task in either app and the other follows",
+    "Rather keep it one-way? Switch it in Settings → Connectors → Todoist",
+    "Todoist and Things 3 now live in Settings → Connectors, with how to move in behind the (i)",
+    "Repeating tasks move on once in both apps, even with two Macs"
+  ],
+  "0.4.73": [
+    "TodoCity is now open source under the MIT License: use it, change it and share it, including at work",
+    "Everything stays free, and the code is on GitHub for anyone to read"
+  ],
+  "0.4.72": [
+    "Pick your own keys: open Keyboard shortcuts (press ?) and click any key, like T for Today, to choose another",
+    "Choose a key that's already taken and the two swap, so every key still does one thing",
+    "\"Use the usual keys\" puts them all back"
+  ],
+  "0.4.71": [
+    "Move your meetings from TodoCity: drag one to a new time or day in Calendar, or stretch it, and it moves in Apple Calendar too",
+    "Changed your mind? Undo puts it back",
+    "Meetings you organize ask first, since your guests get the new time; invites from other people stay as they are"
+  ],
+  "0.4.70": [
+    "Repeat has its own button, right after priority",
+    "Repeat any way you like: every 3 days, every other Monday and Wednesday, the 2nd Tuesday of the month, the last day of the month",
+    "\"After I finish\": the next one counts from the day you finish it",
+    "End a series on a date or after a number of times, and see the next days before you save; a deadline always ends it",
+    "Type it: \"every other tuesday\", \"the last day of every month\", \"every weekday until dec 18\""
+  ],
+  "0.4.69": [
+    "A calmer header: whose tasks to show (yours, everything, or what agents changed) and List or Board now live in one View button",
+    "Agent changes are marked quietly, with the agent's icon: \"Scheduled by Claude\"",
+    "Short tasks in Calendar stay readable: one tidy line, the full title on hover, and a crowded hour folds into \"+2\"",
+    "Beside Today: just this week and your hours, since the list already shows the rest",
+    "Updates no longer interrupt you: a small \"Update ready\" in the corner when a new version is downloaded",
+    "Email to tasks is gone: Watch already turns what's on your screen into tasks",
+    "Repeating tasks show a small repeat icon on their line"
+  ],
+  "0.4.68": [
+    "Watch can send to the agent you already use: pick Claude Code, Codex, Antigravity, Gemini or Cursor in Settings → Watch, or keep an open model on your Mac",
+    "Agents have their own page in Settings: connect Claude Code, Codex, Antigravity CLI, Cursor and more to TodoCity in one click",
+    "Agents show their own app icons in Settings and in the agent panel",
+    "Settings is tidier: AI has its own group (Agents, Watch, Open models), with the details behind small (i) buttons",
+    "Open models lists just the few small models that do this job best"
+  ],
+  "0.4.67": [
+    "Hand any task to an agent from its line: point at it and click the agent button on the right, then press Return",
+    "With agents, in the sidebar: everything you've handed off, grouped by what needs you, what's ready to review and what's still going",
+    "What it did: see everything the agent's terminal showed, even after you quit TodoCity",
+    "When an agent finishes without a summary, the task shows the last lines from its terminal"
+  ],
+  "0.4.66": [
+    "Agents inside TodoCity: open the agent panel (top right) to run Claude Code, Codex, Gemini CLI, Cursor Agent or a plain terminal beside your list",
+    "Every agent you start here is already connected to TodoCity, so you can ask it to plan your day or tidy your Inbox in one click",
+    "Send to agent: from a task's ⋯ menu, hand it to an agent in the folder you choose",
+    "The task shows how it's going — working, needs you, ready to review — with the agent's summary and links, and you mark it done after you look it over"
+  ],
+  "0.4.65": [
+    "You · All · Agents in the header: see just your tasks, everything, or only what AI agents added or changed this week",
+    "Everything an agent does is marked (\"Claude scheduled\") and one click undoes it — a task, or everything from one request",
+    "Ask Claude to plan your day: it finds the free time between your meetings and puts tasks there",
+    "Tasks an agent deleted come back from Connectors → AI agents for 7 days",
+    "The menu bar shows what an agent just did, with Undo"
+  ],
+  "0.4.64": [
+    "Put your tasks in Apple Calendar: Connectors → Apple Calendar",
+    "Each project gets its own calendar, grouped like TodoCity · Work · Launch — tick in Calendar exactly what you want to see",
+    "Move or stretch an event and the task follows; delete it and the task goes too",
+    "Keep them On My Mac, or in iCloud to see them on your iPhone"
+  ],
+  "0.4.63": [
+    "Full access for AI agents: turn it on in Settings → Connectors → AI agents and Claude, Cursor and other AI apps can run your list for you",
+    "With it, agents can read, add, change, schedule, snooze, complete and delete tasks, sub-tasks, projects and sections — 28 tools in all",
+    "It's off until you turn it on; without it, agents still only add tasks for you to approve"
+  ],
+  "0.4.62": [
+    "Give a task any length — 7 minutes, 45, 1h30 — with the new Length chip, or type “for 30 min” when you add it",
+    "Start tasks at any minute, like 9:07",
+    "Calendar draws each task at its real time and length, side by side when they overlap",
+    "Drag a task's bottom edge in Calendar to make it longer or shorter; drops snap to 5 minutes"
+  ],
+  "0.4.61": [
+    "Your tasks, backups and models now live in a folder called TodoCity, in ~/Library/Application Support — moved for you, nothing to do"
+  ],
+  "0.4.60": [
+    "A task deleted on one Mac now deletes its reminder too, so it stays deleted everywhere",
+    "A repeating task ticked off on two Macs while they were apart makes just one next task",
+    "Un-ticking a repeating task on your other Mac removes its next one there too"
+  ],
+  "0.4.59": [
+    "Plain words for your work: projects, sections and tasks — buildings and floors live in your city",
+    "Sections in the sidebar look like Slack channels (# Travel), with General for tasks in no section",
+    "Drag a task from one section to another right in a project's list",
+    "In Calendar, drag the row of dates sideways (or swipe with two fingers) to move a day at a time",
+    "Calendar opens with more room: the side pane starts closed there, and remembers if you open it",
+    "Click “from Mail” or “from Slack” on any task to open the email, message or page it came from — show it always, on hover or never in Settings → General",
+    "Finishing a task shows a green check",
+    "Show data folder in Settings → Backups & export"
+  ],
+  "0.4.58": [
+    "Skip the model download in the tour and type tasks yourself — add the AI model whenever you like",
+    "Reminders to set things up are quieter, and “Not now” hides them",
+    "Hover your city or the Projects heading to see how buildings and residents work",
+    "Clearer wording throughout the app"
+  ],
+  "0.4.57": [
+    "Finishing a task plays “Lights on”: a light switch and a warm chime as a window lights up (turn it off in Settings → Notifications)",
+    "Task edits save as you type — no Enter or Save needed, and closing a task keeps what you typed"
+  ],
+  "0.4.56": [
+    "Keep in sync with Things 3 or Todoist: changes there flow into TodoCity on their own",
+    "Synced tasks stay editable — your edits stick until the same thing changes in the other app",
+    "Stop syncing a single project from its ⋯ menu, or everything from Import Data",
+    "Your Todoist token is kept in the macOS Keychain, and deleted when you stop syncing"
+  ],
+  "0.4.55": [
+    "A cleaner Add Task: chips for where it goes, its date and time; icons for priority, deadline, sub-tasks and tags",
+    "Priority: P1, P2 and P3 — click the flag, or type p1 in a task",
+    "A repeating task with a deadline stops at its deadline",
+    "Open tasks use the same clean card, in the list and in the side pane",
+    "Grey icons, Settings next to your name, and a slimmer footer",
+    "Personal mode by default, with Home and Office projects"
+  ],
+  "0.4.54": [
+    "A cleaner logo, and a colour menu-bar icon"
+  ],
+  "0.4.53": [
+    "Calendar week lines line up",
+    "Boards fill the screen, with their scrollbar at the bottom",
+    "A keyboard shortcuts window — change your shortcuts there",
+    "Lists by default, with compact rows",
+    "Move In is now Import Data"
+  ],
+  "0.4.52": [
+    "Inbox: tasks in no project, as a list or a board",
+    "Calmer rows with rounded checkboxes",
+    "A footer with the AI model, your city and the version",
+    "Show or hide the calendar pane; Logbook is now Completed"
+  ],
+  "0.4.51": [
+    "TodoCity, one word, everywhere"
+  ],
+  "0.4.50": [
+    "Pick a floor when adding a task",
+    "Drag tasks onto buildings and floors",
+    "A resizable right pane",
+    "The version in the corner, with Update",
+    "A 3D mayor"
+  ]
+}

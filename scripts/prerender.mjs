@@ -3,6 +3,7 @@
 // add structured data, and write sitemap.xml, llms.txt and llms-full.txt.
 // The city page (/city) is written the same way as the guides.
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { SECTIONS as DOC_SECTIONS, loadDocs } from "./docs-content.mjs";
 
 const server = await import(new URL("../dist-server/entry-server.js", import.meta.url));
 const { ORIGIN, SITE, FAQ, MORE_FAQ, PAGES, UPDATED } = server;
@@ -58,6 +59,70 @@ for (const p of pages) {
   await writeFile(new URL("index.html", dir), page);
 }
 
+// ── Docs (/docs/…) ─────────────────────────────────────────────────────────
+// Each page as HTML with its own head, plus its Markdown at /docs/<path>.md,
+// a search index, and 404.html. Docs follow the Mac's light or dark setting.
+const docs = await server.renderDocs();
+const docSources = loadDocs();
+if (!docs.length) throw new Error("prerender: no docs pages");
+const docsTemplate = template
+  .replace('<html lang="en">', '<html lang="en" class="docs-html">')
+  .replace(/<meta name="color-scheme" content="[^"]*" \/>/, '<meta name="color-scheme" content="light dark" />')
+  .replace(
+    /<meta name="theme-color" content="[^"]*" \/>/,
+    '<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f2" />\n    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#07080f" />',
+  );
+if (!docsTemplate.includes('class="docs-html"')) throw new Error("prerender: no <html lang=\"en\"> in the template");
+function docHead(page, p, { robots } = {}) {
+  const url = `${ORIGIN}${p.path}`;
+  page = swap(page, /(<title>)([^<]*)(<\/title>)/, esc(p.title), "title");
+  page = swap(page, /(<meta name="description" content=")([^"]*)(")/, esc(p.description), "description");
+  page = swap(page, /(<link rel="canonical" href=")([^"]*)(")/, url, "canonical");
+  page = swap(page, /(<meta property="og:url" content=")([^"]*)(")/, url, "og:url");
+  page = swap(page, /(<meta property="og:type" content=")([^"]*)(")/, "article", "og:type");
+  page = swap(page, /(<meta property="og:title" content=")([^"]*)(")/, esc(p.title), "og:title");
+  page = swap(page, /(<meta property="og:description" content=")([^"]*)(")/, esc(p.description), "og:description");
+  page = swap(page, /(<meta name="twitter:title" content=")([^"]*)(")/, esc(p.title), "twitter:title");
+  page = swap(page, /(<meta name="twitter:description" content=")([^"]*)(")/, esc(p.description), "twitter:description");
+  if (robots) page = swap(page, /(<meta name="robots" content=")([^"]*)(")/, robots, "robots");
+  return page;
+}
+for (const p of docs) {
+  const source = docSources.find((d) => d.path === p.path);
+  if (!source) throw new Error(`prerender: no source for ${p.path}`);
+  const page = docHead(docsTemplate, p)
+    .replace('<div id="root"></div>', `<div id="root">${p.html}</div>`)
+    .replace("</head>", `  <script type="application/ld+json">${json({ "@context": "https://schema.org", "@graph": p.ld })}</script>\n${noscript}`);
+  const dir = new URL(`../dist${p.path}/`, import.meta.url);
+  await mkdir(dir, { recursive: true });
+  await writeFile(new URL("index.html", dir), page);
+  // "View as Markdown": /docs/index.md for /docs, /docs/<path>.md for the rest.
+  const md = new URL(`../dist${p.path === "/docs" ? "/docs/index" : p.path}.md`, import.meta.url);
+  await mkdir(new URL(".", md), { recursive: true });
+  await writeFile(md, source.md);
+}
+// Search: titles, headings and the words under them; fetched by the search box on first use.
+const sectionLabel = (id) => DOC_SECTIONS.find((s) => s.id === id)?.label ?? "";
+await writeFile(
+  new URL("../dist/docs/search.json", import.meta.url),
+  JSON.stringify(
+    docSources.map((d) => ({
+      p: d.path,
+      t: d.title,
+      s: sectionLabel(d.section),
+      d: d.description,
+      h: d.search.map((x) => ({ i: x.id, h: x.heading, x: x.text.slice(0, 2000) })),
+    })),
+  ),
+);
+// Any address that isn't on the site gets the docs' "Let's find that page" (Vercel serves 404.html with a 404).
+await writeFile(
+  new URL("../dist/404.html", import.meta.url),
+  docHead(docsTemplate, { path: "/docs", title: "Let's find that page · TodoCity Docs", description: "This address has no page. Search TodoCity Docs or start from a section." }, { robots: "noindex, follow" })
+    .replace('<div id="root"></div>', `<div id="root">${server.renderNotFound()}</div>`)
+    .replace("</head>", noscript),
+);
+
 // ── Sitemap ────────────────────────────────────────────────────────────────
 const today = new Date().toISOString().slice(0, 10);
 const entry = (path, lastmod, priority, image = false) => `  <url>
@@ -76,7 +141,11 @@ await writeFile(
   new URL("../dist/sitemap.xml", import.meta.url),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${[entry("/", today, "1.0", true), ...pages.map((p) => entry(p.path, UPDATED, p.path === "/guides" || p.path === "/faq" ? "0.7" : "0.8"))].join("\n")}
+${[
+  entry("/", today, "1.0", true),
+  ...pages.map((p) => entry(p.path, UPDATED, p.path === "/guides" || p.path === "/faq" ? "0.7" : "0.8")),
+  ...docs.map((p) => entry(p.path, p.updated, p.path === "/docs" ? "0.8" : "0.6")),
+].join("\n")}
 </urlset>
 `,
 );
@@ -107,6 +176,17 @@ const llms = `# ${SITE.name}
 ${facts.map((f) => `- ${f}`).join("\n")}
 
 ${kinds.map(([label, kind]) => `## ${label}\n\n${PAGES.filter((p) => p.kind === kind).map(link).join("\n")}`).join("\n\n")}
+
+## Docs
+
+How to use TodoCity, one page per feature. Each page is also plain Markdown at its address plus \`.md\` (${ORIGIN}/docs/index.md for the docs home).
+
+${DOC_SECTIONS.map(
+  (sec) => `### ${sec.label}\n\n${docSources
+    .filter((d) => d.section === sec.id)
+    .map((d) => `- [${d.title}](${ORIGIN}${d.path}): ${d.description}`)
+    .join("\n")}`,
+).join("\n\n")}
 
 ## More
 
@@ -156,4 +236,6 @@ ${[...FAQ, ...MORE_FAQ].map((f) => `**${f.q}**\n${f.a}`).join("\n\n")}
 await writeFile(new URL("../dist/llms-full.txt", import.meta.url), full);
 
 await rm(new URL("../dist-server", import.meta.url), { recursive: true, force: true });
-console.log(`prerendered ${Math.round(html.length / 1024)} KB of HTML and ${pages.length} guide pages, wrote sitemap.xml and llms.txt (${today})`);
+console.log(
+  `prerendered ${Math.round(html.length / 1024)} KB of HTML, ${pages.length} guide pages and ${docs.length} docs pages, wrote sitemap.xml, llms.txt, docs/search.json and 404.html (${today})`,
+);
