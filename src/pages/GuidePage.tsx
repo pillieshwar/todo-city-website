@@ -7,6 +7,38 @@ import { MORE_FAQ, PAGES, UPDATED, bySlug, type Block, type Page } from "./conte
 
 const KIND: Record<Page["kind"], string> = { guide: "Guide", compare: "Comparison", howto: "How-to" };
 
+/** The TodoCity Docs page with the full details for each guide. */
+const DOCS_FOR: Record<string, [string, string, string]> = {
+  "private-todo-app-for-mac": ["/docs/privacy", "Privacy", "What stays on your Mac, and what leaves only when you turn it on, feature by feature."],
+  "ai-todo-app-on-device": ["/docs/ai-models", "AI models on your Mac", "The models TodoCity offers, how to add or switch one, and how it uses memory."],
+  "ai-agents-mcp-todo-app": ["/docs/agents", "AI agents", "Connect Claude Code, Codex, Cursor and more; add-only by default, Full access when you turn it on."],
+  "turn-text-into-tasks": ["/docs/capture", "Capture text from any app", "⌘C twice, the capture shortcut, right-click and Quick Add, step by step."],
+  "things-3-alternative": ["/docs/connectors/things", "Things 3", "Move in from Things 3, keep it in sync, and what goes where."],
+  "todoist-alternative": ["/docs/connectors/todoist", "Todoist", "Connect Todoist, two-way sync, and exactly what goes back to Todoist."],
+  "apple-reminders-alternative": ["/docs/connectors/apple-reminders", "Apple Reminders", "Two-way sync with Reminders, and your tasks on your iPhone."],
+  "move-from-things-3": ["/docs/connectors/things", "Things 3", "Every step of moving in, keeping in sync and finding your library."],
+  "move-from-todoist": ["/docs/connectors/todoist", "Todoist", "Every step of connecting, two-way sync, the safety brake and two Macs."],
+  "work-and-personal-tasks": ["/docs/modes", "Modes", "Work, Personal and modes of your own, and what each Mac shows."],
+  "sync-macs-without-icloud": ["/docs/sync-between-macs", "Sync between your Macs", "Pairing, end-to-end encryption, the relay and Keep on this Mac only."],
+  "gamified-todo-app": ["/docs/city", "Your city", "Buildings, floors, residents, milestones and sharing a picture of your city."],
+};
+
+/** A link to the matching page in TodoCity Docs. */
+function InTheDocs({ href, title, text }: { href: string; title: string; text: string }) {
+  return (
+    <section className="doc-docs" aria-label="In TodoCity Docs">
+      <a href={href} className="doc-card">
+        <span className="doc-kind">In the docs</span>
+        <span className="doc-card-title">{title}</span>
+        <span className="doc-card-text">{text}</span>
+        <span className="doc-card-go">
+          Read the docs <Arrow />
+        </span>
+      </a>
+    </section>
+  );
+}
+
 /** The frame every guide page shares: the site's bar and footer, a breadcrumb, and the download at the end. */
 function Frame({ crumbs, children }: { crumbs: [string, string | null][]; children: ReactNode }) {
   return (
@@ -169,6 +201,7 @@ export function GuidePage({ page }: { page: Page }) {
         ))}
         {page.faq && <Questions items={page.faq} />}
       </article>
+      {DOCS_FOR[page.slug] && <InTheDocs href={DOCS_FOR[page.slug][0]} title={DOCS_FOR[page.slug][1]} text={DOCS_FOR[page.slug][2]} />}
       <Related slugs={page.related} />
     </Frame>
   );
@@ -190,6 +223,7 @@ export function GuidesHub() {
           How TodoCity works, how it compares with Things 3, Todoist and Apple Reminders, and how to move your tasks over.
         </p>
       </header>
+      <InTheDocs href="/docs" title="TodoCity Docs" text="How to use every feature, one page each: capture, planning, connectors, AI agents, privacy and more." />
       {groups.map(([label, kind]) => (
         <section key={kind} className="doc-hub-group" aria-label={label}>
           <h2>{label}</h2>
@@ -225,6 +259,7 @@ export function FaqPage() {
       <article className="doc-article">
         <Questions items={[...FAQ, ...MORE_FAQ]} title="All questions" />
       </article>
+      <InTheDocs href="/docs" title="TodoCity Docs" text="Step-by-step help for every feature, with fixes for common questions in Troubleshooting." />
       <Related slugs={["private-todo-app-for-mac", "things-3-alternative", "todoist-alternative"]} />
     </Frame>
   );

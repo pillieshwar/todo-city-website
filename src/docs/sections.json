@@ -1,0 +1,10 @@
+[
+  { "id": "get-started", "label": "Get started", "blurb": "Install TodoCity, give it permissions and capture your first task." },
+  { "id": "capture", "label": "Capture", "blurb": "Turn any text into a task, with its date read by code on your Mac." },
+  { "id": "plan", "label": "Plan", "blurb": "Today, Calendar, projects, repeats, modes, search and keys." },
+  { "id": "city", "label": "Your city", "blurb": "Every project is a building, and every finished task lights a window." },
+  { "id": "connectors", "label": "Connectors", "blurb": "Todoist, Things 3, Apple Reminders, Apple Calendar and your other Macs." },
+  { "id": "agents", "label": "AI agents", "blurb": "Let Claude Code, Codex, Cursor and others add tasks or run your list." },
+  { "id": "privacy", "label": "Privacy & data", "blurb": "What stays on your Mac, what leaves when you turn it on, and your files." },
+  { "id": "help", "label": "Help", "blurb": "Fixes for common questions, and what's new in each version." }
+]

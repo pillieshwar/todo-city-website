@@ -46,3 +46,4 @@ export function renderPages() {
 }
 
 export { FAQ, MORE_FAQ, ORIGIN, PAGES, SITE, UPDATED };
+export { DOCS, SECTION_LIST, renderDocs, renderNotFound } from "./docs-site/server";

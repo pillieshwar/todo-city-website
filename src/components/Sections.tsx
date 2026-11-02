@@ -79,6 +79,7 @@ export function Footer({ home = true }: { home?: boolean }) {
             <a href={at("#features")}>Features</a>
             <a href="/city">Your city</a>
             <a href="/faq">Questions</a>
+            <a href="/docs">Docs</a>
             <a href={at("#download")}>Download</a>
           </div>
           <div>
@@ -92,9 +93,7 @@ export function Footer({ home = true }: { home?: boolean }) {
           </div>
           <div>
             <h2 className="footer-h">Resources</h2>
-            <a href={SITE.releases} target="_blank" rel="noreferrer">
-              Release notes
-            </a>
+            <a href="/docs/release-notes">Release notes</a>
             <a href={SITE.repo} target="_blank" rel="noreferrer">
               Source code
             </a>
