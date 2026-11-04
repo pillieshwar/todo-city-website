@@ -27,7 +27,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Does anything I capture leave my Mac?",
-    a: "Not unless you turn something on. The AI that reads what you capture runs on your Mac, and your tasks live in one file on it, with no account and no tracking. The internet is used for the one-time model download and for update checks (you can turn those off). Sync between your Macs, two-way sync with Todoist and sharing with AI agents happen only after you turn them on.",
+    a: "Not unless you turn something on. The AI that reads what you capture runs on your Mac, and your tasks live in one file on it, with no account and no tracking. The internet is used for the one-time model download and for update checks (you can turn those off). Sync between your Macs, two-way sync with Todoist and sharing with AI agents happen only after you turn them on. Projects you choose to sync with Todoist are sent there.",
   },
   {
     q: "What do I need, and what does it download?",
