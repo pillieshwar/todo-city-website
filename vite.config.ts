@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { docsPlugin } from "./scripts/docs-content.mjs";
+import { blogPlugin } from "./scripts/blog-content.mjs";
 
 export default defineConfig(({ isSsrBuild }) => ({
   // docsPlugin: the Markdown pages in src/docs/ as `virtual:docs` (see src/docs/README.md).
-  plugins: [react(), docsPlugin()],
+  // blogPlugin: the posts in src/blog/ as `virtual:blog` (see src/blog/README.md).
+  plugins: [react(), docsPlugin(), blogPlugin()],
   build: {
     target: "es2020",
     // three.js gets its own chunk so the page text shows before the city

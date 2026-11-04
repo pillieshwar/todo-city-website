@@ -40,7 +40,7 @@ function InTheDocs({ href, title, text }: { href: string; title: string; text: s
 }
 
 /** The frame every guide page shares: the site's bar and footer, a breadcrumb, and the download at the end. */
-function Frame({ crumbs, children }: { crumbs: [string, string | null][]; children: ReactNode }) {
+export function Frame({ crumbs, children }: { crumbs: [string, string | null][]; children: ReactNode }) {
   return (
     <>
       <a className="skip" href="#main">

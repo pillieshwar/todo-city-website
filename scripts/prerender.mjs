@@ -3,10 +3,10 @@
 // add structured data, and write sitemap.xml, llms.txt and llms-full.txt.
 // The city page (/city) is written the same way as the guides.
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { SECTIONS as DOC_SECTIONS, loadDocs } from "./docs-content.mjs";
+import { SECTIONS as DOC_SECTIONS, imageSize, loadDocs } from "./docs-content.mjs";
 
 const server = await import(new URL("../dist-server/entry-server.js", import.meta.url));
-const { ORIGIN, SITE, FAQ, MORE_FAQ, PAGES, UPDATED } = server;
+const { ORIGIN, SITE, FAQ, MORE_FAQ, PAGES, POSTS, UPDATED } = server;
 const html = server.render();
 if (!html.includes("<main")) throw new Error("prerender: the page rendered without its content");
 
@@ -51,6 +51,16 @@ for (const p of pages) {
   page = swap(page, /(<meta property="og:description" content=")([^"]*)(")/, esc(p.description), "og:description");
   page = swap(page, /(<meta name="twitter:title" content=")([^"]*)(")/, esc(p.title), "twitter:title");
   page = swap(page, /(<meta name="twitter:description" content=")([^"]*)(")/, esc(p.description), "twitter:description");
+  // A page with its own sharing image (blog posts): that image, its size and its title as the alt text.
+  if (p.image) {
+    const { w, h } = imageSize(p.image);
+    page = swap(page, /(<meta property="og:image" content=")([^"]*)(")/, `${ORIGIN}${p.image}`, "og:image");
+    page = swap(page, /(<meta property="og:image:width" content=")([^"]*)(")/, String(w), "og:image:width");
+    page = swap(page, /(<meta property="og:image:height" content=")([^"]*)(")/, String(h), "og:image:height");
+    page = swap(page, /(<meta property="og:image:alt" content=")([^"]*)(")/, esc(p.title), "og:image:alt");
+    page = swap(page, /(<meta name="twitter:image" content=")([^"]*)(")/, `${ORIGIN}${p.image}`, "twitter:image");
+    page = swap(page, /(<meta name="twitter:image:alt" content=")([^"]*)(")/, esc(p.title), "twitter:image:alt");
+  }
   page = page
     .replace('<div id="root"></div>', `<div id="root">${p.html}</div>`)
     .replace("</head>", `  <script type="application/ld+json">${json({ "@context": "https://schema.org", "@graph": p.ld })}</script>\n${noscript}`);
@@ -148,7 +158,12 @@ await writeFile(
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${[
   entry("/", today, "1.0", true),
-  ...pages.map((p) => entry(p.path, UPDATED, p.path === "/guides" || p.path === "/faq" ? "0.7" : "0.8")),
+  ...pages.map((p) => {
+    const post = POSTS.find((x) => x.path === p.path);
+    if (post) return entry(p.path, post.date, "0.7");
+    if (p.path === "/blog") return entry(p.path, POSTS[0]?.date ?? UPDATED, "0.6");
+    return entry(p.path, UPDATED, p.path === "/guides" || p.path === "/faq" ? "0.7" : "0.8");
+  }),
   ...docs.map((p) => entry(p.path, p.updated, p.path === "/docs" ? "0.8" : "0.6")),
 ].join("\n")}
 </urlset>
@@ -181,6 +196,10 @@ const llms = `# ${SITE.name}
 ${facts.map((f) => `- ${f}`).join("\n")}
 
 ${kinds.map(([label, kind]) => `## ${label}\n\n${PAGES.filter((p) => p.kind === kind).map(link).join("\n")}`).join("\n\n")}
+
+## Blog
+
+${POSTS.map((p) => `- [${p.h1}](${ORIGIN}${p.path}) (${p.date}): ${p.description}`).join("\n")}
 
 ## Docs
 

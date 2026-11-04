@@ -58,7 +58,7 @@ function frontmatter(src, file) {
 }
 
 /** Width and height of a WebP or PNG in public/, so images reserve their space. */
-function imageSize(src) {
+export function imageSize(src) {
   const file = join(PUBLIC, src.replace(/^\//, ""));
   if (!existsSync(file)) throw new Error(`docs: image ${src} is not in public/`);
   const b = readFileSync(file);
