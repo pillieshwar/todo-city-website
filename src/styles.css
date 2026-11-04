@@ -866,3 +866,35 @@ button.ad-block { cursor: pointer; }
 .ad-col-more { padding: 4px 2px; border: 0; background: none; color: #9aa0a6; font-size: 13px; text-align: left; cursor: pointer; }
 .ad-col-more:hover { color: #f2f1ee; }
 .ad-col-add input { width: 100%; height: 34px; padding: 0 10px; border: 1px solid rgba(162, 155, 255, 0.6); border-radius: 8px; outline: none; background: #141517; color: #f2f1ee; font-size: 13.5px; }
+
+/* ── Blog (/blog) ───────────────────────────────────────────────────────── */
+.post-byline { margin: 14px 0 0; font-size: 14px; color: var(--faint); }
+.post-body { margin-top: 34px; }
+.post-body h2 { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; margin: 44px 0 14px; }
+.post-body h3 { font-size: 19px; margin: 28px 0 10px; }
+.post-body p, .post-body li { color: var(--muted); font-size: 16.5px; line-height: 1.7; }
+.post-body p { margin: 0 0 14px; }
+.post-body strong { color: var(--ink); }
+.post-body em { color: var(--faint); font-family: var(--sans); }
+.post-body a { color: var(--violet); text-decoration: underline; text-decoration-color: rgba(162, 155, 255, 0.4); text-underline-offset: 3px; }
+.post-body a:hover { text-decoration-color: currentColor; }
+.post-body ul, .post-body ol { margin: 0 0 14px; padding-left: 22px; }
+.post-body li { margin: 6px 0; }
+.post-body li::marker { color: var(--violet); }
+.post-fig { margin: 28px 0 32px; }
+.post-fig img {
+  display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 14px; border: 1px solid var(--line-2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+.post-fig figcaption { margin-top: 10px; text-align: center; font-size: 13.5px; color: var(--faint); }
+.post-body .doc-table th, .post-body .doc-table td { vertical-align: top; }
+.post-list { display: grid; gap: 14px; margin-top: 32px; }
+.post-card {
+  display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: center; padding: 14px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--card); color: inherit; text-decoration: none; transition: border-color 0.2s, transform 0.2s var(--ease);
+}
+.post-card:hover { border-color: rgba(162, 155, 255, 0.45); transform: translateY(-2px); }
+.post-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; border-radius: 10px; border: 1px solid var(--line); }
+.post-card-text { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 640px) { .post-card { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .post-card, .post-card:hover { transition: none; transform: none; } }

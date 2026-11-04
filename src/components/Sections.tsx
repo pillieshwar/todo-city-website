@@ -80,6 +80,7 @@ export function Footer({ home = true }: { home?: boolean }) {
             <a href="/city">Your city</a>
             <a href="/faq">Questions</a>
             <a href="/docs">Docs</a>
+            <a href="/blog">Blog</a>
             <a href={at("#download")}>Download</a>
           </div>
           <div>

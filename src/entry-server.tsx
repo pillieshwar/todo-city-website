@@ -42,8 +42,9 @@ export function renderPages() {
     ],
     html: renderToString(<CityPage />),
   };
-  return [city, ...ROUTES.map((r) => ({ path: r.path, title: r.title, description: r.description, ld: r.ld, html: renderToString(r.element()) }))];
+  return [city, ...ROUTES.map((r) => ({ path: r.path, title: r.title, description: r.description, image: r.image, ld: r.ld, html: renderToString(r.element()) }))];
 }
 
 export { FAQ, MORE_FAQ, ORIGIN, PAGES, SITE, UPDATED };
+export { POSTS } from "./pages/BlogPage";
 export { DOCS, SECTION_LIST, renderDocs, renderNotFound } from "./docs-site/server";
