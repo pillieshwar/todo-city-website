@@ -13,9 +13,18 @@ AI apps on your Mac, like Claude Code, Codex and Cursor, can work with your task
 
 :::steps
 1. **Open Settings → Agents** and turn on **Agents can add tasks**. It's a single switch, and it only applies to this Mac.
-2. **Click Connect** next to each app under **Your agents**, or click **Connect all**. This adds TodoCity's MCP server to that app's settings.
-3. **Ask your agent** something like “add a TodoCity task to send the deck Friday 3pm”.
+2. **Find your agents.** Every agent on your Mac shows up as a card under **Your agents**, including ones installed with nvm, asdf or mise. If you've just installed one, click **Check for agents**.
+3. **Click Connect** on a card. TodoCity adds its MCP server to that agent's settings and opens the agent in the [agent panel](/docs/agents/panel), where it checks it can see TodoCity. You can type to it there if it needs a hand.
+4. **Ask your agent** something like “add a TodoCity task to send the deck Friday 3pm”.
 :::
+
+## Your default agent
+
+Pick a **Default agent** at the top of **Your agents**. TodoCity uses it whenever you haven't picked another: for [Slack](/docs/connectors/slack), for new sessions in the agent panel, and as the first choice in **Send to agent**. For Slack, an agent that already has Slack comes first, so if Claude Code has Slack and Codex doesn't, Slack uses Claude Code.
+
+## Add your own agent
+
+Using an agent TodoCity doesn't know? Click **Add agent…** and pick its program, for example in `~/.local/bin` or `/opt/homebrew/bin`. It gets a card, shows up in the agent panel and in **Send to agent**, and **Set up** starts it in the panel and asks it to add TodoCity to its own settings while you watch.
 
 These apps connect in one click:
 
@@ -29,7 +38,7 @@ These apps connect in one click:
 - Gemini CLI
 - LM Studio
 
-**Using a different app?** Open **More: another app, or test the connection**, and add a stdio MCP server named “todocity” using the command shown there. **Copy JSON** and **Copy command** give it to you ready to paste, and **Test the connection** makes sure everything works.
+**Using a different app that isn't a command-line agent?** Open **More: another app, or test the connection**, and add a stdio MCP server named “todocity” using the command shown there. **Copy JSON** and **Copy command** give it to you ready to paste, and **Test the connection** makes sure everything works.
 
 > [!NOTE]
 > Connecting only works when TodoCity is opened from **Applications**. Agents you start from TodoCity's own [agent panel](/docs/agents/panel) are connected for you.
