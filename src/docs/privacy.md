@@ -25,6 +25,7 @@ Out of the box, your tasks and everything you capture stay on your Mac. A few fe
 | **Agents** (**Settings → Agents**) | Connected agents like Claude Code, Codex and Cursor can add tasks for you to review or, with **Full access**, read and change them. They talk to TodoCity over a local connection, and whatever an agent reads, it sends to its AI service. Agents started from the agent panel connect with the access you've chosen, and any task you send to an agent goes to it and then to its AI service |
 | **Watch** (**Settings → Watch**) | Reads the text of the window in front of you and keeps none of it. It never reads password managers, Keychain, System Settings or terminals, and never reads what you type. New lines that look like to-dos go to whichever reader you pick: an agent you've connected, which sends them to its AI service, or the open model on your Mac |
 | **Sync between your Macs** | End-to-end encrypted. Changes pass through a relay as sealed boxes that it can't open, and the key exists only in the Keychain on your Macs. The relay keeps no logs, has no accounts, and deletes each box once every Mac has it (after 30 days at most) |
+| **Slack** (**Settings → Connectors**) | The agent you pick reads Slack with its own Slack access and sends what it reads to its AI service, as when you use it yourself. Claude Code runs with only its Slack read and search tools allowed. TodoCity never signs in to Slack, and the tasks it adds stay on your Mac |
 | **Todoist** (**Settings → Connectors**) | With keep-in-sync on, TodoCity reads your Todoist using your token. With two-way sync, it also sends changes to synced tasks back to Todoist's servers. New tasks in your TodoCity Inbox, in projects that don't sync with Todoist and in “Keep on this Mac only” projects stay on your Mac |
 | **Apple Reminders and Calendar** | Sync through iCloud if you pick an iCloud list or account. Pick “On My Mac” to keep them local. “Keep on this Mac only” projects never go to Calendar |
 | **Model downloads** | Any model you download comes from Hugging Face and is checked against its SHA-256 |
@@ -35,6 +36,7 @@ Out of the box, your tasks and everything you capture stay on your Mac. A few fe
 :::cards
 - [AI models](/docs/ai-models) Downloaded from Hugging Face, then run offline on your Mac.
 - [Sync between your Macs](/docs/sync-between-macs) How the key and the relay work.
+- [Slack](/docs/connectors/slack) Your own agent reads Slack, with only its read tools.
 - [Todoist](/docs/connectors/todoist) What goes back to Todoist, and what stays here.
 - [Apple Reminders](/docs/connectors/apple-reminders) iCloud lists versus On My Mac lists.
 - [Apple Calendar](/docs/connectors/apple-calendar) Your meetings, and your tasks in Calendar.

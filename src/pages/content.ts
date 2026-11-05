@@ -84,6 +84,7 @@ export const PAGES: Page[] = [
             list: [
               "Agents (Settings → Agents). Connect Claude Code, Codex, Cursor and other AI agents to add tasks for your review, or give them full access to plan and tidy your list. What an agent reads, it sends to its AI service.",
               "Watch (Settings → Watch). Spots to-dos in the app in front of you. New messages that look like to-dos go to the agent you pick, and from it to its AI service, or to an open model on your Mac.",
+              "Slack (Settings → Connectors). The agent you pick reads your Slack with its own Slack access and sends what it reads to its AI service; messages that need you become tasks on your Mac.",
               "Sync between your Macs, if you pair them. Changes are encrypted on your Mac before they leave, and the relay that passes them along can't read them.",
               "Apple Reminders and Calendar, through iCloud if you pick an iCloud list or account.",
             ],

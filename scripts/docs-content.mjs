@@ -135,6 +135,7 @@ const ICON_PATHS = [
   ["/docs/data", "M3 3.5h10v3H3zM3 9.5h10v3H3zM5.5 5h.01M5.5 11h.01"],
   ["/docs/connectors/apple-reminders", "M5 1.5h6v13H5zM7.3 12.5h1.4"],
   ["/docs/connectors/apple-calendar", "M2.5 4h11v9.5h-11zM2.5 7h11M5.5 2.5v3M10.5 2.5v3"],
+  ["/docs/connectors/slack", "M2.5 3h11v7.5H7L4 13v-2.5H2.5z"],
   ["/docs/connectors", "M2.5 8h9M8.5 4.5 12 8l-3.5 3.5"],
   ["/docs/sync-between-macs", "M1.5 3.5h7v5h-7zM7.5 8.5h7v5h-7z"],
   ["/docs/email-to-tasks", "M2 4h12v8.5H2zM2 4.5l6 4.5 6-4.5"],
