@@ -21,7 +21,11 @@ In full screen, click the terminal button at the top right, then start one of th
 - Cursor Agent
 - or a plain **Terminal**
 
-You'll only see the agents that are installed on your Mac. Each session starts in a folder of your choosing, and you can change it with the folder button. Open sessions stay in the list so you can switch between them.
+You'll see the agents that are installed on your Mac, your [default agent](/docs/agents#your-default-agent) first, and any you've added yourself. Just installed one? Click **Find agents**. Each session starts in a folder of your choosing, and you can change it with the folder button. Open sessions stay in the list so you can switch between them.
+
+## Activity
+
+The **Activity** tab shows what your agents do in the background, as it happens: connecting an agent, turning on Slack, each Slack check and every task it adds. It's kept only while TodoCity is open, and **Clear** empties it.
 
 ## Send a task to an agent
 
