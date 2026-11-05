@@ -1,6 +1,6 @@
 ---
 title: Connectors
-description: Settings → Connectors links TodoCity with Todoist, Things 3, Apple Calendar and Apple Reminders. Each one is off until you connect it.
+description: Settings → Connectors links TodoCity with Slack, Todoist, Things 3, Apple Calendar and Apple Reminders. Each one is off until you connect it.
 section: connectors
 order: 1
 ---
@@ -12,6 +12,7 @@ order: 1
 ## The connectors
 
 :::cards
+- [Slack](/docs/connectors/slack) Slack messages that need you, as tasks in your Inbox. One switch.
 - [Todoist](/docs/connectors/todoist) Bring your Todoist projects over and keep both apps in sync.
 - [Things 3](/docs/connectors/things) Bring your Things library over and keep new to-dos coming in.
 - [Apple Reminders](/docs/connectors/apple-reminders) Sync both ways, and tick tasks off on your iPhone.
