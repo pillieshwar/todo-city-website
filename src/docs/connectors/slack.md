@@ -37,6 +37,18 @@ If your agent doesn't have Slack yet, TodoCity shows the steps for that agent, w
 > [!PRIVATE]
 > Your agent reads Slack with its own Slack access and sends what it reads to its AI service, just as when you use it yourself. Claude Code runs with only its Slack read and search tools allowed, so it can't send, react or change anything. TodoCity holds no Slack sign-in, and the tasks stay on your Mac.
 
+## Slack Secretary
+
+Once Slack is connected, TodoCity asks whether to turn on **Slack Secretary**. You can also switch it on later in the Slack card.
+
+- **It runs with TodoCity closed.** A background task on your Mac checks Slack every 5 minutes, whether TodoCity is open or not. macOS lists it under **System Settings → General → Login Items**.
+- **It catches up.** If your Mac was off or asleep for a few hours, the next check covers those hours (up to a week back), so nothing is missed.
+- **It looks wider.** It checks your DMs, group DMs and every channel you're in, taking only messages meant for you: ones that mention you or a group you're in, ask you by name, or reply to you in a thread.
+- **It sets priority.** Each task is **urgent**, **high** or **medium**. A message that needs an answer today is at least high.
+- **You'll see where each one came from**, like "#launch" or "DM with Sam", in the task's notes.
+
+What it finds shows up in your Inbox within seconds while TodoCity is open, or the next time you open it. A notification tells you either way.
+
 ## Turn it off
 
-Turn off the switch. The tasks already in your Inbox stay, and turning it back on later never adds the same message twice.
+Turn off the switch (turning off Slack stops Slack Secretary too). The tasks already in your Inbox stay, and turning it back on later never adds the same message twice.
