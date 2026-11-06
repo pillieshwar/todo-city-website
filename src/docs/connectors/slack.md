@@ -41,11 +41,21 @@ If your agent doesn't have Slack yet, TodoCity shows the steps for that agent, w
 
 Once Slack is connected, TodoCity asks whether to turn on **Slack Secretary**. You can also switch it on later in the Slack card.
 
-- **It runs with TodoCity closed.** A background task on your Mac checks Slack every 5 minutes, whether TodoCity is open or not. macOS lists it under **System Settings → General → Login Items**.
-- **It catches up.** If your Mac was off or asleep for a few hours, the next check covers those hours (up to a week back), so nothing is missed.
-- **It looks wider.** It checks your DMs, group DMs and every channel you're in, taking only messages meant for you: ones that mention you or a group you're in, ask you by name, or reply to you in a thread.
-- **It sets priority.** Each task is **urgent**, **high** or **medium**. A message that needs an answer today is at least high.
-- **You'll see where each one came from**, like "#launch" or "DM with Sam", in the task's notes.
+A background task on your Mac runs it, whether TodoCity is open or not. macOS lists it under **System Settings → General → Login Items**. If your Mac was off or asleep, the next run catches up on those hours (up to a week back), so nothing is missed.
+
+### Its routine
+
+Slack Secretary follows a routine you set, step by step, under **Routine** in the Slack card. Changes save as you make them, and the next run follows them.
+
+:::steps
+1. **Run** every 5 minutes (the default), or every 10, 15 or 30 minutes, or every hour.
+2. **Read** what you tick: **Direct messages** and **Group DMs** are on to start, and **Mentions of you in any channel** is off. **Channels** are read only when you pick them: click **Choose channels…**, and your agent lists the channels you're in so you can tick the ones you want.
+3. **Make a task** for each message that asks you to do, answer, decide, review, approve or send something, with a priority (**urgent**, **high** or **medium**) if you leave that on. A message that needs an answer today is at least high.
+4. **Follow your own rules**, written in plain words, like "anything from Maya is urgent" or "skip messages about lunch".
+5. **Add them to your Inbox**, one task per message, with where it came from, like "#launch" or "DM with Sam".
+:::
+
+**See the exact instructions** shows what each run asks your agent, word for word. Your rules never change what the agent may do: it only reads Slack.
 
 What it finds shows up in your Inbox within seconds while TodoCity is open, or the next time you open it. A notification tells you either way.
 
